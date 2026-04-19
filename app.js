@@ -12,6 +12,12 @@ const pipelineStages = [
   { key: "verbrieft", label: "verbrieft" },
 ];
 
+const statusLabelMap = {
+  frei: "verfügbar",
+  reserviert: "reserviert",
+  verkauft: "verkauft",
+};
+
 const projects = [
   {
     id: "p1",
@@ -678,12 +684,30 @@ const projects = [
 const stageSequence = pipelineStages.map((stage) => stage.key);
 
 projects.forEach((project, projectIndex) => {
+  project.units = project.units.map((unit, unitIndex) => ({
+    ...unit,
+    status:
+      unit.status ||
+      (unitIndex % 7 === 0 ? "verkauft" : unitIndex % 5 === 0 ? "reserviert" : "frei"),
+  }));
+
   project.leads = project.leads.map((lead, leadIndex) => {
     const sequenceIndex = (projectIndex * 3 + leadIndex) % stageSequence.length;
     return {
       ...lead,
       id: lead.id || `${project.id}-lead-${leadIndex + 1}`,
       stage: stageSequence[sequenceIndex],
+      closer: lead.closer || ["M. Keller", "A. Yilmaz", "S. Weber"][leadIndex % 3],
+      nextStepDate:
+        lead.nextStepDate ||
+        `2026-0${(projectIndex % 4) + 5}-${String(leadIndex + 11).padStart(2, "0")}`,
+      scoreReason:
+        lead.scoreReason ||
+        `Score basiert auf Budget-Fit, Reaktionsgeschwindigkeit und Vollständigkeit der Unterlagen (${lead.score}/100).`,
+      rejectionReason: lead.rejectionReason || "",
+      phone: lead.phone || `+49 17${projectIndex}${leadIndex} 55${leadIndex}${projectIndex}`,
+      email: lead.email || `${lead.name.toLowerCase().replaceAll(" ", ".")}@example.de`,
+      notes: lead.notes || "",
     };
   });
 });
@@ -691,6 +715,8 @@ projects.forEach((project, projectIndex) => {
 const state = {
   selectedProjectId: projects[0].id,
   selectedLeadId: projects[0].leads[0]?.id || null,
+  isProjectPanelOpen: false,
+  isLeadModalOpen: false,
   projectSearch: "",
   leadSearch: "",
   focusCurrentProject: false,
@@ -720,6 +746,12 @@ const sizeMaxEl = document.querySelector("#sizeMax");
 const priceMaxEl = document.querySelector("#priceMax");
 const afaTypeEl = document.querySelector("#afaType");
 const customerDetailEl = document.querySelector("#customerDetail");
+const projectPanelEl = document.querySelector("#projectPanel");
+const projectPanelBodyEl = document.querySelector("#projectPanelBody");
+const projectPanelCloseEl = document.querySelector("#projectPanelClose");
+const leadModalEl = document.querySelector("#leadModal");
+const leadModalBodyEl = document.querySelector("#leadModalBody");
+const leadModalCloseEl = document.querySelector("#leadModalClose");
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("de-DE", {
@@ -752,6 +784,14 @@ function allUnits() {
   return projects.flatMap((project) =>
     project.units.map((unit) => ({ ...unit, projectId: project.id, projectName: project.name })),
   );
+}
+
+function projectCashflow(project) {
+  const sampleUnit = project.units[0];
+  const rentMonthly = sampleUnit.size * project.analysis.avgRentPsm;
+  const financing = sampleUnit.price * 0.8 * (0.038 + 0.02) / 12;
+  const maintenance = 120;
+  return rentMonthly - financing - maintenance;
 }
 
 function getProjectById(id) {
@@ -1003,11 +1043,153 @@ function renderProjectDetail() {
   `;
 }
 
+function renderProjectPanel() {
+  if (!projectPanelEl || !projectPanelBodyEl) return;
+
+  if (!state.isProjectPanelOpen) {
+    projectPanelEl.classList.remove("open");
+    projectPanelEl.setAttribute("aria-hidden", "true");
+    return;
+  }
+
+  const project = getProjectById(state.selectedProjectId);
+  const leads = allLeads().filter((lead) => lead.projectId === project.id);
+  const unitsRows = project.units
+    .map(
+      (unit) => `
+      <tr>
+        <td>${unit.type}</td>
+        <td>${unit.size} m²</td>
+        <td>${formatCurrency(unit.price)}</td>
+        <td>${statusLabelMap[unit.status] || unit.status}</td>
+      </tr>
+    `,
+    )
+    .join("");
+
+  const leadRows = leads
+    .map(
+      (lead) => `
+      <li>
+        <button type="button" class="link-btn" data-open-lead-id="${lead.leadId}">
+          ${lead.name}
+        </button>
+        <span>${formatCurrency(lead.budget)} · Score ${lead.score}</span>
+      </li>
+    `,
+    )
+    .join("");
+
+  const sampleUnit = project.units[0];
+  const cashflow = projectCashflow(project);
+  const equityNeed = sampleUnit.price * 0.2;
+
+  projectPanelBodyEl.innerHTML = `
+    <section>
+      <h3>${project.name}</h3>
+      <p>${project.developer} · ${project.city}</p>
+    </section>
+
+    <section>
+      <h4>Einheiten</h4>
+      <table class="units-table panel-table">
+        <thead>
+          <tr>
+            <th>Typ</th>
+            <th>m²</th>
+            <th>Preis</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>${unitsRows}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h4>Zugeordnete Leads</h4>
+      <ul class="panel-list">${leadRows}</ul>
+    </section>
+
+    <section>
+      <h4>Rendite-Kalkulator (Projekt)</h4>
+      <div class="customer-grid">
+        <div><span>Kaufpreis (Beispiel)</span><strong>${formatCurrency(sampleUnit.price)}</strong></div>
+        <div><span>Miete / m²</span><strong>${formatNumber(project.analysis.avgRentPsm)} €</strong></div>
+        <div><span>Cashflow / Monat</span><strong>${formatCurrency(cashflow)}</strong></div>
+        <div><span>EK-Bedarf (20%)</span><strong>${formatCurrency(equityNeed)}</strong></div>
+      </div>
+    </section>
+  `;
+
+  projectPanelEl.classList.add("open");
+  projectPanelEl.setAttribute("aria-hidden", "false");
+}
+
+function renderLeadModal() {
+  if (!leadModalEl || !leadModalBodyEl) return;
+
+  if (!state.isLeadModalOpen) {
+    leadModalEl.classList.remove("open");
+    leadModalEl.setAttribute("aria-hidden", "true");
+    return;
+  }
+
+  const lead = allLeads().find((entry) => entry.leadId === state.selectedLeadId);
+  if (!lead) {
+    state.isLeadModalOpen = false;
+    return;
+  }
+
+  leadModalBodyEl.innerHTML = `
+    <section class="modal-headline">
+      <h3>${lead.name}</h3>
+      <p>${lead.projectName} · Budget ${formatCurrency(lead.budget)}</p>
+    </section>
+    <div class="customer-grid">
+      <div>
+        <span>Score</span>
+        <strong>${lead.score}/100</strong>
+      </div>
+      <div>
+        <span>Score-Erklärung</span>
+        <strong>${lead.scoreReason}</strong>
+      </div>
+      <div>
+        <span>Nächster Schritt</span>
+        <strong>${lead.nextStep}</strong>
+      </div>
+      <div>
+        <span>Datum</span>
+        <strong>${lead.nextStepDate}</strong>
+      </div>
+      <div>
+        <span>Closer</span>
+        <strong>${lead.closer}</strong>
+      </div>
+      <div>
+        <span>Absagegrund</span>
+        <strong>${lead.rejectionReason || "—"}</strong>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <a class="contact-btn" href="tel:${lead.phone}">Tel</a>
+      <a class="contact-btn" href="mailto:${lead.email}">Mail</a>
+    </div>
+    <label class="notes-label">
+      Notizen
+      <textarea id="leadNoteField" data-note-lead-id="${lead.leadId}" rows="4">${lead.notes || ""}</textarea>
+    </label>
+  `;
+
+  leadModalEl.classList.add("open");
+  leadModalEl.setAttribute("aria-hidden", "false");
+}
+
 function initMap() {
   state.map = L.map("map", {
     zoomControl: true,
     scrollWheelZoom: true,
-  }).setView([51.15, 10.35], 6);
+  }).setView([51.1657, 10.4515], 6);
 
   L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
     maxZoom: 19,
@@ -1114,6 +1296,7 @@ function bindEvents() {
     const projectId = item.getAttribute("data-project-id");
     state.selectedProjectId = projectId;
     state.selectedLeadId = firstLeadIdForProject(projectId);
+    state.isProjectPanelOpen = true;
     fullRender();
   });
 
@@ -1125,7 +1308,57 @@ function bindEvents() {
     if (!lead) return;
     state.selectedLeadId = lead.leadId;
     state.selectedProjectId = lead.projectId;
+    state.isLeadModalOpen = true;
     fullRender();
+  });
+
+  projectPanelBodyEl?.addEventListener("click", (event) => {
+    const target = event.target.closest("[data-open-lead-id]");
+    if (!target) return;
+    const leadId = target.getAttribute("data-open-lead-id");
+    const lead = allLeads().find((entry) => entry.leadId === leadId);
+    if (!lead) return;
+    state.selectedLeadId = lead.leadId;
+    state.selectedProjectId = lead.projectId;
+    state.isLeadModalOpen = true;
+    fullRender();
+  });
+
+  leadModalBodyEl?.addEventListener("input", (event) => {
+    const field = event.target.closest("[data-note-lead-id]");
+    if (!field) return;
+    const leadId = field.getAttribute("data-note-lead-id");
+    for (const project of projects) {
+      const lead = project.leads.find((entry) => entry.id === leadId);
+      if (lead) {
+        lead.notes = field.value;
+        break;
+      }
+    }
+  });
+
+  projectPanelCloseEl?.addEventListener("click", () => {
+    state.isProjectPanelOpen = false;
+    renderProjectPanel();
+  });
+
+  leadModalCloseEl?.addEventListener("click", () => {
+    state.isLeadModalOpen = false;
+    renderLeadModal();
+  });
+
+  projectPanelEl?.addEventListener("click", (event) => {
+    if (event.target === projectPanelEl) {
+      state.isProjectPanelOpen = false;
+      renderProjectPanel();
+    }
+  });
+
+  leadModalEl?.addEventListener("click", (event) => {
+    if (event.target === leadModalEl) {
+      state.isLeadModalOpen = false;
+      renderLeadModal();
+    }
   });
 
   document.querySelectorAll(".tab-btn").forEach((button) => {
@@ -1180,6 +1413,8 @@ function fullRender() {
   renderCustomerDetail();
   renderProjectDetail();
   renderMap();
+  renderProjectPanel();
+  renderLeadModal();
   primeCalculator(getProjectById(state.selectedProjectId));
 }
 

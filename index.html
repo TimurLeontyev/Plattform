@@ -19,13 +19,9 @@
     <div class="app-shell">
       <header class="topbar card">
         <div>
-          <p class="eyebrow">Stage 1 · Vertriebstool für Bauträger</p>
-          <h1><span>Von Umsatz zu</span> <em>Unternehmenswert.</em></h1>
-          <p class="subtext">
-            SALESHAX macht B2B-Mittelständler kapitalmarktfähig — mit
-            installierten Systemen, skalierbaren Strukturen und einem Team, das
-            auch ohne den Gründer im Tagesgeschäft funktioniert.
-          </p>
+          <p class="eyebrow">Stage 1 · B2B Tool</p>
+          <h1>TL Platform</h1>
+          <p class="subtext">Vertriebstool für Bauträger · Closers Cockpit</p>
         </div>
         <div class="topbar-kpis">
           <div class="kpi">
@@ -197,6 +193,30 @@
             <div id="customerDetail" class="customer-detail"></div>
           </section>
         </main>
+      </div>
+    </div>
+
+    <div id="projectPanel" class="overlay" aria-hidden="true">
+      <aside class="slide-panel" role="dialog" aria-modal="true" aria-label="Projektdetails">
+        <div class="panel-head">
+          <h2>Projektdetails</h2>
+          <button type="button" id="projectPanelClose" class="panel-close" aria-label="Projektpanel schließen">
+            ✕
+          </button>
+        </div>
+        <div id="projectPanelBody" class="panel-content"></div>
+      </aside>
+    </div>
+
+    <div id="leadModal" class="overlay" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Leaddetails">
+        <div class="panel-head">
+          <h2>Lead-Details</h2>
+          <button type="button" id="leadModalClose" class="panel-close" aria-label="Leadmodal schließen">
+            ✕
+          </button>
+        </div>
+        <div id="leadModalBody" class="modal-content"></div>
       </div>
     </div>
 
