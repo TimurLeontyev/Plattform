@@ -1,9 +1,15 @@
 const pipelineStages = [
-  { key: "neu", label: "Neu" },
-  { key: "qualifiziert", label: "Qualifiziert" },
-  { key: "beratung", label: "Beratung" },
-  { key: "angebot", label: "Angebot" },
-  { key: "abschluss", label: "Abschluss" },
+  { key: "unberarbeitet", label: "unberarbeitet" },
+  { key: "telefonisch-nicht-erreicht", label: "telefonisch nicht erreicht" },
+  { key: "nachfassen", label: "nachfassen" },
+  { key: "expose-versant", label: "exposé versant" },
+  { key: "ersttermin-gebucht", label: "ersttermin gebucht" },
+  { key: "nicht-erschienen", label: "nicht erschienen" },
+  { key: "folgebesprechung", label: "folgebesprechung" },
+  { key: "finanzierung", label: "finanzierung" },
+  { key: "reserviert", label: "reserviert" },
+  { key: "notar-termin-vereinbart", label: "notar termin vereinbart" },
+  { key: "verbrieft", label: "verbrieft" },
 ];
 
 const projects = [
@@ -52,21 +58,21 @@ const projects = [
     leads: [
       {
         name: "Miriam Hoffmann",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 520000,
         score: 86,
         nextStep: "Telefonat Dienstag 10:30",
       },
       {
         name: "Luca Baum",
-        stage: "neu",
+        stage: "unberarbeitet",
         budget: 430000,
         score: 58,
         nextStep: "Expose senden",
       },
       {
         name: "Nora Schuster",
-        stage: "angebot",
+        stage: "expose-versant",
         budget: 620000,
         score: 91,
         nextStep: "Finanzierungsnachweis prüfen",
@@ -118,21 +124,21 @@ const projects = [
     leads: [
       {
         name: "Eric Romero",
-        stage: "qualifiziert",
+        stage: "nachfassen",
         budget: 700000,
         score: 75,
         nextStep: "Besichtigung Freitag",
       },
       {
         name: "Anne Walter",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 470000,
         score: 69,
         nextStep: "Renditevergleich mailen",
       },
       {
         name: "David Klein",
-        stage: "abschluss",
+        stage: "verbrieft",
         budget: 890000,
         score: 95,
         nextStep: "Notartermin koordinieren",
@@ -184,21 +190,21 @@ const projects = [
     leads: [
       {
         name: "Fabian König",
-        stage: "neu",
+        stage: "unberarbeitet",
         budget: 380000,
         score: 52,
         nextStep: "Lead-Quali Formular",
       },
       {
         name: "Selin Aksoy",
-        stage: "angebot",
+        stage: "expose-versant",
         budget: 560000,
         score: 88,
         nextStep: "Kaufabsichtserklärung",
       },
       {
         name: "Lena Vogt",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 420000,
         score: 73,
         nextStep: "Steuerberater Intro",
@@ -250,21 +256,21 @@ const projects = [
     leads: [
       {
         name: "Joana Krug",
-        stage: "qualifiziert",
+        stage: "nachfassen",
         budget: 460000,
         score: 77,
         nextStep: "Bonitätsunterlagen checken",
       },
       {
         name: "Maximilian Brehm",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 640000,
         score: 82,
         nextStep: "Objektvideo senden",
       },
       {
         name: "Sarah Nguyen",
-        stage: "angebot",
+        stage: "expose-versant",
         budget: 300000,
         score: 65,
         nextStep: "Alternativ-Einheit vorschlagen",
@@ -316,21 +322,21 @@ const projects = [
     leads: [
       {
         name: "Oliver Fuchs",
-        stage: "abschluss",
+        stage: "verbrieft",
         budget: 1120000,
         score: 97,
         nextStep: "Kaufvertrag finalisieren",
       },
       {
         name: "Nina Seifert",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 650000,
         score: 81,
         nextStep: "AfA-Modelle durchgehen",
       },
       {
         name: "Yara Duran",
-        stage: "neu",
+        stage: "unberarbeitet",
         budget: 420000,
         score: 49,
         nextStep: "Erstgespräch terminieren",
@@ -382,21 +388,21 @@ const projects = [
     leads: [
       {
         name: "Paul Richter",
-        stage: "qualifiziert",
+        stage: "nachfassen",
         budget: 520000,
         score: 78,
         nextStep: "Video-Call Donnerstag",
       },
       {
         name: "Lara Beck",
-        stage: "neu",
+        stage: "unberarbeitet",
         budget: 340000,
         score: 55,
         nextStep: "Lead-Score erhöhen mit Fragebogen",
       },
       {
         name: "Emre Altin",
-        stage: "angebot",
+        stage: "expose-versant",
         budget: 710000,
         score: 84,
         nextStep: "Familiengrundriss senden",
@@ -448,21 +454,21 @@ const projects = [
     leads: [
       {
         name: "Katja Braun",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 260000,
         score: 70,
         nextStep: "Mietprognose teilen",
       },
       {
         name: "Marco Dietz",
-        stage: "qualifiziert",
+        stage: "nachfassen",
         budget: 390000,
         score: 76,
         nextStep: "Steuer-Call organisieren",
       },
       {
         name: "Helena Wirth",
-        stage: "neu",
+        stage: "unberarbeitet",
         budget: 210000,
         score: 47,
         nextStep: "Bedarfsanalyse",
@@ -514,21 +520,21 @@ const projects = [
     leads: [
       {
         name: "Bastian Linke",
-        stage: "angebot",
+        stage: "expose-versant",
         budget: 360000,
         score: 79,
         nextStep: "Objektbegehung fixieren",
       },
       {
         name: "Sophie Berg",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 540000,
         score: 72,
         nextStep: "Zinsupdate kommunizieren",
       },
       {
         name: "Nils Rabe",
-        stage: "qualifiziert",
+        stage: "nachfassen",
         budget: 440000,
         score: 74,
         nextStep: "Mikrolage-PDF schicken",
@@ -580,21 +586,21 @@ const projects = [
     leads: [
       {
         name: "Theresa Lind",
-        stage: "neu",
+        stage: "unberarbeitet",
         budget: 180000,
         score: 50,
         nextStep: "Finanzierungsrahmen prüfen",
       },
       {
         name: "Rico Mendes",
-        stage: "qualifiziert",
+        stage: "nachfassen",
         budget: 260000,
         score: 67,
         nextStep: "Einheitenliste senden",
       },
       {
         name: "Julia Hecht",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 310000,
         score: 71,
         nextStep: "Steuervergleich vorbereiten",
@@ -646,21 +652,21 @@ const projects = [
     leads: [
       {
         name: "Leonie Frank",
-        stage: "qualifiziert",
+        stage: "nachfassen",
         budget: 210000,
         score: 62,
         nextStep: "Mietpool erklären",
       },
       {
         name: "Ali Tunc",
-        stage: "angebot",
+        stage: "expose-versant",
         budget: 280000,
         score: 80,
         nextStep: "Kaufpreisverhandlung vorbereiten",
       },
       {
         name: "Dennis Voss",
-        stage: "beratung",
+        stage: "folgebesprechung",
         budget: 145000,
         score: 59,
         nextStep: "Kleines Objektportfolio vorstellen",
@@ -669,8 +675,22 @@ const projects = [
   },
 ];
 
+const stageSequence = pipelineStages.map((stage) => stage.key);
+
+projects.forEach((project, projectIndex) => {
+  project.leads = project.leads.map((lead, leadIndex) => {
+    const sequenceIndex = (projectIndex * 3 + leadIndex) % stageSequence.length;
+    return {
+      ...lead,
+      id: lead.id || `${project.id}-lead-${leadIndex + 1}`,
+      stage: stageSequence[sequenceIndex],
+    };
+  });
+});
+
 const state = {
   selectedProjectId: projects[0].id,
+  selectedLeadId: projects[0].leads[0]?.id || null,
   projectSearch: "",
   leadSearch: "",
   focusCurrentProject: false,
@@ -699,6 +719,7 @@ const sizeMinEl = document.querySelector("#sizeMin");
 const sizeMaxEl = document.querySelector("#sizeMax");
 const priceMaxEl = document.querySelector("#priceMax");
 const afaTypeEl = document.querySelector("#afaType");
+const customerDetailEl = document.querySelector("#customerDetail");
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("de-DE", {
@@ -718,8 +739,11 @@ function allLeads() {
   return projects.flatMap((project) =>
     project.leads.map((lead) => ({
       ...lead,
+      leadId: lead.id,
       projectId: project.id,
       projectName: project.name,
+      city: project.city,
+      developer: project.developer,
     })),
   );
 }
@@ -732,6 +756,10 @@ function allUnits() {
 
 function getProjectById(id) {
   return projects.find((project) => project.id === id) || projects[0];
+}
+
+function firstLeadIdForProject(projectId) {
+  return getProjectById(projectId)?.leads?.[0]?.id || null;
 }
 
 function scoreClass(score) {
@@ -821,9 +849,9 @@ function renderPipeline() {
           ${stageLeads
             .map(
               (lead) => `
-                <article class="lead-card">
+                <article class="lead-card ${lead.leadId === state.selectedLeadId ? "active" : ""}" data-lead-id="${lead.leadId}">
                   <strong>${lead.name}</strong>
-                  <p>${lead.projectName}</p>
+                  <p>${lead.projectName} · ${lead.city}</p>
                   <p>Budget: ${formatCurrency(lead.budget)}</p>
                   <p>Nächster Schritt: ${lead.nextStep}</p>
                   <span class="lead-score ${scoreClass(lead.score)}">Score ${lead.score}</span>
@@ -836,6 +864,54 @@ function renderPipeline() {
       `;
     })
     .join("");
+}
+
+function renderCustomerDetail() {
+  const selectedLead = allLeads().find((lead) => lead.leadId === state.selectedLeadId) || allLeads()[0];
+  if (!selectedLead) {
+    customerDetailEl.innerHTML = `<p class="empty-state">Noch kein Kunde ausgewählt.</p>`;
+    return;
+  }
+
+  const stageLabel =
+    pipelineStages.find((stage) => stage.key === selectedLead.stage)?.label || selectedLead.stage;
+
+  customerDetailEl.innerHTML = `
+    <div class="customer-main">
+      <div>
+        <h3>${selectedLead.name}</h3>
+        <p class="customer-muted">${selectedLead.projectName} · ${selectedLead.city}</p>
+      </div>
+      <span class="customer-stage">${stageLabel}</span>
+    </div>
+    <div class="customer-grid">
+      <div>
+        <span>Budget</span>
+        <strong>${formatCurrency(selectedLead.budget)}</strong>
+      </div>
+      <div>
+        <span>Lead Score</span>
+        <strong>${selectedLead.score}</strong>
+      </div>
+      <div>
+        <span>Nächster Schritt</span>
+        <strong>${selectedLead.nextStep}</strong>
+      </div>
+      <div>
+        <span>Bauträger</span>
+        <strong>${selectedLead.developer}</strong>
+      </div>
+    </div>
+    <div class="customer-actions">
+      <button type="button" id="openCustomerProject">Zum Projekt ${selectedLead.projectName}</button>
+    </div>
+  `;
+
+  const openProjectBtn = document.querySelector("#openCustomerProject");
+  openProjectBtn?.addEventListener("click", () => {
+    state.selectedProjectId = selectedLead.projectId;
+    fullRender();
+  });
 }
 
 function renderProjectDetail() {
@@ -933,9 +1009,9 @@ function initMap() {
     scrollWheelZoom: true,
   }).setView([51.15, 10.35], 6);
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
     maxZoom: 19,
-    attribution: "&copy; OpenStreetMap",
+    attribution: "&copy; OpenStreetMap &copy; CARTO",
   }).addTo(state.map);
 
   state.markerLayer = L.layerGroup().addTo(state.map);
@@ -955,10 +1031,10 @@ function renderMap() {
 
     const marker = L.circleMarker(project.location, {
       radius: project.id === state.selectedProjectId ? 10 : 7,
-      color: project.id === state.selectedProjectId ? "#23d5bd" : "#7c8cff",
+      color: "#ffffff",
       weight: 2,
-      fillColor: project.id === state.selectedProjectId ? "#23d5bd" : "#7c8cff",
-      fillOpacity: 0.66,
+      fillColor: project.id === state.selectedProjectId ? "#2f80ed" : "#5fa8ff",
+      fillOpacity: 0.9,
     });
 
     marker.bindPopup(`
@@ -968,6 +1044,7 @@ function renderMap() {
     `);
     marker.on("click", () => {
       state.selectedProjectId = project.id;
+      state.selectedLeadId = firstLeadIdForProject(project.id);
       fullRender();
     });
     marker.addTo(state.markerLayer);
@@ -1034,7 +1111,20 @@ function bindEvents() {
   projectListEl.addEventListener("click", (event) => {
     const item = event.target.closest("[data-project-id]");
     if (!item) return;
-    state.selectedProjectId = item.getAttribute("data-project-id");
+    const projectId = item.getAttribute("data-project-id");
+    state.selectedProjectId = projectId;
+    state.selectedLeadId = firstLeadIdForProject(projectId);
+    fullRender();
+  });
+
+  pipelineBoardEl.addEventListener("click", (event) => {
+    const card = event.target.closest("[data-lead-id]");
+    if (!card) return;
+    const leadId = card.getAttribute("data-lead-id");
+    const lead = allLeads().find((entry) => entry.leadId === leadId);
+    if (!lead) return;
+    state.selectedLeadId = lead.leadId;
+    state.selectedProjectId = lead.projectId;
     fullRender();
   });
 
@@ -1080,8 +1170,14 @@ function fullRender() {
     state.selectedProjectId = filteredProjects()[0]?.id || projects[0].id;
   }
 
+  const leadExists = allLeads().some((lead) => lead.leadId === state.selectedLeadId);
+  if (!leadExists) {
+    state.selectedLeadId = allLeads()[0]?.leadId || null;
+  }
+
   renderProjectList();
   renderPipeline();
+  renderCustomerDetail();
   renderProjectDetail();
   renderMap();
   primeCalculator(getProjectById(state.selectedProjectId));

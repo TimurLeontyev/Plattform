@@ -19,11 +19,12 @@
     <div class="app-shell">
       <header class="topbar card">
         <div>
-          <p class="eyebrow">Stage 1 · B2B Vertriebs-Tool für Bauträger</p>
-          <h1>TL Platform — Closers Cockpit</h1>
+          <p class="eyebrow">Stage 1 · Vertriebstool für Bauträger</p>
+          <h1><span>Von Umsatz zu</span> <em>Unternehmenswert.</em></h1>
           <p class="subtext">
-            Übersicht über Leads, Projekte und freie Einheiten in einer
-            Verkaufsoberfläche.
+            SALESHAX macht B2B-Mittelständler kapitalmarktfähig — mit
+            installierten Systemen, skalierbaren Strukturen und einem Team, das
+            auch ohne den Gründer im Tagesgeschäft funktioniert.
           </p>
         </div>
         <div class="topbar-kpis">
@@ -62,7 +63,7 @@
         <main class="main-grid">
           <section class="card map-card">
             <div class="card-heading">
-              <h2>Projektkarte & Marktfilter</h2>
+              <h2>Projektkarte (Apple-Style) & Marktfilter</h2>
               <p>
                 Filter nach Einheiten (Größe, Preis, Afa-Typ) und klicke ein
                 Projekt für die Details.
@@ -117,7 +118,9 @@
                 </label>
               </div>
             </div>
-            <div id="pipelineBoard" class="kanban"></div>
+            <div class="kanban-scroll">
+              <div id="pipelineBoard" class="kanban"></div>
+            </div>
           </section>
 
           <section class="card project-card">
@@ -184,6 +187,14 @@
               </div>
             </div>
             <div class="tab-content" id="tab-units"></div>
+          </section>
+
+          <section class="card customer-card">
+            <div class="card-heading">
+              <h2>Kundenprofil</h2>
+              <p>Klicke auf einen Kunden in der Pipeline.</p>
+            </div>
+            <div id="customerDetail" class="customer-detail"></div>
           </section>
         </main>
       </div>
