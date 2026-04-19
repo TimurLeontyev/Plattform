@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TL Platform | Vertriebstool MVP</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="desktop-only-notice">
+      Diese MVP-Version ist für Desktop optimiert (ab 1200px Breite).
+    </div>
+    <div class="app-shell">
+      <header class="topbar card">
+        <div>
+          <p class="eyebrow">Stage 1 · B2B Vertriebs-Tool für Bauträger</p>
+          <h1>TL Platform — Closers Cockpit</h1>
+          <p class="subtext">
+            Übersicht über Leads, Projekte und freie Einheiten in einer
+            Verkaufsoberfläche.
+          </p>
+        </div>
+        <div class="topbar-kpis">
+          <div class="kpi">
+            <span id="kpiProjects">0</span>
+            <p>Projekte</p>
+          </div>
+          <div class="kpi">
+            <span id="kpiLeads">0</span>
+            <p>Leads</p>
+          </div>
+          <div class="kpi">
+            <span id="kpiUnits">0</span>
+            <p>Freie Einheiten</p>
+          </div>
+          <div class="kpi">
+            <span id="kpiDate">--.--.----</span>
+            <p>Stand</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="left-rail card">
+          <div class="rail-header">
+            <h2>Projektliste</h2>
+            <input
+              id="projectSearch"
+              type="search"
+              placeholder="Projekt oder Stadt suchen..."
+            />
+          </div>
+          <div id="projectList" class="project-list"></div>
+        </aside>
+
+        <main class="main-grid">
+          <section class="card map-card">
+            <div class="card-heading">
+              <h2>Projektkarte & Marktfilter</h2>
+              <p>
+                Filter nach Einheiten (Größe, Preis, Afa-Typ) und klicke ein
+                Projekt für die Details.
+              </p>
+            </div>
+            <div class="filter-row">
+              <label>
+                Min. Größe (m²)
+                <input id="sizeMin" type="number" min="20" max="400" value="35" />
+              </label>
+              <label>
+                Max. Größe (m²)
+                <input id="sizeMax" type="number" min="20" max="400" value="120" />
+              </label>
+              <label>
+                Max. Preis (€)
+                <input
+                  id="priceMax"
+                  type="number"
+                  min="50000"
+                  max="2000000"
+                  step="5000"
+                  value="600000"
+                />
+              </label>
+              <label>
+                Afa-Typ
+                <select id="afaType">
+                  <option value="alle">Alle</option>
+                  <option value="§7b">§7b</option>
+                  <option value="Denkmal">Denkmal</option>
+                  <option value="Linear">Linear</option>
+                </select>
+              </label>
+            </div>
+            <div id="map"></div>
+            <div id="mapMeta" class="map-meta"></div>
+          </section>
+
+          <section class="card pipeline-card">
+            <div class="card-heading">
+              <h2>Lead-Übersicht über alle Projekte</h2>
+              <div class="pipeline-tools">
+                <input
+                  id="leadSearch"
+                  type="search"
+                  placeholder="Lead suchen (Name/Projekt)..."
+                />
+                <label class="checkbox">
+                  <input id="focusProjectLeads" type="checkbox" />
+                  Nur aktuelles Projekt
+                </label>
+              </div>
+            </div>
+            <div id="pipelineBoard" class="kanban"></div>
+          </section>
+
+          <section class="card project-card">
+            <div id="projectHero" class="project-hero"></div>
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="micro">Mikro Lage</button>
+              <button class="tab-btn" data-tab="macro">Makro Lage</button>
+              <button class="tab-btn" data-tab="analysis">Analyse</button>
+              <button class="tab-btn" data-tab="calculator">Rechner</button>
+              <button class="tab-btn" data-tab="units">Freie Einheiten</button>
+            </div>
+
+            <div class="tab-content active" id="tab-micro"></div>
+            <div class="tab-content" id="tab-macro"></div>
+            <div class="tab-content" id="tab-analysis"></div>
+            <div class="tab-content" id="tab-calculator">
+              <div class="calculator-grid">
+                <label>
+                  Kaufpreis (€)
+                  <input id="calcPrice" type="number" />
+                </label>
+                <label>
+                  Eigenkapital (€)
+                  <input id="calcEquity" type="number" />
+                </label>
+                <label>
+                  Wohnfläche (m²)
+                  <input id="calcSize" type="number" />
+                </label>
+                <label>
+                  Miete / m² (€)
+                  <input id="calcRentPsm" type="number" step="0.1" />
+                </label>
+                <label>
+                  Zins (%)
+                  <input id="calcInterest" type="number" step="0.1" />
+                </label>
+                <label>
+                  Tilgung (%)
+                  <input id="calcRepayment" type="number" step="0.1" />
+                </label>
+                <label>
+                  Instandhaltung / Monat (€)
+                  <input id="calcMaintenance" type="number" />
+                </label>
+              </div>
+              <div class="calc-results">
+                <div>
+                  <span id="calcRentMonthly">0 €</span>
+                  <p>Monatliche Kaltmiete</p>
+                </div>
+                <div>
+                  <span id="calcRate">0 €</span>
+                  <p>Finanzierungsrate / Monat</p>
+                </div>
+                <div>
+                  <span id="calcCashflow">0 €</span>
+                  <p>Cashflow / Monat</p>
+                </div>
+                <div>
+                  <span id="calcYield">0 %</span>
+                  <p>Bruttorendite p.a.</p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-content" id="tab-units"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
