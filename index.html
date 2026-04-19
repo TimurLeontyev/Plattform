@@ -19,13 +19,9 @@
     <div class="app-shell">
       <header class="topbar card">
         <div>
-          <p class="eyebrow">Stage 1 · Vertriebstool für Bauträger</p>
-          <h1><span>Von Umsatz zu</span> <em>Unternehmenswert.</em></h1>
-          <p class="subtext">
-            SALESHAX macht B2B-Mittelständler kapitalmarktfähig — mit
-            installierten Systemen, skalierbaren Strukturen und einem Team, das
-            auch ohne den Gründer im Tagesgeschäft funktioniert.
-          </p>
+          <p class="eyebrow">Stage 1 · B2B Tool</p>
+          <h1>TL Platform</h1>
+          <p class="subtext">Vertriebstool für Bauträger · Closers Cockpit</p>
         </div>
         <div class="topbar-kpis">
           <div class="kpi">
@@ -61,6 +57,14 @@
         </aside>
 
         <main class="main-grid">
+          <section class="card dashboard-card">
+            <div class="card-heading">
+              <h2>Heute wichtig</h2>
+              <p>Priorisierte Tagesansicht für aktive Closer-Calls.</p>
+            </div>
+            <div id="dashboardGrid" class="dashboard-grid"></div>
+          </section>
+
           <section class="card map-card">
             <div class="card-heading">
               <h2>Projektkarte (Apple-Style) & Marktfilter</h2>
@@ -103,6 +107,16 @@
             <div id="mapMeta" class="map-meta"></div>
           </section>
 
+          <section class="card objection-card">
+            <div class="card-heading">
+              <h2>Einwand-Bibliothek</h2>
+              <p>Schnell im Call öffnen und Antwortleitfaden nutzen.</p>
+            </div>
+            <input id="objectionSearch" type="search" placeholder="Einwand suchen..." />
+            <div id="objectionList" class="objection-list"></div>
+            <div id="objectionDetail" class="objection-detail"></div>
+          </section>
+
           <section class="card pipeline-card">
             <div class="card-heading">
               <h2>Lead-Übersicht über alle Projekte</h2>
@@ -125,6 +139,7 @@
 
           <section class="card project-card">
             <div id="projectHero" class="project-hero"></div>
+            <div id="projectCallCard" class="project-call-card"></div>
             <div class="tabs">
               <button class="tab-btn active" data-tab="micro">Mikro Lage</button>
               <button class="tab-btn" data-tab="macro">Makro Lage</button>
@@ -137,52 +152,59 @@
             <div class="tab-content" id="tab-macro"></div>
             <div class="tab-content" id="tab-analysis"></div>
             <div class="tab-content" id="tab-calculator">
+              <div class="calc-toolbar">
+                <div class="lang-toggle">
+                  <span>Sprache Kalkulator</span>
+                  <button type="button" id="langDeBtn" class="lang-btn active">DE</button>
+                  <button type="button" id="langEnBtn" class="lang-btn">EN</button>
+                </div>
+              </div>
               <div class="calculator-grid">
                 <label>
-                  Kaufpreis (€)
+                  <span id="calcLabelPrice">Kaufpreis (€)</span>
                   <input id="calcPrice" type="number" />
                 </label>
                 <label>
-                  Eigenkapital (€)
+                  <span id="calcLabelEquity">Eigenkapital (€)</span>
                   <input id="calcEquity" type="number" />
                 </label>
                 <label>
-                  Wohnfläche (m²)
+                  <span id="calcLabelSize">Wohnfläche (m²)</span>
                   <input id="calcSize" type="number" />
                 </label>
                 <label>
-                  Miete / m² (€)
+                  <span id="calcLabelRent">Miete / m² (€)</span>
                   <input id="calcRentPsm" type="number" step="0.1" />
                 </label>
                 <label>
-                  Zins (%)
+                  <span id="calcLabelInterest">Zins (%)</span>
                   <input id="calcInterest" type="number" step="0.1" />
                 </label>
                 <label>
-                  Tilgung (%)
+                  <span id="calcLabelRepayment">Tilgung (%)</span>
                   <input id="calcRepayment" type="number" step="0.1" />
                 </label>
                 <label>
-                  Instandhaltung / Monat (€)
+                  <span id="calcLabelMaintenance">Instandhaltung / Monat (€)</span>
                   <input id="calcMaintenance" type="number" />
                 </label>
               </div>
               <div class="calc-results">
                 <div>
                   <span id="calcRentMonthly">0 €</span>
-                  <p>Monatliche Kaltmiete</p>
+                  <p id="calcResultRent">Monatliche Kaltmiete</p>
                 </div>
                 <div>
                   <span id="calcRate">0 €</span>
-                  <p>Finanzierungsrate / Monat</p>
+                  <p id="calcResultRate">Finanzierungsrate / Monat</p>
                 </div>
                 <div>
                   <span id="calcCashflow">0 €</span>
-                  <p>Cashflow / Monat</p>
+                  <p id="calcResultCashflow">Cashflow / Monat</p>
                 </div>
                 <div>
                   <span id="calcYield">0 %</span>
-                  <p>Bruttorendite p.a.</p>
+                  <p id="calcResultYield">Bruttorendite p.a.</p>
                 </div>
               </div>
             </div>
@@ -197,6 +219,30 @@
             <div id="customerDetail" class="customer-detail"></div>
           </section>
         </main>
+      </div>
+    </div>
+
+    <div id="projectPanel" class="overlay" aria-hidden="true">
+      <aside class="slide-panel" role="dialog" aria-modal="true" aria-label="Projektdetails">
+        <div class="panel-head">
+          <h2>Projektdetails</h2>
+          <button type="button" id="projectPanelClose" class="panel-close" aria-label="Projektpanel schließen">
+            ✕
+          </button>
+        </div>
+        <div id="projectPanelBody" class="panel-content"></div>
+      </aside>
+    </div>
+
+    <div id="leadModal" class="overlay" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Leaddetails">
+        <div class="panel-head">
+          <h2>Lead-Details</h2>
+          <button type="button" id="leadModalClose" class="panel-close" aria-label="Leadmodal schließen">
+            ✕
+          </button>
+        </div>
+        <div id="leadModalBody" class="modal-content"></div>
       </div>
     </div>
 
