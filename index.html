@@ -3,31 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Increvio | Planbare Neukundengewinnung im DACH-Raum</title>
+    <title>Increvio | Planbare Mandantengewinnung im DACH-Raum</title>
     <meta
       name="description"
-      content="Increvio liefert qualifizierte Anfragen für Finanzberater und Kapitalanlageexperten im DACH-Raum."
+      content="Increvio ist der strategische Sales-Partner fuer Finanzberater und Vermoegensverwalter im DACH-Raum."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --color-black: #0a0a0a;
-        --color-bg: #f8f6f2;
-        --color-text-muted: #4a4a4a;
-        --color-divider: #dedad4;
-        --color-card: #f0ece6;
-        --section-space: clamp(4.5rem, 8vw, 8rem);
+        --obsidian: #0a0a0a;
+        --ivory: #f8f6f2;
+        --champagne: #c8b89a;
+        --stone: #9a9a9a;
+        --linen: #e8e6e2;
+        --ink-soft: rgba(10, 10, 10, 0.68);
+        --white-soft: rgba(248, 246, 242, 0.72);
+        --section-space: clamp(5rem, 9vw, 9.5rem);
+        --container: min(1180px, calc(100vw - 40px));
       }
 
       * {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
       }
 
       html {
@@ -35,19 +36,22 @@
       }
 
       body {
-        font-family: "Inter", sans-serif;
-        color: var(--color-black);
-        background: var(--color-bg);
-        line-height: 1.6;
+        margin: 0;
+        background: var(--ivory);
+        color: var(--obsidian);
+        font-family: "DM Sans", Arial, sans-serif;
+        font-weight: 300;
+        line-height: 1.55;
+        text-rendering: geometricPrecision;
       }
 
-      h1,
-      h2,
-      h3,
-      .logo {
-        font-family: "Playfair Display", serif;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
+      body.nav-open {
+        overflow: hidden;
+      }
+
+      img,
+      svg {
+        display: block;
       }
 
       a {
@@ -55,376 +59,774 @@
         text-decoration: none;
       }
 
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
       .container {
-        width: min(1120px, 92vw);
+        width: var(--container);
         margin: 0 auto;
       }
 
       .section {
         padding: var(--section-space) 0;
-        border-top: 1px solid var(--color-divider);
+        background: var(--ivory);
+      }
+
+      .section.dark {
+        background: var(--obsidian);
+        color: var(--ivory);
+      }
+
+      .section + .section:not(.dark),
+      .trust-section {
+        border-top: 0.5px solid var(--linen);
+      }
+
+      .label {
+        margin: 0 0 1.2rem;
+        color: var(--stone);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .dark .label {
+        color: rgba(248, 246, 242, 0.55);
+      }
+
+      .display,
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 300;
+        letter-spacing: -0.035em;
+        line-height: 1.02;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
       }
 
       .section-title {
-        font-size: clamp(2rem, 4vw, 3.25rem);
-        margin-bottom: 1.4rem;
+        max-width: 870px;
+        margin-bottom: clamp(2.1rem, 4vw, 3.4rem);
+        font-size: clamp(2.4rem, 6vw, 5.6rem);
       }
 
-      .lead {
-        color: var(--color-text-muted);
-        max-width: 65ch;
+      .section-title em,
+      .hero-title em,
+      .cta-title em {
+        color: var(--stone);
+        font-style: italic;
       }
 
-      .site-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 40;
-        background: transparent;
-        transition: background-color 240ms ease, box-shadow 240ms ease,
-          border-color 240ms ease;
-        border-bottom: 1px solid transparent;
+      .dark .section-title em,
+      .dark .hero-title em,
+      .dark .cta-title em {
+        color: rgba(248, 246, 242, 0.55);
       }
 
-      .site-header.scrolled {
-        background: rgba(248, 246, 242, 0.95);
-        backdrop-filter: blur(8px);
-        border-color: rgba(74, 74, 74, 0.16);
-        box-shadow: 0 10px 30px rgba(10, 10, 10, 0.05);
+      .muted {
+        color: var(--ink-soft);
       }
 
-      .nav-wrap {
-        min-height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .logo {
-        font-size: 1.6rem;
-        font-weight: 700;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        gap: 1.35rem;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      .nav-link {
-        font-size: 0.95rem;
-        color: var(--color-text-muted);
-        font-weight: 500;
+      .dark .muted {
+        color: var(--white-soft);
       }
 
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid var(--color-black);
-        background: var(--color-black);
-        color: #ffffff;
-        padding: 0.9rem 1.3rem;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: transform 180ms ease, opacity 180ms ease;
+        min-height: 46px;
+        border: 0.5px solid var(--obsidian);
+        border-radius: 2px;
+        background: var(--obsidian);
+        color: var(--ivory);
+        padding: 0.9rem 1.35rem;
+        font-size: 0.74rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        line-height: 1;
+        text-transform: uppercase;
+        transition: background 180ms ease, color 180ms ease, border-color 180ms ease,
+          transform 180ms ease;
         cursor: pointer;
       }
 
       .btn:hover {
         transform: translateY(-1px);
-        opacity: 0.92;
       }
 
-      .btn-inverted {
-        background: #ffffff;
-        color: var(--color-black);
+      .btn-light {
+        border-color: var(--ivory);
+        background: var(--ivory);
+        color: var(--obsidian);
+      }
+
+      .btn-ghost {
+        border-color: rgba(248, 246, 242, 0.34);
+        background: transparent;
+        color: var(--ivory);
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--champagne);
+      }
+
+      .logo-lockup {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .wordmark {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.02rem;
+        font-weight: 300;
+        letter-spacing: 0.54em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+        border-bottom: 0.5px solid transparent;
+        color: var(--ivory);
+        transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+      }
+
+      .site-header.scrolled,
+      .site-header.menu-active {
+        border-color: var(--linen);
+        background: rgba(248, 246, 242, 0.96);
+        color: var(--obsidian);
+        backdrop-filter: blur(12px);
+      }
+
+      .nav-shell {
+        display: flex;
+        min-height: 82px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.65rem;
+      }
+
+      .nav-links a {
+        color: currentColor;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .site-header:not(.scrolled):not(.menu-active) .nav-cta {
+        border-color: var(--ivory);
+        background: var(--ivory);
+        color: var(--obsidian);
+      }
+
+      .hamburger {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border: 0.5px solid currentColor;
+        border-radius: 0;
+        background: transparent;
+        color: currentColor;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 18px;
+        height: 1px;
+        margin: 5px auto;
+        background: currentColor;
+        transition: transform 200ms ease, opacity 200ms ease;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
       }
 
       .hero {
-        padding-top: clamp(8.5rem, 14vw, 11rem);
-        border-top: none;
+        min-height: 100vh;
+        padding: clamp(8.5rem, 13vw, 12rem) 0 clamp(4rem, 7vw, 7rem);
+        background: var(--obsidian);
+        color: var(--ivory);
       }
 
-      .hero h1 {
-        font-size: clamp(2.5rem, 7vw, 5.5rem);
-        max-width: 12ch;
-        margin-bottom: 1.4rem;
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(3rem, 8vw, 7rem);
       }
 
-      .hero .lead {
-        font-size: clamp(1rem, 2vw, 1.18rem);
+      .hero-title {
+        max-width: 1040px;
+        margin-bottom: 1.5rem;
+        font-size: clamp(3rem, 8.7vw, 7.8rem);
+      }
+
+      .hero-copy {
+        max-width: 670px;
         margin-bottom: 2.2rem;
+        color: rgba(248, 246, 242, 0.68);
+        font-size: clamp(1.05rem, 1.8vw, 1.32rem);
       }
 
-      .trust-row {
-        margin-top: 2.3rem;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.75rem;
-      }
-
-      .trust-pill {
-        border: 1px solid var(--color-divider);
-        border-radius: 999px;
-        text-align: center;
-        padding: 0.8rem 0.9rem;
-        font-size: 0.88rem;
-        color: var(--color-text-muted);
-        background: rgba(255, 255, 255, 0.45);
-      }
-
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .card {
-        border: 1px solid var(--color-divider);
-        background: rgba(255, 255, 255, 0.55);
-        padding: 1.4rem;
-      }
-
-      .problem-card h3 {
-        font-family: "Inter", sans-serif;
-        font-size: 1.05rem;
-        margin-bottom: 0.7rem;
-      }
-
-      .problem-card p {
-        color: var(--color-text-muted);
-        font-size: 0.95rem;
-      }
-
-      .icon-dot {
-        width: 1.8rem;
-        height: 1.8rem;
-        border-radius: 50%;
-        background: var(--color-black);
-        color: #ffffff;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.8rem;
-        margin-bottom: 0.9rem;
-        font-weight: 600;
-      }
-
-      .solution-copy {
-        margin-bottom: 1.9rem;
-      }
-
-      .diff-list {
-        display: grid;
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
         gap: 0.9rem;
       }
 
-      .diff-item {
-        border: 1px solid var(--color-divider);
-        padding: 1rem 1.1rem;
+      .hero-bottom {
         display: grid;
-        gap: 0.35rem;
+        gap: 2.2rem;
       }
 
-      .diff-item h3 {
-        font-family: "Inter", sans-serif;
-        font-size: 1rem;
-      }
-
-      .diff-item p {
-        color: var(--color-text-muted);
-      }
-
-      .timeline {
+      .stats-row {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
+        gap: 0;
+        border-top: 0.5px solid rgba(248, 246, 242, 0.17);
+        border-bottom: 0.5px solid rgba(248, 246, 242, 0.17);
       }
 
-      .step {
-        border: 1px solid var(--color-divider);
-        padding: 1.2rem;
+      .stat {
+        padding: 1.6rem 1.5rem 1.55rem 0;
+        border-right: 0.5px solid rgba(248, 246, 242, 0.17);
       }
 
-      .step h3 {
-        font-size: 1.1rem;
-        margin: 0.5rem 0;
+      .stat:last-child {
+        border-right: 0;
       }
 
-      .step p {
-        color: var(--color-text-muted);
-      }
-
-      .quote-grid {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-bottom: 2.1rem;
-      }
-
-      .quote-card {
-        background: var(--color-card);
-        border: 1px solid var(--color-divider);
-        padding: 1.4rem;
-      }
-
-      .quote-mark {
-        font-family: "Playfair Display", serif;
-        font-size: 2.2rem;
-        line-height: 0.8;
-        margin-bottom: 0.9rem;
-      }
-
-      .quote-card p {
-        margin-bottom: 1rem;
-      }
-
-      .quote-card span {
-        color: var(--color-text-muted);
-        font-size: 0.9rem;
-      }
-
-      .metrics {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.8rem;
-      }
-
-      .metric {
-        border-top: 1px solid var(--color-divider);
-        padding-top: 1rem;
-      }
-
-      .metric strong {
+      .stat strong {
         display: block;
-        font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-        line-height: 1.2;
+        margin-bottom: 0.35rem;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2.1rem, 4.5vw, 4.2rem);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+        line-height: 1;
       }
 
-      .metric span {
-        color: var(--color-text-muted);
+      .stat span {
+        color: rgba(248, 246, 242, 0.58);
+        font-size: 0.76rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .gold-line {
+        width: 132px;
+        height: 1px;
+        background: var(--champagne);
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.85rem 1.1rem;
+        width: fit-content;
+        border: 0.5px solid rgba(200, 184, 154, 0.42);
+        background: rgba(248, 246, 242, 0.03);
+        padding: 1.05rem 1.2rem;
+        color: rgba(248, 246, 242, 0.78);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+      }
+
+      .trust-section {
+        padding: 2rem 0;
+        background: var(--ivory);
+      }
+
+      .trust-wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 2.4fr;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .trust-label {
+        margin: 0;
+        color: var(--stone);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .logo-row {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0;
+        border-left: 0.5px solid var(--linen);
+      }
+
+      .partner-logo {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 0.5px solid var(--linen);
+        color: var(--stone);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(0.9rem, 1.8vw, 1.16rem);
+        font-weight: 300;
+        letter-spacing: 0.05em;
+        text-align: center;
+      }
+
+      .cards-3,
+      .channels-grid,
+      .testimonials-grid {
+        display: grid;
+        gap: 0;
+      }
+
+      .cards-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 0.5px solid var(--linen);
+        border-left: 0.5px solid var(--linen);
+      }
+
+      .pain-card,
+      .channel-card,
+      .testimonial-card {
+        border-right: 0.5px solid var(--linen);
+        border-bottom: 0.5px solid var(--linen);
+        padding: clamp(1.45rem, 3vw, 2.25rem);
+      }
+
+      .pain-card h3,
+      .channel-card h3 {
+        margin-bottom: 0.85rem;
+        font-family: "DM Sans", Arial, sans-serif;
+        font-size: 0.92rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .pain-card p,
+      .channel-card p {
+        margin-bottom: 0;
+        color: var(--ink-soft);
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        margin-bottom: 2.6rem;
+        border-top: 0.5px solid rgba(248, 246, 242, 0.18);
+        border-left: 0.5px solid rgba(248, 246, 242, 0.18);
+      }
+
+      .process-step {
+        min-height: 340px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 0.5px solid rgba(248, 246, 242, 0.18);
+        border-bottom: 0.5px solid rgba(248, 246, 242, 0.18);
+        padding: clamp(1.4rem, 2.5vw, 2rem);
+      }
+
+      .step-number {
+        color: var(--champagne);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2.1rem, 4vw, 3.6rem);
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .process-step h3 {
+        margin: auto 0 0.85rem;
+        font-family: "DM Sans", Arial, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .process-step p {
+        margin-bottom: 0;
+        color: rgba(248, 246, 242, 0.68);
+        font-size: 0.98rem;
+      }
+
+      .asset-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+        gap: clamp(2.5rem, 6vw, 5rem);
+        align-items: start;
+      }
+
+      .asset-copy {
+        max-width: 680px;
+        margin-bottom: 2.4rem;
+        color: var(--ink-soft);
+        font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+      }
+
+      .asset-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 0.5px solid var(--linen);
+        border-left: 0.5px solid var(--linen);
+      }
+
+      .asset-stat {
+        min-height: 150px;
+        border-right: 0.5px solid var(--linen);
+        border-bottom: 0.5px solid var(--linen);
+        padding: 1.3rem;
+      }
+
+      .asset-stat strong {
+        display: block;
+        margin-bottom: 0.55rem;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2rem, 4vw, 3.7rem);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+
+      .asset-stat span {
+        color: var(--stone);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .bar-panel {
+        border: 0.5px solid var(--linen);
+        padding: clamp(1.4rem, 3vw, 2rem);
+      }
+
+      .bar-panel h3 {
+        margin-bottom: 1.5rem;
+        font-family: "DM Sans", Arial, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .bar-item {
+        margin-bottom: 1.25rem;
+      }
+
+      .bar-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.55rem;
+        color: var(--ink-soft);
+        font-size: 0.88rem;
+      }
+
+      .bar-track {
+        height: 2px;
+        background: var(--linen);
+      }
+
+      .bar-fill {
+        height: 100%;
+        background: var(--champagne);
+      }
+
+      .track-stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        border-top: 0.5px solid rgba(248, 246, 242, 0.18);
+        border-left: 0.5px solid rgba(248, 246, 242, 0.18);
+      }
+
+      .track-stat {
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 0.5px solid rgba(248, 246, 242, 0.18);
+        border-bottom: 0.5px solid rgba(248, 246, 242, 0.18);
+        padding: clamp(1.35rem, 2.5vw, 2rem);
+      }
+
+      .track-stat strong {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2.25rem, 5vw, 4.8rem);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+
+      .track-stat span {
+        color: rgba(248, 246, 242, 0.62);
+      }
+
+      .track-note {
+        margin: 1.4rem 0 0;
+        color: rgba(248, 246, 242, 0.58);
         font-size: 0.92rem;
       }
 
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: clamp(1.5rem, 5vw, 4rem);
-        align-items: center;
+      .channels-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 0.5px solid var(--linen);
+        border-left: 0.5px solid var(--linen);
       }
 
-      .about-visual {
-        min-height: 300px;
-        border: 1px solid var(--color-divider);
-        position: relative;
-        background: rgba(255, 255, 255, 0.5);
+      .channel-number {
+        display: block;
+        margin-bottom: 2.4rem;
+        color: var(--champagne);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 2.5rem;
+        font-weight: 300;
+        line-height: 1;
       }
 
-      .about-visual::before,
-      .about-visual::after {
-        content: "";
-        position: absolute;
-        border: 1px solid var(--color-black);
-        background: transparent;
+      .testimonials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 0.5px solid var(--linen);
+        border-left: 0.5px solid var(--linen);
       }
 
-      .about-visual::before {
-        width: 52%;
-        height: 52%;
-        top: 14%;
-        left: 12%;
+      .testimonial-card {
+        display: flex;
+        min-height: 360px;
+        flex-direction: column;
       }
 
-      .about-visual::after {
-        width: 40%;
-        height: 40%;
-        right: 12%;
-        bottom: 14%;
+      .testimonial-person {
+        margin-bottom: 0.3rem;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.45rem;
+        font-weight: 300;
+        letter-spacing: -0.02em;
+      }
+
+      .testimonial-role {
+        margin-bottom: 1rem;
+        color: var(--stone);
+        font-size: 0.82rem;
+      }
+
+      .stars {
+        margin-bottom: 1.1rem;
+        color: var(--champagne);
+        font-size: 0.86rem;
+        letter-spacing: 0.18em;
+      }
+
+      .testimonial-card blockquote {
+        margin: 0 0 1.3rem;
+        color: var(--ink-soft);
+      }
+
+      .badge {
+        display: inline-flex;
+        width: fit-content;
+        margin-top: auto;
+        border-top: 0.5px solid var(--champagne);
+        padding-top: 0.75rem;
+        color: var(--obsidian);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .comparison-wrap {
+        overflow-x: auto;
+        border: 0.5px solid rgba(248, 246, 242, 0.18);
+      }
+
+      .comparison-table {
+        width: 100%;
+        min-width: 780px;
+        border-collapse: collapse;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        border-bottom: 0.5px solid rgba(248, 246, 242, 0.18);
+        border-right: 0.5px solid rgba(248, 246, 242, 0.18);
+        padding: 1.1rem 1.2rem;
+        color: rgba(248, 246, 242, 0.68);
+        font-weight: 300;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .comparison-table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .comparison-table th {
+        color: var(--ivory);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .comparison-table th:first-child,
+      .comparison-table td:first-child {
+        color: var(--ivory);
+        width: 24%;
+      }
+
+      .comparison-table th.increvio,
+      .comparison-table td.increvio {
+        background: rgba(200, 184, 154, 0.09);
+        color: var(--ivory);
       }
 
       .cta-section {
-        background: var(--color-black);
-        color: #ffffff;
+        text-align: center;
       }
 
-      .cta-section .section-title,
-      .cta-section .lead {
-        color: #ffffff;
+      .cta-title {
+        max-width: 820px;
+        margin: 0 auto 1.4rem;
+        font-size: clamp(2.7rem, 7vw, 6.4rem);
       }
 
-      .cta-wrap {
-        max-width: 760px;
+      .cta-copy {
+        max-width: 680px;
+        margin: 0 auto 2.4rem;
+        color: rgba(248, 246, 242, 0.68);
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
       }
 
-      .form-grid {
-        margin-top: 2rem;
+      .contact-form {
         display: grid;
-        gap: 0.9rem;
+        max-width: 480px;
+        margin: 0 auto;
+        gap: 0.75rem;
       }
 
-      .form-grid input,
-      .form-grid textarea {
+      .field {
         width: 100%;
-        border: 1px solid rgba(255, 255, 255, 0.25);
+        border: 0.5px solid rgba(248, 246, 242, 0.26);
+        border-radius: 0;
         background: transparent;
-        color: #ffffff;
-        padding: 0.82rem 0.9rem;
-        font: inherit;
+        color: var(--ivory);
+        padding: 1rem 1rem;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 160ms ease;
       }
 
-      .form-grid input::placeholder,
-      .form-grid textarea::placeholder {
-        color: rgba(255, 255, 255, 0.66);
+      .field::placeholder {
+        color: rgba(248, 246, 242, 0.48);
       }
 
-      .form-grid textarea {
-        min-height: 120px;
+      .field:focus {
+        border-color: var(--champagne);
+      }
+
+      textarea.field {
+        min-height: 118px;
         resize: vertical;
       }
 
+      .form-note,
       .form-success {
-        margin-top: 0.9rem;
-        color: #ffffff;
-        font-size: 0.93rem;
-        display: none;
+        margin: 1rem 0 0;
+        color: rgba(248, 246, 242, 0.58);
+        font-size: 0.86rem;
       }
 
-      .form-note {
-        margin-top: 1rem;
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.72);
+      .form-success {
+        display: none;
+        color: var(--ivory);
       }
 
       .site-footer {
-        padding: 1.6rem 0;
-        border-top: 1px solid var(--color-divider);
+        background: var(--obsidian);
+        color: var(--ivory);
+        padding: 3rem 0 1.4rem;
       }
 
-      .footer-wrap {
-        display: flex;
-        justify-content: space-between;
+      .footer-main {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr 1fr;
         align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
+        gap: 2rem;
+        padding-bottom: 2.2rem;
+      }
+
+      .footer-info {
+        color: rgba(248, 246, 242, 0.62);
+        font-size: 0.9rem;
+        text-align: center;
       }
 
       .footer-links {
         display: flex;
-        gap: 1rem;
-        color: var(--color-text-muted);
-        font-size: 0.9rem;
+        justify-content: flex-end;
+        gap: 1.1rem;
+        color: rgba(248, 246, 242, 0.62);
+        font-size: 0.86rem;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--champagne);
+        padding-top: 1.2rem;
+        color: rgba(248, 246, 242, 0.48);
+        font-size: 0.82rem;
       }
 
       .reveal {
         opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 650ms ease, transform 650ms ease;
+        transform: translateY(20px);
+        transition: opacity 700ms ease, transform 700ms ease;
       }
 
       .reveal.visible {
@@ -432,315 +834,802 @@
         transform: translateY(0);
       }
 
-      @media (max-width: 960px) {
-        .grid-3,
-        .timeline,
-        .metrics {
-          grid-template-columns: 1fr;
-        }
-
-        .quote-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .about-grid {
-          grid-template-columns: 1fr;
+      @media (min-width: 768px) {
+        .hero-bottom {
+          grid-template-columns: 1fr auto;
+          align-items: end;
         }
       }
 
-      @media (max-width: 720px) {
-        .nav {
+      @media (max-width: 1199px) {
+        .process-grid,
+        .channels-grid,
+        .track-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .asset-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .testimonials-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 767px) {
+        :root {
+          --container: min(100vw - 28px, 680px);
+          --section-space: 4.4rem;
+        }
+
+        .nav-shell {
+          min-height: 70px;
+        }
+
+        .wordmark {
+          font-size: 0.9rem;
+          letter-spacing: 0.38em;
+        }
+
+        .logo-lockup {
           gap: 0.75rem;
         }
 
-        .nav-link {
-          font-size: 0.88rem;
+        .logo-lockup svg {
+          width: 29px;
+          height: 35px;
         }
 
-        .btn {
-          padding: 0.78rem 1rem;
-          font-size: 0.9rem;
+        .hamburger {
+          display: block;
         }
 
-        .trust-row {
+        .nav-right {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          height: calc(100vh - 70px);
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          justify-content: flex-start;
+          gap: 2rem;
+          border-top: 0.5px solid var(--linen);
+          background: var(--ivory);
+          color: var(--obsidian);
+          padding: 2rem 14px;
+          transform: translateX(100%);
+          transition: transform 220ms ease;
+        }
+
+        .nav-right.open {
+          transform: translateX(0);
+        }
+
+        .nav-links {
+          display: grid;
+          gap: 0;
+          border-top: 0.5px solid var(--linen);
+        }
+
+        .nav-links a {
+          border-bottom: 0.5px solid var(--linen);
+          padding: 1.2rem 0;
+          font-size: 0.82rem;
+        }
+
+        .nav-cta {
+          width: 100%;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 8.2rem;
+        }
+
+        .hero-title {
+          font-size: clamp(3.3rem, 16vw, 5.2rem);
+        }
+
+        .hero-actions {
+          display: grid;
+        }
+
+        .stats-row,
+        .cards-3,
+        .process-grid,
+        .asset-stats,
+        .track-stats,
+        .channels-grid,
+        .testimonials-grid {
           grid-template-columns: 1fr;
+        }
+
+        .stat {
+          border-right: 0;
+          border-bottom: 0.5px solid rgba(248, 246, 242, 0.17);
+          padding-right: 0;
+        }
+
+        .stat:last-child {
+          border-bottom: 0;
+        }
+
+        .hero-badge {
+          width: 100%;
+        }
+
+        .trust-wrap {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .logo-row {
+          grid-template-columns: 1fr;
+          border-top: 0.5px solid var(--linen);
+        }
+
+        .partner-logo {
+          border-bottom: 0.5px solid var(--linen);
+        }
+
+        .process-step,
+        .track-stat,
+        .testimonial-card {
+          min-height: auto;
+        }
+
+        .channel-number {
+          margin-bottom: 1.5rem;
+        }
+
+        .footer-main {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+
+        .footer-info {
+          text-align: left;
+        }
+
+        .footer-links {
+          justify-content: flex-start;
         }
       }
     </style>
   </head>
   <body>
     <header class="site-header" id="siteHeader">
-      <div class="container nav-wrap">
-        <a class="logo" href="#top">Increvio</a>
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a class="nav-link" href="#leistungen">Leistungen</a>
-          <a class="nav-link" href="#ueber-uns">Über uns</a>
-          <a class="nav-link" href="#kontakt">Kontakt</a>
-          <a class="btn" href="#kontakt">Gespräch anfragen</a>
-        </nav>
+      <div class="container nav-shell">
+        <a class="logo-lockup" href="#top" aria-label="Increvio Startseite">
+          <span class="logo-mark" data-logo="light"></span>
+          <span class="wordmark">Increvio</span>
+        </a>
+        <button class="hamburger" id="menuToggle" type="button" aria-label="Menue oeffnen" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-right" id="navMenu">
+          <nav class="nav-links" aria-label="Hauptnavigation">
+            <a href="#system">Unser System</a>
+            <a href="#referenzen">Referenzen</a>
+            <a href="#kontakt">Kontakt</a>
+          </nav>
+          <a class="btn nav-cta" href="#kontakt">Erstgespräch vereinbaren</a>
+        </div>
       </div>
     </header>
 
     <main id="top">
-      <section class="section hero">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <h1 class="hero-title">
+              Mehr Kapitalanleger-Mandanten —<br />
+              <em>planbar, vorqualifiziert, ab Tag eins.</em>
+            </h1>
+            <p class="hero-copy">
+              Für Finanzberater und Vermögensverwalter, die nicht auf Empfehlungen warten wollen.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-light" href="#kontakt">Erstgespräch vereinbaren</a>
+              <a class="btn btn-ghost" href="#system">Unser System ansehen ↓</a>
+            </div>
+          </div>
+
+          <div class="hero-bottom reveal">
+            <div>
+              <div class="stats-row" data-counter-section>
+                <div class="stat">
+                  <strong><span data-counter data-target="57">0</span> Mio. €</strong>
+                  <span>Vermitteltes Transaktionsvolumen</span>
+                </div>
+                <div class="stat">
+                  <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
+                  <span>Bestandsanleger im Portfolio</span>
+                </div>
+                <div class="stat">
+                  <strong><span data-counter data-target="93">0</span>%</strong>
+                  <span>Partner vermitteln in der ersten Woche</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="gold-line" aria-hidden="true"></div>
+              <div class="hero-badge">
+                <span>✓ Exklusiv pro Region</span>
+                <span>·</span>
+                <span>✓ Vorqualifiziert</span>
+                <span>·</span>
+                <span>✓ Bonität geprüft</span>
+                <span>·</span>
+                <span>✓ Vertrieb ab Tag 1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-section" aria-label="Partnerbanken">
+        <div class="container trust-wrap reveal">
+          <p class="trust-label">Unabhängig bestätigt von Partnerbanken</p>
+          <div class="logo-row" aria-label="Banken und Partner">
+            <div class="partner-logo">Deutsche Bank</div>
+            <div class="partner-logo">Commerzbank</div>
+            <div class="partner-logo">DZ Bank</div>
+            <div class="partner-logo">Volksbank</div>
+            <div class="partner-logo">Privatbank</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section problem-section">
+        <div class="container">
+          <div class="reveal">
+            <p class="label">— Das Problem</p>
+            <h2 class="section-title">
+              Die meisten guten Finanzberater<br />
+              wachsen nur durch <em>Empfehlungen.</em>
+            </h2>
+          </div>
+          <div class="cards-3 reveal">
+            <article class="pain-card">
+              <h3>Nicht planbar</h3>
+              <p>
+                Ihr bestes Quartal war eine gute Empfehlung. Nächsten Monat? Unbekannt. Das ist kein
+                System — das ist Zufall.
+              </p>
+            </article>
+            <article class="pain-card">
+              <h3>Zeitaufwändig</h3>
+              <p>
+                Kaltakquise kostet Zeit die Sie für Ihre Bestandskunden brauchen. Und der ROI ist meist
+                enttäuschend.
+              </p>
+            </article>
+            <article class="pain-card">
+              <h3>Falsche Zielgruppe</h3>
+              <p>
+                Portale und Anbieter liefern Massenleads — nicht die vermögenden Privatanleger die Sie
+                wirklich brauchen.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark" id="system">
+        <div class="container">
+          <div class="reveal">
+            <p class="label">— Unser System</p>
+            <h2 class="section-title">
+              Vom Bestand zum Abschluss.<br />
+              <em>In vier Schritten.</em>
+            </h2>
+          </div>
+          <div class="process-grid reveal">
+            <article class="process-step">
+              <span class="step-number">01</span>
+              <div>
+                <h3>Match &amp; Akquise</h3>
+                <p>
+                  7.384 vorqualifizierte Anleger werden sofort gegen Ihr Profil und Ihre Region gematcht.
+                  Alle 8 Akquise-Kanäle laufen parallel.
+                </p>
+              </div>
+            </article>
+            <article class="process-step">
+              <span class="step-number">02</span>
+              <div>
+                <h3>Vorqualifizierung</h3>
+                <p>
+                  Bedarfsanalyse, Anlage-Profiling, Selbstauskunft. Nur wer wirklich zu Ihnen passt kommt
+                  weiter.
+                </p>
+              </div>
+            </article>
+            <article class="process-step">
+              <span class="step-number">03</span>
+              <div>
+                <h3>Bonitätsprüfung</h3>
+                <p>
+                  Eigenkapital, Liquidität und Investitionsbereitschaft werden dokumentiert. Kein Gespräch
+                  mit jemandem der nicht kaufen kann.
+                </p>
+              </div>
+            </article>
+            <article class="process-step">
+              <span class="step-number">04</span>
+              <div>
+                <h3>Übergabe &amp; Abschluss</h3>
+                <p>
+                  Sie erhalten den Anleger mit vollständigem Profil. Ihr einziger Job: das
+                  Beratungsgespräch führen und den Abschluss machen.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="reveal">
+            <a class="btn btn-light" href="#kontakt">Erstgespräch vereinbaren →</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section asset-section">
+        <div class="container asset-grid">
+          <div class="reveal">
+            <p class="label">— Unser Asset</p>
+            <h2 class="section-title">
+              7.384 Anleger im Bestand.<br />
+              <em>Jeder hat schon einmal gekauft.</em>
+            </h2>
+            <p class="asset-copy">
+              Unser strategischer Vorteil sind keine Anfragen aus dem Nichts — es ist die Datenbank.
+              Vorqualifiziert, mit dokumentierter Bonität, geografisch zugeordnet und nach Berufsgruppen
+              segmentiert. Bei Vertragsstart matchen wir Ihre Produkte sofort gegen den Bestand. Vertrieb
+              läuft ab Tag eins.
+            </p>
+            <div class="asset-stats" data-counter-section>
+              <div class="asset-stat">
+                <strong><span data-counter data-target="80">0</span>%</strong>
+                <span>Mehrfach-Käufer</span>
+              </div>
+              <div class="asset-stat">
+                <strong><span data-counter data-target="5">0</span>+ Jahre</strong>
+                <span>Aufbau-Historie</span>
+              </div>
+              <div class="asset-stat">
+                <strong>+<span data-counter data-target="100">0</span></strong>
+                <span>Neue Anleger pro Monat</span>
+              </div>
+              <div class="asset-stat">
+                <strong><span data-counter data-target="100">0</span>%</strong>
+                <span>Bonitätsgeprüft</span>
+              </div>
+            </div>
+          </div>
+          <aside class="bar-panel reveal" aria-label="Berufsgruppen im Anlegerbestand">
+            <h3>Berufsgruppen</h3>
+            <div class="bar-item">
+              <div class="bar-meta"><span>Ärzte &amp; Mediziner</span><span>28,9%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 28.9%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span>Ingenieure</span><span>24,3%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 24.3%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span>IT / Tech</span><span>22,5%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 22.5%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span>Beratung / Finance</span><span>13,7%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 13.7%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span>Selbstständige</span><span>10,6%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width: 10.6%"></div></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section dark">
+        <div class="container">
+          <div class="reveal">
+            <p class="label">— Trackrecord</p>
+            <h2 class="section-title">
+              Zahlen, die unabhängig<br />
+              <em>bestätigt sind.</em>
+            </h2>
+          </div>
+          <div class="track-stats reveal" data-counter-section>
+            <div class="track-stat">
+              <strong><span data-counter data-target="100">0</span>+</strong>
+              <span>Partner seit Gründung</span>
+            </div>
+            <div class="track-stat">
+              <strong><span data-counter data-target="57">0</span> Mio. €</strong>
+              <span>Vermitteltes Transaktionsvolumen</span>
+            </div>
+            <div class="track-stat">
+              <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
+              <span>Bestandsanleger aufgebaut</span>
+            </div>
+            <div class="track-stat">
+              <strong><span data-counter data-target="93">0</span>%</strong>
+              <span>Partner vermitteln in der ersten Woche</span>
+            </div>
+          </div>
+          <p class="track-note reveal">
+            Von Partnerbanken dokumentiert. Realisiert in über 80 Städten im DACH-Raum.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="reveal">
+            <p class="label">— Vom Bestand zum Abschluss</p>
+            <h2 class="section-title">
+              Acht Wege zu Ihrem<br />
+              <em>nächsten Mandanten.</em>
+            </h2>
+          </div>
+          <div class="channels-grid reveal">
+            <article class="channel-card">
+              <span class="channel-number">01</span>
+              <h3>Bestandspool</h3>
+              <p>7.384 vorqualifizierte Anleger als Sofort-Match</p>
+            </article>
+            <article class="channel-card">
+              <span class="channel-number">02</span>
+              <h3>Steuerberater &amp; Family Offices</h3>
+              <p>Mandanten-Empfehlungen aus Top-Kanzleien</p>
+            </article>
+            <article class="channel-card">
+              <span class="channel-number">03</span>
+              <h3>Bank- &amp; Versicherungspartner</h3>
+              <p>Ärzte-Banken, Beamtenkredite, Privatversicherer</p>
+            </article>
+            <article class="channel-card">
+              <span class="channel-number">04</span>
+              <h3>Vor-Ort-Veranstaltungen</h3>
+              <p>Investoren-Salons in Premium-Locations</p>
+            </article>
+            <article class="channel-card">
+              <span class="channel-number">05</span>
+              <h3>Webinare &amp; Seminare</h3>
+              <p>Live-Sessions zu Steuermodellen und Anlagestrategien</p>
+            </article>
+            <article class="channel-card">
+              <span class="channel-number">06</span>
+              <h3>Kongresse &amp; Messen</h3>
+              <p>Investorenforen und Branchengipfel deutschlandweit</p>
+            </article>
+            <article class="channel-card">
+              <span class="channel-number">07</span>
+              <h3>Strukturvertriebe</h3>
+              <p>Kapitalmarkt-Vermittlernetzwerke und Tippgeber-Programme</p>
+            </article>
+            <article class="channel-card">
+              <span class="channel-number">08</span>
+              <h3>Digital Performance</h3>
+              <p>Gezielte digitale Kanäle für vermögende Privatpersonen</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="referenzen">
+        <div class="container">
+          <div class="reveal">
+            <p class="label">— Referenzen</p>
+            <h2 class="section-title">
+              Was unsere Anleger<br />
+              <em>über die Zusammenarbeit sagen.</em>
+            </h2>
+          </div>
+          <div class="testimonials-grid reveal">
+            <article class="testimonial-card">
+              <div class="testimonial-person">Dr. Michael Kern</div>
+              <div class="testimonial-role">Anästhesist, Hamburg</div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Bei Increvio wurde mir der Immobilienfonds mit allen steuerlichen Aspekten ehrlich
+                durchgerechnet. Inzwischen halte ich drei Positionen über sie."
+              </blockquote>
+              <span class="badge">3 Positionen · Immobilienfonds</span>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-person">Thomas Schreiber</div>
+              <div class="testimonial-role">Software Engineer, München</div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Mein erstes Investment in einen geschlossenen Fonds. Vollständige Cashflow-Analyse vor
+                dem Gespräch. Drei Wochen vom ersten Kontakt bis zur Zeichnung."
+              </blockquote>
+              <span class="badge">Erstinvestment · Geschlossener Fonds</span>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-person">Dr. Anna Bergmann</div>
+              <div class="testimonial-role">Zahnärztin, Frankfurt</div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Vier Investments in zwei Jahren — PV-Direktanlage, Immobilienbeteiligungen und Private
+                Equity. Mein Berater kennt mein Portfolio besser als ich."
+              </blockquote>
+              <span class="badge">4 Investments · Mixed Portfolio</span>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-person">Stefan Reiter</div>
+              <div class="testimonial-role">Geschäftsführer, Stuttgart</div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Increvio hat mir nicht das nächstbeste Produkt verkauft — sie sagten mir auch, wenn ein
+                Investment nicht zu meinem Profil passt."
+              </blockquote>
+              <span class="badge">PV-Direktinvestment · Empfehlungsgeber</span>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-person">Christian Hoffmann</div>
+              <div class="testimonial-role">Rechtsanwalt, Berlin</div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Vollständige Transparenz über Laufzeit, Ausschüttungen und Exitszenarien bevor ich
+                unterschrieben habe. Kein anderer Anbieter war so vorbereitet."
+              </blockquote>
+              <span class="badge">2 PE-Beteiligungen</span>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-person">Markus Wenzel</div>
+              <div class="testimonial-role">Ingenieur, Nürnberg</div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Der Prozess war so strukturiert, dass meine Frau sagte: so sollte jede Kapitalanlage
+                laufen."
+              </blockquote>
+              <span class="badge">Immobilienfonds · Ehepaar-Investment</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark">
+        <div class="container">
+          <div class="reveal">
+            <p class="label">— Im Vergleich</p>
+            <h2 class="section-title">
+              Warum nicht nur<br />
+              <em>Empfehlungen.</em>
+            </h2>
+          </div>
+          <div class="comparison-wrap reveal">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Kriterium</th>
+                  <th class="increvio">Increvio</th>
+                  <th>Nur Empfehlungen</th>
+                  <th>Andere Anbieter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Eigener Anleger-Pool</td>
+                  <td class="increvio">✓ 7.384 Anleger</td>
+                  <td>✕ Kein Pool</td>
+                  <td>✕ Kein Pool</td>
+                </tr>
+                <tr>
+                  <td>Planbarkeit</td>
+                  <td class="increvio">✓ Monatlich konstant</td>
+                  <td>✕ Nicht planbar</td>
+                  <td>○ Variabel</td>
+                </tr>
+                <tr>
+                  <td>Vorqualifizierung</td>
+                  <td class="increvio">✓ Vollständig</td>
+                  <td>○ Teilweise</td>
+                  <td>✕ Nicht enthalten</td>
+                </tr>
+                <tr>
+                  <td>Branchenwissen</td>
+                  <td class="increvio">✓ Kapitalanlage</td>
+                  <td>✓ Vorhanden</td>
+                  <td>✕ Generisch</td>
+                </tr>
+                <tr>
+                  <td>Skalierbarkeit</td>
+                  <td class="increvio">✓ Unbegrenzt</td>
+                  <td>✕ Netzwerk-limitiert</td>
+                  <td>○ Begrenzt</td>
+                </tr>
+                <tr>
+                  <td>After-Sales</td>
+                  <td class="increvio">✓ Eigene Infrastruktur</td>
+                  <td>○ Manuell</td>
+                  <td>✕ Nicht vorgesehen</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark cta-section" id="kontakt">
         <div class="container reveal">
-          <h1>Qualifizierte Anfragen. Auf Knopfdruck.</h1>
-          <p class="lead">
-            Wir generieren exklusiv für Sie die Kundenkontakte, die Ihr Vertrieb
-            braucht. Messbar. Planbar. Skalierbar.
+          <h2 class="cta-title">
+            Bereit für planbare<br />
+            <em>Neukundengewinnung?</em>
+          </h2>
+          <p class="cta-copy">
+            Vereinbaren Sie ein kostenloses Erstgespräch. Wir analysieren Ihre aktuelle Situation und
+            zeigen Ihnen konkret, wie viele Mandanten Sie in den ersten 30 Tagen erwarten können.
           </p>
-          <a class="btn" href="#kontakt">Erstgespräch vereinbaren</a>
-          <div class="trust-row" aria-label="Vertrauensindikatoren">
-            <div class="trust-pill">DACH-Region</div>
-            <div class="trust-pill">Exklusiv pro Region</div>
-            <div class="trust-pill">Ergebnisbasiert</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="leistungen">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">Das Problem kennen Sie.</h2>
-          </div>
-          <div class="grid-3 reveal">
-            <article class="card problem-card">
-              <div class="icon-dot">1</div>
-              <h3>Ihr Wachstum hängt von Empfehlungen ab — das ist nicht planbar.</h3>
-              <p>
-                Ohne konstanten Zufluss qualifizierter Anfragen bleibt Ihr
-                Vertrieb abhängig von Zufall und persönlichen Netzwerken.
-              </p>
-            </article>
-            <article class="card problem-card">
-              <div class="icon-dot">2</div>
-              <h3>
-                Ihr Vertrieb verbringt Zeit mit Kaltakquise statt mit
-                Abschlüssen.
-              </h3>
-              <p>
-                Viele Gespräche beginnen mit Überzeugungsarbeit statt mit echtem
-                Bedarf. Das kostet Fokus, Zeit und Abschlussstärke.
-              </p>
-            </article>
-            <article class="card problem-card">
-              <div class="icon-dot">3</div>
-              <h3>
-                Digitale Neukundengewinnung ist komplex — und kaum jemand
-                versteht Ihre Branche wirklich.
-              </h3>
-              <p>
-                Standardlösungen verfehlen häufig anspruchsvolle Zielgruppen im
-                Finanzbereich. Genau dort entstehen hohe Streuverluste.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">Wir liefern. Sie schließen ab.</h2>
-            <p class="lead solution-copy">
-              Increvio entwickelt und betreibt exklusive Systeme zur digitalen
-              Neukundengewinnung — spezialisiert auf Finanzdienstleister und
-              Kapitalanlageberater im DACH-Raum. Sie erhalten vorqualifizierte
-              Kontakte, die aktiv nach einer Lösung suchen. Kein Streuverlust.
-              Keine geteilten Leads. Nur Ihre Anfragen.
-            </p>
-          </div>
-          <div class="diff-list reveal">
-            <article class="diff-item">
-              <h3>Exklusiv</h3>
-              <p>
-                Jeder Lead gehört nur Ihnen. Kein Wettbewerber in Ihrer Region
-                erhält dieselben Kontakte.
-              </p>
-            </article>
-            <article class="diff-item">
-              <h3>Vorqualifiziert</h3>
-              <p>
-                Nur Interessenten mit echtem Investitionsinteresse und passender
-                Ausgangslage.
-              </p>
-            </article>
-            <article class="diff-item">
-              <h3>Messbar</h3>
-              <p>
-                Transparente KPIs, monatliche Reports, volle Kostenkontrolle über
-                Ihr Werbebudget.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">So einfach funktioniert die Zusammenarbeit.</h2>
-          </div>
-          <div class="timeline reveal">
-            <article class="step">
-              <div class="icon-dot">1</div>
-              <h3>Erstgespräch</h3>
-              <p>
-                Wir verstehen Ihre Zielgruppe, Ihr Angebot und Ihre Region. Kein
-                Standardpaket.
-              </p>
-            </article>
-            <article class="step">
-              <div class="icon-dot">2</div>
-              <h3>Setup &amp; Launch</h3>
-              <p>
-                Wir bauen Ihr System auf. Sie müssen sich um nichts kümmern.
-              </p>
-            </article>
-            <article class="step">
-              <div class="icon-dot">3</div>
-              <h3>Ergebnisse</h3>
-              <p>
-                Qualifizierte Anfragen landen direkt bei Ihnen. Wir optimieren
-                kontinuierlich.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">Vertrauen entsteht durch Ergebnisse.</h2>
-          </div>
-          <div class="quote-grid reveal">
-            <article class="quote-card">
-              <div class="quote-mark">“</div>
-              <p>
-                Seit der Zusammenarbeit mit Increvio führe ich deutlich mehr
-                Erstgespräche — und das mit Interessenten, die wirklich
-                investieren wollen.
-              </p>
-              <span>[Placeholder Name], Finanzberater, Frankfurt</span>
-            </article>
-            <article class="quote-card">
-              <div class="quote-mark">“</div>
-              <p>
-                Endlich ein Partner, der unsere Branche versteht. Die Leads sind
-                hochwertig und exklusiv.
-              </p>
-              <span>[Placeholder Name], Kapitalanlageberater, München</span>
-            </article>
-          </div>
-          <div class="metrics reveal">
-            <div class="metric">
-              <strong>100+ Erstgespräche generiert</strong>
-              <span>Mit qualifizierten Interessenten</span>
-            </div>
-            <div class="metric">
-              <strong>DACH-weit</strong>
-              <span>Für ausgewählte Regionen und Zielgruppen</span>
-            </div>
-            <div class="metric">
-              <strong>Exklusiv pro Region</strong>
-              <span>Keine parallele Vergabe an Wettbewerber</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="ueber-uns">
-        <div class="container about-grid">
-          <div class="reveal">
-            <h2 class="section-title">Über Increvio</h2>
-            <p class="lead">
-              Increvio wurde mit einer klaren Überzeugung gegründet:
-              Finanzberater und Kapitalanlageexperten verdienen einen Partner,
-              der ihre Welt wirklich versteht. Wir kommen aus dem
-              Kapitalanlagebereich und wissen, wie vermögende Privatanleger
-              denken, was sie überzeugt und wie man sie digital erreicht. Dieses
-              Wissen setzen wir für Sie ein.
-            </p>
-          </div>
-          <div class="about-visual reveal" aria-hidden="true"></div>
-        </div>
-      </section>
-
-      <section class="section cta-section" id="kontakt">
-        <div class="container cta-wrap reveal">
-          <h2 class="section-title">Bereit für planbare Neukundengewinnung?</h2>
-          <p class="lead">
-            Vereinbaren Sie ein kostenloses Erstgespräch. Wir analysieren Ihre
-            aktuelle Situation und zeigen Ihnen konkret, was für Sie möglich ist.
-          </p>
-          <form class="form-grid" id="contactForm">
-            <input type="text" name="name" placeholder="Name" required />
-            <input type="text" name="firma" placeholder="Firma" required />
-            <input type="email" name="email" placeholder="E-Mail" required />
-            <input type="tel" name="telefon" placeholder="Telefon" required />
-            <textarea
-              name="nachricht"
-              placeholder="Nachricht (optional)"
-            ></textarea>
-            <button class="btn btn-inverted" type="submit">Anfrage senden</button>
+          <form class="contact-form" id="contactForm">
+            <input class="field" type="text" name="name" placeholder="Name" autocomplete="name" required />
+            <input class="field" type="text" name="firma" placeholder="Firma" autocomplete="organization" required />
+            <input class="field" type="email" name="email" placeholder="E-Mail" autocomplete="email" required />
+            <input class="field" type="tel" name="telefon" placeholder="Telefon" autocomplete="tel" required />
+            <textarea class="field" name="nachricht" placeholder="Nachricht (optional)"></textarea>
+            <button class="btn btn-light" type="submit">Erstgespräch anfragen →</button>
           </form>
-          <p class="form-success" id="formSuccess">
-            Vielen Dank. Ihre Anfrage wurde erfolgreich übermittelt.
-          </p>
+          <p class="form-success" id="formSuccess">Vielen Dank. Ihre Anfrage wurde vorbereitet.</p>
           <p class="form-note">Kein Spam. Kein Druck. Ein offenes Gespräch.</p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-wrap">
-        <div>Increvio © 2025 Increvio</div>
-        <div class="footer-links">
-          <a href="#">Impressum</a>
-          <a href="#">Datenschutz</a>
+      <div class="container">
+        <div class="footer-main">
+          <a class="logo-lockup" href="#top" aria-label="Increvio Startseite">
+            <span class="logo-mark" data-logo="dark"></span>
+            <span class="wordmark">Increvio</span>
+          </a>
+          <div class="footer-info">München, Deutschland · timur.leontyev@increvio.de · increvio.de</div>
+          <div class="footer-links">
+            <a href="#">Impressum</a>
+            <a href="#">Datenschutz</a>
+          </div>
         </div>
+        <div class="footer-bottom">© 2026 Increvio</div>
       </div>
     </footer>
 
     <script>
+      const logoLight = `
+        <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0" y="0" width="2.5" height="44" fill="#0A0A0A"/>
+          <rect x="0" y="0" width="14" height="2.5" fill="#0A0A0A"/>
+          <rect x="0" y="41.5" width="14" height="2.5" fill="#0A0A0A"/>
+          <line x1="13" y1="2.5" x2="13" y2="24" stroke="#0A0A0A" stroke-width="2.5"/>
+          <line x1="13" y1="24" x2="34" y2="44" stroke="#C8B89A" stroke-width="2"/>
+        </svg>
+      `;
+
+      const logoDark = `
+        <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0" y="0" width="2.5" height="44" fill="#F8F6F2"/>
+          <rect x="0" y="0" width="14" height="2.5" fill="#F8F6F2"/>
+          <rect x="0" y="41.5" width="14" height="2.5" fill="#F8F6F2"/>
+          <line x1="13" y1="2.5" x2="13" y2="24" stroke="#F8F6F2" stroke-width="2.5"/>
+          <line x1="13" y1="24" x2="34" y2="44" stroke="#C8B89A" stroke-width="2"/>
+        </svg>
+      `;
+
       const siteHeader = document.getElementById("siteHeader");
+      const menuToggle = document.getElementById("menuToggle");
+      const navMenu = document.getElementById("navMenu");
       const contactForm = document.getElementById("contactForm");
       const formSuccess = document.getElementById("formSuccess");
+      const logoMarks = document.querySelectorAll(".logo-mark");
 
-      const onScroll = () => {
-        if (window.scrollY > 24) {
-          siteHeader.classList.add("scrolled");
-        } else {
-          siteHeader.classList.remove("scrolled");
-        }
-      };
+      function updateLogos() {
+        const useLightMark = siteHeader.classList.contains("scrolled") || siteHeader.classList.contains("menu-active");
+        logoMarks.forEach((mark) => {
+          if (mark.dataset.logo === "dark") {
+            mark.innerHTML = logoDark;
+          } else {
+            mark.innerHTML = useLightMark ? logoLight : logoDark;
+          }
+        });
+      }
+
+      function onScroll() {
+        siteHeader.classList.toggle("scrolled", window.scrollY > 18);
+        updateLogos();
+      }
+
+      function closeMenu() {
+        document.body.classList.remove("nav-open");
+        siteHeader.classList.remove("menu-active");
+        navMenu.classList.remove("open");
+        menuToggle.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        updateLogos();
+      }
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navMenu.classList.toggle("open");
+        document.body.classList.toggle("nav-open", isOpen);
+        siteHeader.classList.toggle("menu-active", isOpen);
+        menuToggle.classList.toggle("active", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        updateLogos();
+      });
+
+      navMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
 
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
 
-      if (contactForm) {
-        contactForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          contactForm.reset();
-          formSuccess.style.display = "block";
-        });
-      }
-
-      const revealElements = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
+      const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
+              revealObserver.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.16 }
+        { threshold: 0.14 }
       );
 
-      revealElements.forEach((element) => observer.observe(element));
+      document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+      const counterFormatter = new Intl.NumberFormat("de-DE");
+
+      function animateCounter(counter) {
+        const target = Number(counter.dataset.target || 0);
+        const useGermanFormat = counter.dataset.format === "de";
+        const duration = 1350;
+        const startTime = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = Math.round(target * eased);
+          counter.textContent = useGermanFormat ? counterFormatter.format(value) : String(value);
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.querySelectorAll("[data-counter]").forEach((counter) => {
+              if (counter.dataset.counted === "true") return;
+              counter.dataset.counted = "true";
+              animateCounter(counter);
+            });
+            counterObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.32 }
+      );
+
+      document.querySelectorAll("[data-counter-section]").forEach((section) => {
+        counterObserver.observe(section);
+      });
+
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        contactForm.reset();
+        formSuccess.style.display = "block";
+      });
     </script>
   </body>
 </html>
