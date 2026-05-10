@@ -1102,17 +1102,27 @@
         margin-bottom: 24px;
       }
 
-      .initials {
-        width: 52px;
-        height: 52px;
-        display: grid;
-        place-items: center;
+      .profile-photo {
+        width: 64px;
+        height: 64px;
+        overflow: hidden;
+        border: 1px solid var(--linen);
         border-radius: 50%;
-        background: var(--obsidian);
-        color: var(--ivory);
-        font-family: "Cormorant Garamond", serif;
-        font-size: 24px;
-        font-style: italic;
+        background: #eeeae2;
+        box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.03);
+      }
+
+      .profile-photo svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .profile-photo .portrait-line {
+        fill: none;
+        stroke: rgba(10, 10, 10, 0.42);
+        stroke-width: 1.1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
       .person {
@@ -2016,7 +2026,19 @@
           <div class="testimonial-grid">
             <article class="testimonial reveal-card">
               <div class="testimonial-top">
-                <div class="initials">MK</div>
+                <div class="profile-photo" aria-label="Profilbild Dr. Michael Kern">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#ECE8DE" />
+                    <path d="M15 80c2-17 14-27 25-27s23 10 25 27z" fill="#151515" />
+                    <path d="M31 57h18v23H31z" fill="#D0AA88" />
+                    <path d="M24 33c0-13 8-22 17-22s16 9 16 22c0 17-7 28-17 28S24 50 24 33z" fill="#D6B08E" />
+                    <path d="M22 28c2-14 10-21 20-21 8 0 16 6 18 18-10-6-22-7-38 3z" fill="#8D887F" />
+                    <path class="portrait-line" d="M29 38h10M44 38h8M39 38h5" />
+                    <circle cx="34" cy="38" r="4.2" class="portrait-line" />
+                    <circle cx="48" cy="38" r="4.2" class="portrait-line" />
+                    <path class="portrait-line" d="M40 41l-2 8 5 1M35 53c3 2 8 2 11 0" />
+                  </svg>
+                </div>
                 <div class="person">
                   <span>Dr. Michael Kern</span>
                   <span>Anästhesist · Hamburg</span>
@@ -2032,7 +2054,16 @@
 
             <article class="testimonial reveal-card">
               <div class="testimonial-top">
-                <div class="initials">TS</div>
+                <div class="profile-photo" aria-label="Profilbild Thomas Schreiber">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#EEE9DF" />
+                    <path d="M13 80c4-16 15-25 27-25s23 9 27 25z" fill="#2A2D2F" />
+                    <path d="M28 57l12 9 12-9v23H28z" fill="#F8F6F2" />
+                    <path d="M24 32c0-13 8-22 18-22 9 0 16 8 16 21 0 17-7 28-17 28S24 49 24 32z" fill="#C99A7A" />
+                    <path d="M22 25c5-15 21-22 33-10 5 5 6 12 4 18-8-10-19-14-37-8z" fill="#251F1C" />
+                    <path class="portrait-line" d="M32 39h5M46 39h5M40 41l-2 8 5 1M35 53c4 2 8 2 11-1" />
+                  </svg>
+                </div>
                 <div class="person">
                   <span>Thomas Schreiber</span>
                   <span>Software Engineer · München</span>
@@ -2048,7 +2079,18 @@
 
             <article class="testimonial reveal-card">
               <div class="testimonial-top">
-                <div class="initials">AB</div>
+                <div class="profile-photo" aria-label="Profilbild Dr. Anna Bergmann">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#EEEAE4" />
+                    <path d="M14 80c3-17 14-27 26-27s23 10 26 27z" fill="#121212" />
+                    <path d="M31 56h18v24H31z" fill="#D1A686" />
+                    <path d="M23 33c0-14 8-23 18-23s17 9 17 23c0 17-7 28-18 28S23 50 23 33z" fill="#D8AE8E" />
+                    <path d="M21 40c-2-17 4-31 19-33 13-2 23 8 22 28-7-15-26-20-41 5z" fill="#4D382E" />
+                    <path class="portrait-line" d="M31 39h5M46 39h5M40 42l-2 7 4 1M34 53c4 2 9 2 13-1" />
+                    <path d="M25 53c-7-7-8-20-4-30 0 17 5 26 12 34z" fill="#4D382E" opacity="0.92" />
+                    <path d="M55 55c8-8 8-21 5-31-1 16-6 26-13 34z" fill="#4D382E" opacity="0.92" />
+                  </svg>
+                </div>
                 <div class="person">
                   <span>Dr. Anna Bergmann</span>
                   <span>Zahnärztin · Frankfurt</span>
@@ -2064,7 +2106,17 @@
 
             <article class="testimonial reveal-card">
               <div class="testimonial-top">
-                <div class="initials">SR</div>
+                <div class="profile-photo" aria-label="Profilbild Stefan Reiter">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#ECE7DD" />
+                    <path d="M13 80c3-17 15-28 27-28s24 11 27 28z" fill="#171717" />
+                    <path d="M30 57h20v23H30z" fill="#D0A27F" />
+                    <path d="M23 32c0-13 8-22 18-22s17 9 17 22c0 17-7 28-18 28S23 49 23 32z" fill="#D7A884" />
+                    <path d="M23 27c2-13 12-20 23-17 8 2 13 10 13 20-12-8-23-10-36-3z" fill="#6E6257" />
+                    <path d="M28 50c5 9 18 9 24 0 1 8-5 13-12 13s-13-5-12-13z" fill="#5A473C" opacity="0.35" />
+                    <path class="portrait-line" d="M32 39h5M46 39h5M40 41l-2 8 5 1M35 53c4 2 8 2 11 0" />
+                  </svg>
+                </div>
                 <div class="person">
                   <span>Stefan Reiter</span>
                   <span>Geschäftsführer · Stuttgart</span>
@@ -2080,7 +2132,18 @@
 
             <article class="testimonial reveal-card">
               <div class="testimonial-top">
-                <div class="initials">CH</div>
+                <div class="profile-photo" aria-label="Profilbild Christian Hoffmann">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#EFEAE1" />
+                    <path d="M14 80c4-18 15-28 26-28s23 10 26 28z" fill="#151515" />
+                    <path d="M31 57h18v23H31z" fill="#CFA282" />
+                    <path d="M24 33c0-14 8-23 18-23s17 9 17 23c0 17-7 28-18 28S24 50 24 33z" fill="#D7AA88" />
+                    <path d="M23 27c3-13 13-21 25-17 9 3 13 11 12 22-10-9-24-10-37-5z" fill="#312720" />
+                    <path d="M29 48c4 5 19 5 24 0-2 9-7 14-13 14s-10-5-11-14z" fill="#392B24" opacity="0.28" />
+                    <path class="portrait-line" d="M31 39h6M46 39h6M40 42l-2 7 5 1M35 53c4 2 8 2 12-1" />
+                    <path class="portrait-line" d="M29 37c4-2 8-2 11 0M44 37c4-2 8-2 11 0" />
+                  </svg>
+                </div>
                 <div class="person">
                   <span>Christian Hoffmann</span>
                   <span>Rechtsanwalt · Berlin</span>
@@ -2096,7 +2159,17 @@
 
             <article class="testimonial reveal-card">
               <div class="testimonial-top">
-                <div class="initials">MW</div>
+                <div class="profile-photo" aria-label="Profilbild Markus Wenzel">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#ECE8DF" />
+                    <path d="M12 80c4-16 16-26 28-26s24 10 28 26z" fill="#202426" />
+                    <path d="M30 57h20v23H30z" fill="#C79676" />
+                    <path d="M23 33c0-14 8-23 18-23s17 9 17 23c0 17-7 28-18 28S23 50 23 33z" fill="#D0A080" />
+                    <path d="M21 28c4-14 16-22 28-17 8 3 13 12 10 25-9-12-22-15-38-8z" fill="#2C2420" />
+                    <path class="portrait-line" d="M31 39h5M47 39h5M40 42l-2 7 5 1M34 53c4 2 9 2 13 0" />
+                    <path d="M29 50c3 7 19 7 23 0-1 7-6 12-12 12s-10-5-11-12z" fill="#4A342A" opacity="0.26" />
+                  </svg>
+                </div>
                 <div class="person">
                   <span>Markus Wenzel</span>
                   <span>Ingenieur · Nürnberg</span>
