@@ -3,51 +3,92 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Increvio | Planbare Neukundengewinnung im DACH-Raum</title>
+    <title>Increvio | Strategischer Vertriebspartner im DACH-Raum</title>
     <meta
       name="description"
-      content="Increvio liefert qualifizierte Anfragen für Finanzberater und Kapitalanlageexperten im DACH-Raum."
+      content="Increvio ist der premium strategische Vertriebspartner fuer Finanzberater und Vermoegensverwalter im DACH-Raum."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --color-black: #0a0a0a;
-        --color-bg: #f8f6f2;
-        --color-text-muted: #4a4a4a;
-        --color-divider: #dedad4;
-        --color-card: #f0ece6;
-        --section-space: clamp(4.5rem, 8vw, 8rem);
+        --obsidian: #0a0a0a;
+        --ivory: #f8f6f2;
+        --gold: #c8b89a;
+        --stone: #9a9a9a;
+        --linen: #e8e6e2;
+        --dark-surface: #111111;
+        --mid-surface: #1a1a1a;
+        --line-dark: rgba(248, 246, 242, 0.12);
+        --line-gold: rgba(200, 184, 154, 0.46);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --container: min(1220px, calc(100vw - 48px));
       }
 
       * {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
       }
 
       html {
         scroll-behavior: smooth;
+        background: var(--obsidian);
       }
 
       body {
-        font-family: "Inter", sans-serif;
-        color: var(--color-black);
-        background: var(--color-bg);
-        line-height: 1.6;
+        margin: 0;
+        background: var(--obsidian);
+        color: var(--ivory);
+        font-family: "DM Mono", monospace;
+        font-weight: 300;
+        line-height: 1.55;
+        overflow-x: hidden;
+        text-rendering: geometricPrecision;
       }
 
-      h1,
-      h2,
-      h3,
-      .logo {
-        font-family: "Playfair Display", serif;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
+      body.menu-open,
+      body.is-loading {
+        overflow: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        pointer-events: none;
+        opacity: 0.055;
+        background-image: radial-gradient(circle at 20% 30%, #ffffff 0 0.7px, transparent 0.8px),
+          radial-gradient(circle at 80% 10%, #ffffff 0 0.6px, transparent 0.7px),
+          radial-gradient(circle at 55% 70%, #ffffff 0 0.5px, transparent 0.6px);
+        background-size: 77px 77px, 113px 113px, 151px 151px;
+        animation: grain 1.6s steps(2) infinite;
+        mix-blend-mode: screen;
+      }
+
+      @keyframes grain {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+
+        25% {
+          transform: translate3d(-1.5%, 1%, 0);
+        }
+
+        50% {
+          transform: translate3d(1%, -1.5%, 0);
+        }
+
+        75% {
+          transform: translate3d(-0.5%, -1%, 0);
+        }
+
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
       }
 
       a {
@@ -55,692 +96,2481 @@
         text-decoration: none;
       }
 
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        border: 0;
+      }
+
+      svg {
+        display: block;
+      }
+
       .container {
-        width: min(1120px, 92vw);
+        width: var(--container);
         margin: 0 auto;
       }
 
+      .display,
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 300;
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .mono-label {
+        color: var(--stone);
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        line-height: 1.6;
+        text-transform: uppercase;
+      }
+
       .section {
-        padding: var(--section-space) 0;
-        border-top: 1px solid var(--color-divider);
+        position: relative;
+        padding: clamp(90px, 12vw, 170px) 0;
+      }
+
+      .section.light {
+        background: var(--ivory);
+        color: var(--obsidian);
+      }
+
+      .section.dark {
+        background: var(--obsidian);
+        color: var(--ivory);
+      }
+
+      .section.surface {
+        background: var(--dark-surface);
+      }
+
+      .section-head {
+        display: grid;
+        gap: 26px;
+        margin-bottom: clamp(46px, 7vw, 92px);
       }
 
       .section-title {
-        font-size: clamp(2rem, 4vw, 3.25rem);
-        margin-bottom: 1.4rem;
+        max-width: 780px;
+        font-size: clamp(52px, 8vw, 96px);
       }
 
-      .lead {
-        color: var(--color-text-muted);
-        max-width: 65ch;
+      .section-title em,
+      .gold {
+        color: var(--gold);
+        font-style: italic;
+      }
+
+      .btn {
+        position: relative;
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--ivory);
+        border-radius: 0;
+        padding: 15px 22px 14px;
+        background: transparent;
+        color: var(--ivory);
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        line-height: 1;
+        text-transform: uppercase;
+        transition: background 400ms var(--ease), border-color 400ms var(--ease), color 400ms var(--ease),
+          transform 400ms var(--ease);
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: var(--ivory);
+        color: var(--obsidian);
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        border-color: var(--ivory);
+        background: var(--ivory);
+        color: var(--obsidian);
+      }
+
+      .btn-primary:hover {
+        border-color: var(--gold);
+        background: var(--gold);
+      }
+
+      .btn-dark {
+        border-color: var(--obsidian);
+        background: var(--obsidian);
+        color: var(--ivory);
+      }
+
+      .btn-dark:hover {
+        border-color: var(--gold);
+        background: var(--gold);
+        color: var(--obsidian);
+      }
+
+      .logo-lockup {
+        display: inline-flex;
+        align-items: center;
+        gap: 13px;
+      }
+
+      .wordmark {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        background: var(--obsidian);
+        color: var(--ivory);
+      }
+
+      .preloader-inner {
+        display: grid;
+        justify-items: center;
+        gap: 26px;
+      }
+
+      .preloader-logo svg {
+        width: 48px;
+        height: 58px;
+        overflow: visible;
+      }
+
+      .preloader-word {
+        display: flex;
+        gap: 0.42em;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .preloader-word span {
+        display: inline-block;
+        opacity: 0;
       }
 
       .site-header {
         position: fixed;
         top: 0;
         left: 0;
+        z-index: 9000;
         width: 100%;
-        z-index: 40;
-        background: transparent;
-        transition: background-color 240ms ease, box-shadow 240ms ease,
-          border-color 240ms ease;
-        border-bottom: 1px solid transparent;
+        color: var(--ivory);
+        opacity: 0;
+        transform: translateY(-18px);
+        transition: background 400ms var(--ease), border-color 400ms var(--ease), backdrop-filter 400ms var(--ease);
       }
 
-      .site-header.scrolled {
-        background: rgba(248, 246, 242, 0.95);
-        backdrop-filter: blur(8px);
-        border-color: rgba(74, 74, 74, 0.16);
-        box-shadow: 0 10px 30px rgba(10, 10, 10, 0.05);
+      .site-header.scrolled,
+      .site-header.menu-active {
+        border-bottom: 1px solid rgba(248, 246, 242, 0.08);
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
       }
 
-      .nav-wrap {
-        min-height: 80px;
+      .nav-shell {
+        display: grid;
+        min-height: 82px;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav-center {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .logo {
-        font-size: 1.6rem;
-        font-weight: 700;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        gap: 1.35rem;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        justify-content: center;
+        gap: 30px;
       }
 
       .nav-link {
-        font-size: 0.95rem;
-        color: var(--color-text-muted);
-        font-weight: 500;
+        position: relative;
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        transition: color 300ms var(--ease);
       }
 
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--color-black);
-        background: var(--color-black);
-        color: #ffffff;
-        padding: 0.9rem 1.3rem;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: transform 180ms ease, opacity 180ms ease;
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -9px;
+        width: 100%;
+        height: 1px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 360ms var(--ease);
+      }
+
+      .nav-link:hover {
+        color: var(--ivory);
+      }
+
+      .nav-link:hover::after {
+        transform: scaleX(1);
+      }
+
+      .nav-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .nav-cta {
+        min-height: 42px;
+        padding: 13px 18px 12px;
+      }
+
+      .hamburger {
+        display: none;
+        width: 42px;
+        height: 42px;
+        margin-left: auto;
+        background: transparent;
+        color: var(--ivory);
         cursor: pointer;
       }
 
-      .btn:hover {
-        transform: translateY(-1px);
-        opacity: 0.92;
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 1px;
+        margin: 6px auto;
+        background: currentColor;
+        transition: transform 300ms var(--ease), opacity 300ms var(--ease);
       }
 
-      .btn-inverted {
-        background: #ffffff;
-        color: var(--color-black);
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 8500;
+        display: grid;
+        place-items: center;
+        background: var(--obsidian);
+        color: var(--ivory);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 420ms var(--ease);
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-links {
+        display: grid;
+        gap: 18px;
+        text-align: center;
+      }
+
+      .mobile-links a {
+        opacity: 0;
+        transform: translateY(18px);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(50px, 14vw, 104px);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
       }
 
       .hero {
-        padding-top: clamp(8.5rem, 14vw, 11rem);
-        border-top: none;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.5rem, 7vw, 5.5rem);
-        max-width: 12ch;
-        margin-bottom: 1.4rem;
-      }
-
-      .hero .lead {
-        font-size: clamp(1rem, 2vw, 1.18rem);
-        margin-bottom: 2.2rem;
-      }
-
-      .trust-row {
-        margin-top: 2.3rem;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.75rem;
-      }
-
-      .trust-pill {
-        border: 1px solid var(--color-divider);
-        border-radius: 999px;
-        text-align: center;
-        padding: 0.8rem 0.9rem;
-        font-size: 0.88rem;
-        color: var(--color-text-muted);
-        background: rgba(255, 255, 255, 0.45);
-      }
-
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .card {
-        border: 1px solid var(--color-divider);
-        background: rgba(255, 255, 255, 0.55);
-        padding: 1.4rem;
-      }
-
-      .problem-card h3 {
-        font-family: "Inter", sans-serif;
-        font-size: 1.05rem;
-        margin-bottom: 0.7rem;
-      }
-
-      .problem-card p {
-        color: var(--color-text-muted);
-        font-size: 0.95rem;
-      }
-
-      .icon-dot {
-        width: 1.8rem;
-        height: 1.8rem;
-        border-radius: 50%;
-        background: var(--color-black);
-        color: #ffffff;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.8rem;
-        margin-bottom: 0.9rem;
-        font-weight: 600;
-      }
-
-      .solution-copy {
-        margin-bottom: 1.9rem;
-      }
-
-      .diff-list {
-        display: grid;
-        gap: 0.9rem;
-      }
-
-      .diff-item {
-        border: 1px solid var(--color-divider);
-        padding: 1rem 1.1rem;
-        display: grid;
-        gap: 0.35rem;
-      }
-
-      .diff-item h3 {
-        font-family: "Inter", sans-serif;
-        font-size: 1rem;
-      }
-
-      .diff-item p {
-        color: var(--color-text-muted);
-      }
-
-      .timeline {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .step {
-        border: 1px solid var(--color-divider);
-        padding: 1.2rem;
-      }
-
-      .step h3 {
-        font-size: 1.1rem;
-        margin: 0.5rem 0;
-      }
-
-      .step p {
-        color: var(--color-text-muted);
-      }
-
-      .quote-grid {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-bottom: 2.1rem;
-      }
-
-      .quote-card {
-        background: var(--color-card);
-        border: 1px solid var(--color-divider);
-        padding: 1.4rem;
-      }
-
-      .quote-mark {
-        font-family: "Playfair Display", serif;
-        font-size: 2.2rem;
-        line-height: 0.8;
-        margin-bottom: 0.9rem;
-      }
-
-      .quote-card p {
-        margin-bottom: 1rem;
-      }
-
-      .quote-card span {
-        color: var(--color-text-muted);
-        font-size: 0.9rem;
-      }
-
-      .metrics {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.8rem;
-      }
-
-      .metric {
-        border-top: 1px solid var(--color-divider);
-        padding-top: 1rem;
-      }
-
-      .metric strong {
-        display: block;
-        font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-        line-height: 1.2;
-      }
-
-      .metric span {
-        color: var(--color-text-muted);
-        font-size: 0.92rem;
-      }
-
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: clamp(1.5rem, 5vw, 4rem);
-        align-items: center;
-      }
-
-      .about-visual {
-        min-height: 300px;
-        border: 1px solid var(--color-divider);
         position: relative;
-        background: rgba(255, 255, 255, 0.5);
+        min-height: 100svh;
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        background: var(--obsidian);
+        color: var(--ivory);
       }
 
-      .about-visual::before,
-      .about-visual::after {
+      .hero::before {
         content: "";
         position: absolute;
-        border: 1px solid var(--color-black);
-        background: transparent;
+        inset: 0;
+        opacity: 0.42;
+        background-image: linear-gradient(rgba(248, 246, 242, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(248, 246, 242, 0.03) 1px, transparent 1px);
+        background-size: 86px 86px;
+        mask-image: radial-gradient(circle at 48% 42%, #000 0 36%, transparent 76%);
       }
 
-      .about-visual::before {
-        width: 52%;
-        height: 52%;
-        top: 14%;
-        left: 12%;
+      .hero-watermark {
+        position: absolute;
+        right: -1vw;
+        top: 48%;
+        color: var(--ivory);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(420px, 54vw, 820px);
+        font-style: italic;
+        font-weight: 300;
+        line-height: 0.7;
+        opacity: 0.028;
+        transform: translateY(-50%);
+        user-select: none;
       }
 
-      .about-visual::after {
-        width: 40%;
-        height: 40%;
-        right: 12%;
-        bottom: 14%;
-      }
-
-      .cta-section {
-        background: var(--color-black);
-        color: #ffffff;
-      }
-
-      .cta-section .section-title,
-      .cta-section .lead {
-        color: #ffffff;
-      }
-
-      .cta-wrap {
-        max-width: 760px;
-      }
-
-      .form-grid {
-        margin-top: 2rem;
-        display: grid;
-        gap: 0.9rem;
-      }
-
-      .form-grid input,
-      .form-grid textarea {
+      .hero-shell {
+        position: relative;
+        z-index: 2;
         width: 100%;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        background: transparent;
-        color: #ffffff;
-        padding: 0.82rem 0.9rem;
+        min-height: 100svh;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        padding: clamp(130px, 16vh, 190px) 0 42px;
+      }
+
+      .hero-content {
+        align-self: center;
+        max-width: 1200px;
+        padding: 0 clamp(0px, 4vw, 56px);
+      }
+
+      .hero-title {
+        max-width: 860px;
+        color: var(--ivory);
+        font-size: clamp(58px, 8.4vw, 118px);
+        line-height: 1.03;
+      }
+
+      .line-mask {
+        display: block;
+        overflow: hidden;
+        margin-bottom: -0.06em;
+        padding-bottom: 0.16em;
+      }
+
+      .line-mask span {
+        display: block;
+        transform: translateY(108%);
+      }
+
+      .hero-copy {
+        max-width: 420px;
+        margin-top: 32px;
+        color: var(--stone);
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        opacity: 0;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+        opacity: 0;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+        border-top: 1px solid var(--line-gold);
+        padding: 34px clamp(16px, 3vw, 34px) 0;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .hero-stat {
+        padding: 0 28px 0 0;
+      }
+
+      .hero-stat + .hero-stat {
+        border-left: 1px solid rgba(200, 184, 154, 0.18);
+        padding-left: 28px;
+      }
+
+      [data-counter] {
+        display: inline;
+        color: inherit;
         font: inherit;
+        letter-spacing: inherit;
+        text-transform: none;
       }
 
-      .form-grid input::placeholder,
-      .form-grid textarea::placeholder {
-        color: rgba(255, 255, 255, 0.66);
+      .hero-stat strong {
+        display: block;
+        margin-bottom: 18px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(44px, 4.8vw, 66px);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+        line-height: 0.9;
+        white-space: nowrap;
       }
 
-      .form-grid textarea {
-        min-height: 120px;
-        resize: vertical;
+      .hero-stat > span {
+        display: block;
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
       }
 
-      .form-success {
-        margin-top: 0.9rem;
-        color: #ffffff;
-        font-size: 0.93rem;
-        display: none;
+      .scroll-indicator {
+        position: absolute;
+        left: 50%;
+        bottom: 24px;
+        z-index: 3;
+        width: 1px;
+        height: 64px;
+        overflow: hidden;
+        background: rgba(248, 246, 242, 0.16);
+        transform: translateX(-50%);
+        transition: opacity 300ms var(--ease);
+      }
+
+      .scroll-indicator::after {
+        content: "";
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: var(--gold);
+        animation: scrollLine 1.8s var(--ease) infinite;
+      }
+
+      .scroll-indicator.hidden {
+        opacity: 0;
+      }
+
+      @keyframes scrollLine {
+        0% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(200%);
+        }
+      }
+
+      .problem {
+        min-height: 300vh;
+        padding: 0;
+      }
+
+      .problem-pin {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: clamp(44px, 8vw, 112px);
+        align-items: center;
+        padding: clamp(90px, 12vw, 150px) 0;
+      }
+
+      .problem-title {
+        margin-top: 24px;
+        max-width: 480px;
+        font-size: clamp(50px, 7vw, 82px);
+      }
+
+      .problem-stack {
+        position: relative;
+        min-height: 450px;
+      }
+
+      .pain {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        transform: translateX(30px);
+      }
+
+      .pain:first-child {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .pain-ghost {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        color: var(--obsidian);
+        font-size: clamp(94px, 12vw, 160px);
+        letter-spacing: -0.12em;
+        opacity: 0.08;
+      }
+
+      .pain h3 {
+        max-width: 560px;
+        margin-bottom: 24px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(44px, 6vw, 72px);
+        font-weight: 300;
+      }
+
+      .pain p {
+        max-width: 560px;
+        color: rgba(10, 10, 10, 0.68);
+        font-size: 13px;
+        letter-spacing: 0.02em;
+      }
+
+      .system {
+        overflow: visible;
+      }
+
+      .system-track-wrap {
+        overflow: visible;
+      }
+
+      .system-track {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+        width: 100%;
+      }
+
+      .step-card {
+        position: relative;
+        width: 100%;
+        min-height: 340px;
+        display: grid;
+        grid-template-rows: 44px 1fr;
+        border: 1px solid var(--linen);
+        background: #ffffff;
+        padding: clamp(28px, 4vw, 40px);
+        transition: border-color 360ms var(--ease), transform 360ms var(--ease);
+      }
+
+      .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 420ms var(--ease);
+      }
+
+      .step-card:hover {
+        border-color: rgba(200, 184, 154, 0.58);
+        transform: translateY(-3px);
+      }
+
+      .step-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .step-kicker {
+        color: var(--gold);
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .step-card h3 {
+        max-width: none;
+        margin-bottom: 22px;
+        color: var(--obsidian);
+        font-size: clamp(34px, 3.8vw, 50px);
+        hyphens: none;
+        line-height: 1.02;
+        overflow-wrap: normal;
+        word-break: normal;
+      }
+
+      .step-card p {
+        color: var(--stone);
+        font-size: 13px;
+      }
+
+      .system-cta {
+        margin-top: 38px;
+      }
+
+      .numbers {
+        padding-top: 40px;
+      }
+
+      .numbers-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--line-gold);
+        border-left: 1px solid var(--line-gold);
+      }
+
+      .number-cell {
+        min-height: 310px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid var(--line-gold);
+        border-bottom: 1px solid var(--line-gold);
+        padding: clamp(28px, 5vw, 54px);
+      }
+
+      .number-cell strong {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(92px, 14vw, 168px);
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: -0.08em;
+        line-height: 0.85;
+        white-space: nowrap;
+      }
+
+      .number-cell > span {
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .numbers-note {
+        margin-top: 24px;
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .asset-grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: clamp(48px, 8vw, 118px);
+        align-items: center;
+      }
+
+      .asset-title {
+        margin: 24px 0 28px;
+        font-size: clamp(54px, 8vw, 92px);
+      }
+
+      .asset-copy {
+        max-width: 420px;
+        color: var(--stone);
+        font-size: 13px;
+        letter-spacing: 0.04em;
+      }
+
+      .mini-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 40px;
+        border-top: 1px solid var(--linen);
+        border-left: 1px solid var(--linen);
+      }
+
+      .mini-stat {
+        min-height: 130px;
+        border-right: 1px solid var(--linen);
+        border-bottom: 1px solid var(--linen);
+        padding: 22px;
+      }
+
+      .mini-stat strong {
+        display: block;
+        margin-bottom: 10px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(54px, 6vw, 78px);
+        font-weight: 300;
+        letter-spacing: -0.05em;
+        line-height: 0.9;
+        white-space: nowrap;
+      }
+
+      .mini-stat > span {
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .asset-visual {
+        display: grid;
+        gap: 18px;
+      }
+
+      .dach-map {
+        position: relative;
+        min-height: 560px;
+        overflow: hidden;
+        border: 1px solid var(--linen);
+        background:
+          linear-gradient(rgba(10, 10, 10, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(10, 10, 10, 0.035) 1px, transparent 1px),
+          var(--ivory);
+        background-size: 44px 44px;
+        padding: clamp(18px, 3vw, 34px);
+      }
+
+      .dach-map::after {
+        content: "DACH";
+        position: absolute;
+        right: 22px;
+        bottom: 12px;
+        color: rgba(10, 10, 10, 0.045);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(120px, 17vw, 210px);
+        font-style: italic;
+        letter-spacing: -0.08em;
+        line-height: 0.8;
+        pointer-events: none;
+      }
+
+      .dach-map svg {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+      }
+
+      .map-region {
+        fill: rgba(10, 10, 10, 0.025);
+        stroke: rgba(10, 10, 10, 0.76);
+        stroke-width: 1.4;
+      }
+
+      .map-neighbor {
+        fill: none;
+        stroke: rgba(10, 10, 10, 0.12);
+        stroke-width: 1;
+        stroke-dasharray: 4 7;
+      }
+
+      .map-link {
+        fill: none;
+        stroke: rgba(200, 184, 154, 0.38);
+        stroke-width: 1;
+        stroke-dasharray: 2 9;
+      }
+
+      .map-city {
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      .map-city circle:first-child {
+        fill: rgba(200, 184, 154, 0.18);
+        stroke: rgba(200, 184, 154, 0.55);
+      }
+
+      .map-city circle:nth-child(2) {
+        fill: var(--gold);
+        filter: drop-shadow(0 0 8px rgba(200, 184, 154, 0.85));
+      }
+
+      .map-city text,
+      .map-country-label {
+        fill: rgba(10, 10, 10, 0.62);
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .map-city .pulse {
+        animation: mapPulse 2.6s var(--ease) infinite;
+      }
+
+      .map-city:nth-of-type(2) .pulse {
+        animation-delay: 0.25s;
+      }
+
+      .map-city:nth-of-type(3) .pulse {
+        animation-delay: 0.5s;
+      }
+
+      .map-city:nth-of-type(4) .pulse {
+        animation-delay: 0.75s;
+      }
+
+      .map-city:nth-of-type(5) .pulse {
+        animation-delay: 1s;
+      }
+
+      @keyframes mapPulse {
+        0% {
+          opacity: 0.85;
+          r: 7;
+        }
+
+        70% {
+          opacity: 0;
+          r: 25;
+        }
+
+        100% {
+          opacity: 0;
+          r: 25;
+        }
+      }
+
+      .bars {
+        border: 1px solid var(--linen);
+        padding: clamp(28px, 5vw, 50px);
+      }
+
+      .bars-title {
+        margin-bottom: 44px;
+        color: rgba(10, 10, 10, 0.72);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .bar {
+        display: grid;
+        gap: 11px;
+        margin-bottom: 28px;
+      }
+
+      .bar:last-child {
+        margin-bottom: 0;
+      }
+
+      .bar-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        color: rgba(10, 10, 10, 0.72);
+        font-size: 12px;
+      }
+
+      .bar-line {
+        height: 2px;
+        background: var(--linen);
+      }
+
+      .bar-fill {
+        width: 0;
+        height: 100%;
+        background: var(--gold);
+      }
+
+      .channels-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px 28px;
+      }
+
+      .channel {
+        position: relative;
+        min-height: 220px;
+        display: grid;
+        grid-template-rows: 52px minmax(88px, auto) auto;
+        align-content: start;
+        padding: 6px 0 0 18px;
+        transition: transform 340ms var(--ease);
+      }
+
+      .channel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: var(--gold);
+        transform: scaleY(0);
+        transform-origin: top center;
+        transition: transform 340ms var(--ease);
+      }
+
+      .channel:hover {
+        transform: translateX(4px);
+      }
+
+      .channel:hover::before {
+        transform: scaleY(1);
+      }
+
+      .channel-icon {
+        display: inline-flex;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+        color: var(--gold);
+      }
+
+      .channel-icon svg {
+        width: 38px;
+        height: 38px;
+      }
+
+      .channel-icon path,
+      .channel-icon circle,
+      .channel-icon rect,
+      .channel-icon line,
+      .channel-icon polyline {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.35;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .channel h3 {
+        margin-bottom: 10px;
+        max-width: none;
+        font-size: clamp(28px, 2.8vw, 38px);
+        hyphens: none;
+        line-height: 1.02;
+        overflow-wrap: normal;
+        word-break: normal;
+      }
+
+      .channel p {
+        color: var(--stone);
+        font-size: 12px;
+      }
+
+      .testimonials {
+        overflow: hidden;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .testimonial {
+        display: flex;
+        min-height: 430px;
+        flex-direction: column;
+        border: 1px solid var(--linen);
+        background: #ffffff;
+        padding: 28px;
+        transition: box-shadow 360ms var(--ease), transform 360ms var(--ease);
+      }
+
+      .testimonial:hover {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+        transform: translateY(-4px);
+      }
+
+      .testimonial-top {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .profile-photo {
+        width: 64px;
+        height: 64px;
+        overflow: hidden;
+        border: 1px solid var(--linen);
+        border-radius: 50%;
+        background: #eeeae2;
+        box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.03);
+      }
+
+      .profile-photo svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .profile-photo .portrait-line {
+        fill: none;
+        stroke: rgba(10, 10, 10, 0.42);
+        stroke-width: 1.1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .person {
+        display: grid;
+        gap: 4px;
+        color: rgba(10, 10, 10, 0.72);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .stars {
+        margin-bottom: 24px;
+        color: var(--gold);
+        font-size: 13px;
+        letter-spacing: 0.2em;
+      }
+
+      .testimonial blockquote {
+        margin: 0;
+        color: rgba(10, 10, 10, 0.74);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-style: italic;
+        font-weight: 300;
+        line-height: 1.25;
+      }
+
+      .testimonial-badge {
+        margin-top: auto;
+        padding-top: 26px;
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .comparison-wrap {
+        overflow-x: auto;
+        border-top: 1px solid var(--line-dark);
+      }
+
+      .comparison-table {
+        width: 100%;
+        min-width: 780px;
+        border-collapse: collapse;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        border-bottom: 1px solid var(--line-dark);
+        padding: 22px 18px;
+        color: var(--stone);
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0.05em;
+        text-align: left;
+        transition: background 260ms var(--ease);
+      }
+
+      .comparison-table tr:hover td {
+        background: var(--mid-surface);
+      }
+
+      .comparison-table th {
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .comparison-table th:first-child,
+      .comparison-table td:first-child {
+        color: var(--ivory);
+      }
+
+      .comparison-table .inc {
+        border-top: 2px solid var(--gold);
+        color: var(--ivory);
+      }
+
+      .mark-yes {
+        color: var(--ivory);
+      }
+
+      .mark-no {
+        color: #333333;
+      }
+
+      .mark-mid {
+        color: var(--stone);
+      }
+
+      .cta {
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+
+      .cta-title {
+        margin-bottom: 24px;
+        font-size: clamp(58px, 9vw, 112px);
+        font-style: italic;
+      }
+
+      .cta-sub {
+        margin-bottom: 48px;
+        color: var(--stone);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+
+      .contact-form {
+        display: grid;
+        width: min(480px, 100%);
+        margin: 0 auto;
+        gap: 20px;
+      }
+
+      .field {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgba(232, 230, 226, 0.34);
+        border-radius: 0;
+        background: transparent;
+        color: var(--ivory);
+        padding: 0 0 14px;
+        outline: none;
+        transition: border-color 300ms var(--ease);
+      }
+
+      .field::placeholder {
+        color: var(--stone);
+      }
+
+      .field:focus {
+        border-color: var(--gold);
+      }
+
+      .submit-btn {
+        width: 100%;
+        margin-top: 14px;
+        border-color: var(--ivory);
+        background: var(--ivory);
+        color: var(--obsidian);
+        letter-spacing: 0.2em;
+      }
+
+      .submit-btn:hover {
+        border-color: var(--gold);
+        background: var(--gold);
       }
 
       .form-note {
-        margin-top: 1rem;
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.72);
+        margin-top: 18px;
+        color: var(--stone);
+        font-size: 11px;
       }
 
       .site-footer {
-        padding: 1.6rem 0;
-        border-top: 1px solid var(--color-divider);
+        border-top: 1px solid var(--gold);
+        background: var(--obsidian);
+        color: var(--ivory);
+        padding: 36px 0 22px;
       }
 
-      .footer-wrap {
-        display: flex;
-        justify-content: space-between;
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 28px;
         align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
+      }
+
+      .footer-small {
+        margin-top: 12px;
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .footer-center,
+      .footer-links {
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+
+      .footer-center {
+        text-align: center;
       }
 
       .footer-links {
         display: flex;
-        gap: 1rem;
-        color: var(--color-text-muted);
-        font-size: 0.9rem;
+        justify-content: flex-end;
+        gap: 20px;
       }
 
-      .reveal {
+      .footer-bottom {
+        margin-top: 42px;
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+      }
+
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10001;
+        pointer-events: none;
+        border-radius: 999px;
         opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 650ms ease, transform 650ms ease;
+        transform: translate(-50%, -50%);
       }
 
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--ivory);
       }
 
-      @media (max-width: 960px) {
-        .grid-3,
-        .timeline,
-        .metrics {
+      .cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(248, 246, 242, 0.64);
+        transition: width 220ms var(--ease), height 220ms var(--ease), border-color 220ms var(--ease);
+      }
+
+      .cursor-ring.hover {
+        width: 54px;
+        height: 54px;
+        border-color: var(--gold);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        body {
+          cursor: none;
+        }
+
+        a,
+        button {
+          cursor: none;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .nav-shell {
+          grid-template-columns: 1fr auto;
+        }
+
+        .nav-center,
+        .nav-right {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .problem-pin,
+        .asset-grid {
           grid-template-columns: 1fr;
         }
 
-        .quote-grid {
-          grid-template-columns: 1fr;
+        .problem {
+          min-height: auto;
         }
 
-        .about-grid {
+        .problem-pin {
+          min-height: auto;
+        }
+
+        .problem-stack {
+          min-height: auto;
+          display: grid;
+          gap: 34px;
+        }
+
+        .pain {
+          position: relative;
+          opacity: 1;
+          transform: none;
+          border-top: 1px solid var(--linen);
+          padding-top: 34px;
+        }
+
+        .step-card {
+          flex: 1 1 360px;
+        }
+
+        .channels-grid,
+        .testimonial-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-stats {
           grid-template-columns: 1fr;
+          padding-inline: 0;
+        }
+
+        .hero-stat {
+          padding: 22px 0;
+        }
+
+        .hero-stat:first-child {
+          padding-top: 0;
+        }
+
+        .hero-stat + .hero-stat {
+          border-left: 0;
+          border-top: 1px solid rgba(200, 184, 154, 0.18);
+          padding-left: 0;
         }
       }
 
-      @media (max-width: 720px) {
-        .nav {
-          gap: 0.75rem;
+      @media (max-width: 760px) {
+        :root {
+          --container: min(100vw - 28px, 680px);
         }
 
-        .nav-link {
-          font-size: 0.88rem;
+        .section {
+          padding: 78px 0;
+        }
+
+        .nav-shell {
+          min-height: 70px;
+        }
+
+        .wordmark {
+          font-size: 17px;
+        }
+
+        .hero-stats {
+          padding-inline: 0;
+        }
+
+        .hero-shell {
+          padding-top: 106px;
+        }
+
+        .hero-title {
+          font-size: clamp(58px, 17vw, 86px);
+        }
+
+        .hero-actions {
+          display: grid;
         }
 
         .btn {
-          padding: 0.78rem 1rem;
-          font-size: 0.9rem;
+          width: 100%;
         }
 
-        .trust-row {
+        .hero-stats,
+        .numbers-grid,
+        .mini-stats,
+        .channels-grid,
+        .system-track,
+        .footer-grid {
           grid-template-columns: 1fr;
+        }
+
+        .dach-map {
+          min-height: 430px;
+        }
+
+        .dach-map svg {
+          min-height: 380px;
+        }
+
+        .scroll-indicator {
+          display: none;
+        }
+
+        .testimonial-grid {
+          display: flex;
+          gap: 14px;
+          overflow-x: auto;
+          padding-bottom: 14px;
+          scroll-snap-type: x mandatory;
+        }
+
+        .testimonial {
+          min-width: 84%;
+          scroll-snap-align: start;
+        }
+
+        .footer-center {
+          text-align: left;
+        }
+
+        .footer-links {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+
+        .line-mask span,
+        .hero-copy,
+        .hero-actions,
+        .hero-stats,
+        .site-header,
+        .pain {
+          opacity: 1 !important;
+          transform: none !important;
         }
       }
     </style>
   </head>
-  <body>
+  <body class="is-loading">
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader-inner">
+        <div class="preloader-logo">
+          <svg width="28" height="34" viewBox="0 0 28 34" fill="none">
+            <rect class="pre-v" x="0" y="0" width="2" height="34" fill="#F8F6F2" />
+            <rect class="pre-h pre-h-top" x="0" y="0" width="11" height="2" fill="#F8F6F2" />
+            <rect class="pre-h pre-h-bottom" x="0" y="32" width="11" height="2" fill="#F8F6F2" />
+            <line class="pre-mid" x1="10" y1="2" x2="10" y2="18" stroke="#F8F6F2" stroke-width="2" />
+            <line
+              class="pre-diagonal"
+              x1="10"
+              y1="18"
+              x2="26"
+              y2="34"
+              stroke="#C8B89A"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <div class="preloader-word" aria-label="Increvio">
+          <span>I</span><span>N</span><span>C</span><span>R</span><span>E</span><span>V</span><span>I</span><span>O</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <header class="site-header" id="siteHeader">
-      <div class="container nav-wrap">
-        <a class="logo" href="#top">Increvio</a>
-        <nav class="nav" aria-label="Hauptnavigation">
-          <a class="nav-link" href="#leistungen">Leistungen</a>
-          <a class="nav-link" href="#ueber-uns">Über uns</a>
+      <div class="container nav-shell">
+        <a class="logo-lockup magnetic" href="#top" aria-label="Increvio Startseite">
+          <svg width="28" height="34" viewBox="0 0 28 34" fill="none" aria-hidden="true">
+            <rect x="0" y="0" width="2" height="34" fill="#F8F6F2" />
+            <rect x="0" y="0" width="11" height="2" fill="#F8F6F2" />
+            <rect x="0" y="32" width="11" height="2" fill="#F8F6F2" />
+            <line x1="10" y1="2" x2="10" y2="18" stroke="#F8F6F2" stroke-width="2" />
+            <line
+              x1="10"
+              y1="18"
+              x2="26"
+              y2="34"
+              stroke="#C8B89A"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span class="wordmark">Increvio</span>
+        </a>
+
+        <nav class="nav-center" aria-label="Hauptnavigation">
+          <a class="nav-link" href="#system">Unser System</a>
+          <a class="nav-link" href="#referenzen">Referenzen</a>
           <a class="nav-link" href="#kontakt">Kontakt</a>
-          <a class="btn" href="#kontakt">Gespräch anfragen</a>
         </nav>
+
+        <div class="nav-right">
+          <a class="btn nav-cta magnetic" href="#kontakt">Erstgespräch →</a>
+        </div>
+
+        <button class="hamburger magnetic" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
 
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <nav class="mobile-links" aria-label="Mobile Navigation">
+        <a href="#system">System</a>
+        <a href="#referenzen">Referenzen</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+
     <main id="top">
-      <section class="section hero">
-        <div class="container reveal">
-          <h1>Qualifizierte Anfragen. Auf Knopfdruck.</h1>
-          <p class="lead">
-            Wir generieren exklusiv für Sie die Kundenkontakte, die Ihr Vertrieb
-            braucht. Messbar. Planbar. Skalierbar.
-          </p>
-          <a class="btn" href="#kontakt">Erstgespräch vereinbaren</a>
-          <div class="trust-row" aria-label="Vertrauensindikatoren">
-            <div class="trust-pill">DACH-Region</div>
-            <div class="trust-pill">Exklusiv pro Region</div>
-            <div class="trust-pill">Ergebnisbasiert</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="leistungen">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">Das Problem kennen Sie.</h2>
-          </div>
-          <div class="grid-3 reveal">
-            <article class="card problem-card">
-              <div class="icon-dot">1</div>
-              <h3>Ihr Wachstum hängt von Empfehlungen ab — das ist nicht planbar.</h3>
-              <p>
-                Ohne konstanten Zufluss qualifizierter Anfragen bleibt Ihr
-                Vertrieb abhängig von Zufall und persönlichen Netzwerken.
-              </p>
-            </article>
-            <article class="card problem-card">
-              <div class="icon-dot">2</div>
-              <h3>
-                Ihr Vertrieb verbringt Zeit mit Kaltakquise statt mit
-                Abschlüssen.
-              </h3>
-              <p>
-                Viele Gespräche beginnen mit Überzeugungsarbeit statt mit echtem
-                Bedarf. Das kostet Fokus, Zeit und Abschlussstärke.
-              </p>
-            </article>
-            <article class="card problem-card">
-              <div class="icon-dot">3</div>
-              <h3>
-                Digitale Neukundengewinnung ist komplex — und kaum jemand
-                versteht Ihre Branche wirklich.
-              </h3>
-              <p>
-                Standardlösungen verfehlen häufig anspruchsvolle Zielgruppen im
-                Finanzbereich. Genau dort entstehen hohe Streuverluste.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">Wir liefern. Sie schließen ab.</h2>
-            <p class="lead solution-copy">
-              Increvio entwickelt und betreibt exklusive Systeme zur digitalen
-              Neukundengewinnung — spezialisiert auf Finanzdienstleister und
-              Kapitalanlageberater im DACH-Raum. Sie erhalten vorqualifizierte
-              Kontakte, die aktiv nach einer Lösung suchen. Kein Streuverlust.
-              Keine geteilten Leads. Nur Ihre Anfragen.
+      <section class="hero dark-section">
+        <div class="hero-watermark" aria-hidden="true">I</div>
+        <div class="container hero-shell">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="line-mask"><span>Mehr Kapitalanleger-</span></span>
+              <span class="line-mask"><span>Mandanten.</span></span>
+              <span class="line-mask"><span><em class="gold">Planbar.</em></span></span>
+            </h1>
+            <p class="hero-copy">
+              Für Finanzberater und Vermögensverwalter,<br />
+              die nicht auf Empfehlungen warten wollen.
             </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary magnetic" href="#kontakt">Erstgespräch vereinbaren</a>
+              <a class="btn magnetic" href="#system">Unser System ↓</a>
+            </div>
           </div>
-          <div class="diff-list reveal">
-            <article class="diff-item">
-              <h3>Exklusiv</h3>
+
+          <div class="hero-stats" data-counter-group>
+            <div class="hero-stat">
+              <strong><span data-counter data-target="57">0</span> Mio. €</strong>
+              <span>Vermitteltes Volumen</span>
+            </div>
+            <div class="hero-stat">
+              <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
+              <span>Bestandsanleger</span>
+            </div>
+            <div class="hero-stat">
+              <strong><span data-counter data-target="93">0</span>%</strong>
+              <span>Partner vermitteln in Woche 1</span>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true"></div>
+      </section>
+
+      <section class="section light problem" id="problem">
+        <div class="container problem-pin">
+          <div class="problem-left">
+            <p class="mono-label reveal-head">— 01 / Das Problem</p>
+            <h2 class="problem-title reveal-head">
+              Die meisten<br />
+              Finanzberater<br />
+              wachsen nur durch<br />
+              Empfehlungen.
+            </h2>
+          </div>
+          <div class="problem-stack">
+            <article class="pain">
+              <span class="pain-ghost">01</span>
+              <p class="mono-label">01 — Nicht planbar</p>
+              <h3>Nicht planbar</h3>
               <p>
-                Jeder Lead gehört nur Ihnen. Kein Wettbewerber in Ihrer Region
-                erhält dieselben Kontakte.
+                Ihr bestes Quartal war eine gute Empfehlung. Nächsten Monat? Unbekannt. Das ist kein System —
+                das ist Zufall.
               </p>
             </article>
-            <article class="diff-item">
-              <h3>Vorqualifiziert</h3>
+            <article class="pain">
+              <span class="pain-ghost">02</span>
+              <p class="mono-label">02 — Kein System</p>
+              <h3>Kein System</h3>
               <p>
-                Nur Interessenten mit echtem Investitionsinteresse und passender
-                Ausgangslage.
+                Kaltakquise kostet Zeit die Sie für Bestandskunden brauchen. Und der ROI ist meist enttäuschend.
               </p>
             </article>
-            <article class="diff-item">
-              <h3>Messbar</h3>
+            <article class="pain">
+              <span class="pain-ghost">03</span>
+              <p class="mono-label">03 — Falsche Zielgruppe</p>
+              <h3>Falsche Zielgruppe</h3>
               <p>
-                Transparente KPIs, monatliche Reports, volle Kostenkontrolle über
-                Ihr Werbebudget.
+                Massenleads bringen Massenprobleme. Was Sie brauchen sind vermögende Privatanleger — nicht
+                neugierige Klicker.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section light system" id="system">
         <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">So einfach funktioniert die Zusammenarbeit.</h2>
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 02 / Unser System</p>
+            <h2 class="section-title reveal-head">
+              Vom Bestand zum<br />
+              Abschluss. In vier<br />
+              Schritten.
+            </h2>
           </div>
-          <div class="timeline reveal">
-            <article class="step">
-              <div class="icon-dot">1</div>
-              <h3>Erstgespräch</h3>
-              <p>
-                Wir verstehen Ihre Zielgruppe, Ihr Angebot und Ihre Region. Kein
-                Standardpaket.
-              </p>
-            </article>
-            <article class="step">
-              <div class="icon-dot">2</div>
-              <h3>Setup &amp; Launch</h3>
-              <p>
-                Wir bauen Ihr System auf. Sie müssen sich um nichts kümmern.
-              </p>
-            </article>
-            <article class="step">
-              <div class="icon-dot">3</div>
-              <h3>Ergebnisse</h3>
-              <p>
-                Qualifizierte Anfragen landen direkt bei Ihnen. Wir optimieren
-                kontinuierlich.
-              </p>
-            </article>
+
+          <div class="system-track-wrap">
+            <div class="system-track" id="systemTrack">
+              <article class="step-card reveal-card">
+                <span class="step-kicker">01 — Match &amp; Akquise</span>
+                <div>
+                  <h3>Match &amp; Akquise</h3>
+                  <p>
+                    7.384 Anleger werden sofort gegen Ihr Profil gematcht. Alle 8 Akquise-Kanäle laufen parallel.
+                  </p>
+                </div>
+              </article>
+              <article class="step-card reveal-card">
+                <span class="step-kicker">02 — Vorqualifizierung</span>
+                <div>
+                  <h3>Vorqualifizierung</h3>
+                  <p>
+                    Bedarfsanalyse, Anlage-Profiling, Selbstauskunft. Nur wer wirklich zu Ihnen passt kommt weiter.
+                  </p>
+                </div>
+              </article>
+              <article class="step-card reveal-card">
+                <span class="step-kicker">03 — Bonitätsprüfung</span>
+                <div>
+                  <h3>Bonitätsprüfung</h3>
+                  <p>
+                    Eigenkapital, Liquidität, Investitionsbereitschaft — dokumentiert. Kein Gespräch mit jemandem der
+                    nicht kaufen kann.
+                  </p>
+                </div>
+              </article>
+              <article class="step-card reveal-card">
+                <span class="step-kicker">04 — Übergabe &amp; Abschluss</span>
+                <div>
+                  <h3>Übergabe &amp; Abschluss</h3>
+                  <p>
+                    Sie erhalten den Anleger mit vollständigem Profil. Ihr einziger Job: Beratungsgespräch und
+                    Abschluss.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="system-cta reveal-card">
+            <a class="btn btn-dark magnetic" href="#kontakt">Erstgespräch vereinbaren →</a>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section dark numbers dark-section">
         <div class="container">
-          <div class="reveal">
-            <h2 class="section-title">Vertrauen entsteht durch Ergebnisse.</h2>
-          </div>
-          <div class="quote-grid reveal">
-            <article class="quote-card">
-              <div class="quote-mark">“</div>
-              <p>
-                Seit der Zusammenarbeit mit Increvio führe ich deutlich mehr
-                Erstgespräche — und das mit Interessenten, die wirklich
-                investieren wollen.
-              </p>
-              <span>[Placeholder Name], Finanzberater, Frankfurt</span>
-            </article>
-            <article class="quote-card">
-              <div class="quote-mark">“</div>
-              <p>
-                Endlich ein Partner, der unsere Branche versteht. Die Leads sind
-                hochwertig und exklusiv.
-              </p>
-              <span>[Placeholder Name], Kapitalanlageberater, München</span>
-            </article>
-          </div>
-          <div class="metrics reveal">
-            <div class="metric">
-              <strong>100+ Erstgespräche generiert</strong>
-              <span>Mit qualifizierten Interessenten</span>
+          <div class="numbers-grid" data-counter-group>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="100">0</span>+</strong>
+              <span>Partner</span>
             </div>
-            <div class="metric">
-              <strong>DACH-weit</strong>
-              <span>Für ausgewählte Regionen und Zielgruppen</span>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="57">0</span> Mio. €</strong>
+              <span>Transaktionsvolumen</span>
             </div>
-            <div class="metric">
-              <strong>Exklusiv pro Region</strong>
-              <span>Keine parallele Vergabe an Wettbewerber</span>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
+              <span>Bestandsanleger</span>
+            </div>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="93">0</span>%</strong>
+              <span>In erster Woche</span>
+            </div>
+          </div>
+          <p class="numbers-note reveal-card">Von Partnerbanken dokumentiert · Über 80 Städte im DACH-Raum</p>
+        </div>
+      </section>
+
+      <section class="section light asset">
+        <div class="container asset-grid">
+          <div>
+            <p class="mono-label reveal-head">— 03 / Unser Asset</p>
+            <h2 class="asset-title reveal-head">
+              7.384 Anleger<br />
+              im Bestand.<br />
+              Jeder hat schon<br />
+              einmal gekauft.
+            </h2>
+            <p class="asset-copy reveal-card">Kein Asset, das wir mieten. Eines, das wir besitzen.</p>
+            <div class="mini-stats" data-counter-group>
+              <div class="mini-stat reveal-card">
+                <strong><span data-counter data-target="80">0</span>%</strong>
+                <span>Mehrfach-Käufer</span>
+              </div>
+              <div class="mini-stat reveal-card">
+                <strong><span data-counter data-target="5">0</span>+ Jahre</strong>
+                <span>Aufbau</span>
+              </div>
+              <div class="mini-stat reveal-card">
+                <strong>+<span data-counter data-target="100">0</span></strong>
+                <span>Neue/Monat</span>
+              </div>
+              <div class="mini-stat reveal-card">
+                <strong><span data-counter data-target="100">0</span>%</strong>
+                <span>Bonitätsgeprüft</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="asset-visual">
+            <div class="dach-map reveal-card" id="dachMap" aria-label="Animierte Karte des DACH-Raums">
+              <svg viewBox="0 0 520 600" role="img" aria-labelledby="dachTitle dachDesc">
+                <title id="dachTitle">DACH-Raum mit Increvio Aktivitätspunkten</title>
+                <desc id="dachDesc">
+                  Georeferenzierte Inline-SVG-Karte von Deutschland, Österreich und der Schweiz mit leuchtenden
+                  Punkten in Städten.
+                </desc>
+                <path
+                  class="map-neighbor"
+                  d="M34 88 C70 70 114 62 151 51 C190 40 213 23 241 17 C281 8 323 28 348 61"
+                />
+                <path
+                  class="map-neighbor"
+                  d="M394 91 C433 111 462 148 473 194 C487 254 467 302 479 356 C487 394 497 424 488 466"
+                />
+                <path class="map-link" d="M248 428 C272 366 276 302 259 246 C240 185 248 128 279 76" />
+                <path class="map-link" d="M248 428 C225 391 205 348 190 305 C173 256 154 205 139 157" />
+                <path class="map-link" d="M248 428 C299 437 354 434 425 432" />
+
+                <path
+                  class="map-region map-germany"
+                  d="M362.9 406.7L361.5 409.7L363.0 410.8L362.3 412.0L362.3 415.7L361.1 418.2L359.3 418.8L358.5 421.0L354.4 418.4L349.8 417.3L346.9 418.0L346.2 418.7L347.1 421.3L346.1 423.5L346.1 426.3L344.7 429.4L338.9 433.4L332.7 434.4L328.1 436.0L323.7 439.1L320.6 439.8L318.8 441.9L315.1 444.6L315.2 446.2L316.0 447.4L319.1 450.3L320.5 453.3L323.6 455.5L326.3 460.0L321.9 467.0L322.6 467.7L325.1 468.1L327.5 467.6L329.9 470.7L329.9 472.8L328.4 475.0L328.5 476.3L327.9 477.4L328.3 480.2L326.7 481.8L325.3 481.2L323.6 481.3L319.0 477.7L316.8 476.7L316.6 475.3L317.1 474.0L318.4 473.4L315.6 471.3L316.1 470.3L311.2 469.8L308.8 470.5L306.1 472.3L304.3 472.5L302.0 470.9L301.1 468.9L297.8 469.4L295.3 469.0L292.8 469.6L292.1 468.6L293.0 466.6L290.1 468.1L291.3 470.0L291.4 471.5L289.9 473.8L279.4 473.5L275.6 474.2L274.2 475.5L265.4 474.7L264.0 475.8L263.1 478.3L262.3 479.0L259.2 479.7L256.1 479.5L254.0 481.6L255.1 482.0L254.8 483.0L251.4 483.5L248.3 485.9L247.2 485.8L247.3 484.2L246.4 483.9L241.5 486.1L236.9 486.1L235.8 485.0L236.0 483.7L233.8 481.6L231.5 480.7L231.2 480.2L233.0 479.0L231.5 478.1L227.1 479.0L226.2 478.2L219.3 476.3L217.2 478.1L214.8 477.9L213.5 477.2L213.6 475.3L212.4 475.4L211.7 475.6L212.5 477.4L212.0 480.2L213.2 481.4L213.4 483.3L212.4 485.7L209.9 487.4L206.9 491.1L204.0 492.5L200.4 492.8L200.8 491.7L201.8 491.3L202.6 487.1L201.8 486.7L197.0 487.8L195.7 485.2L196.7 484.6L196.5 483.3L194.3 480.5L193.0 481.2L192.6 480.9L190.9 477.5L189.7 478.0L187.1 477.5L185.9 477.8L185.0 477.4L184.8 475.5L183.6 474.8L182.3 475.1L180.2 478.0L176.1 478.6L173.3 477.9L161.0 471.2L157.6 470.9L157.0 470.1L149.6 469.6L146.5 471.0L143.6 470.9L141.7 469.5L142.5 468.9L139.9 467.2L138.7 467.2L138.3 468.3L138.7 468.7L136.3 468.7L135.6 467.0L136.4 465.7L136.1 465.1L134.8 465.0L133.1 463.2L131.9 465.1L131.2 463.0L130.4 462.6L128.5 462.9L129.0 463.8L128.3 464.1L125.1 464.7L123.9 467.1L121.8 468.8L121.8 470.4L124.8 471.8L129.7 470.5L131.4 470.9L131.2 472.2L130.8 471.7L130.2 471.9L130.3 474.1L129.4 474.7L127.7 472.9L125.0 473.8L124.4 475.0L120.2 475.2L118.1 474.6L117.3 473.2L114.8 472.9L112.4 473.2L108.3 476.0L106.3 476.4L100.5 476.4L99.9 474.8L96.4 474.4L94.1 476.6L90.4 477.3L87.1 476.1L88.3 476.1L89.3 474.3L86.0 475.0L86.2 473.7L83.0 469.8L82.7 468.0L83.9 466.6L83.4 463.6L84.1 461.0L85.0 460.4L84.8 457.9L85.7 456.6L86.0 454.6L87.6 452.8L87.5 451.0L85.6 448.1L85.5 445.7L86.0 443.7L87.3 440.8L90.5 436.6L91.2 433.2L93.4 431.4L92.8 427.7L94.5 422.3L96.2 421.1L95.6 419.5L96.0 415.5L97.9 413.0L99.8 412.0L102.6 409.3L103.1 407.2L105.2 407.0L106.2 405.3L108.5 404.3L111.0 398.7L113.3 395.5L108.5 394.2L101.4 391.0L98.1 391.1L94.4 390.2L92.3 390.9L90.4 390.5L88.2 390.8L87.0 389.4L83.1 388.1L80.9 385.5L81.5 385.0L81.2 384.1L78.4 383.7L78.2 383.1L75.6 383.7L74.8 385.1L73.2 385.5L72.2 386.9L70.7 386.3L66.9 386.3L63.5 384.7L63.3 386.0L61.9 386.7L60.9 386.0L60.4 382.3L56.2 380.9L52.6 380.7L52.8 383.5L52.1 384.3L47.8 383.9L46.7 382.9L46.8 380.5L45.8 380.8L45.1 378.7L44.0 378.1L44.0 377.1L40.3 373.8L40.2 372.6L41.2 372.1L38.6 369.3L38.3 368.0L33.5 365.6L30.9 366.2L31.1 359.6L34.1 355.3L33.5 354.3L37.4 351.6L37.2 350.9L37.8 350.9L37.1 349.6L37.9 345.9L33.2 345.2L30.4 343.3L29.0 343.6L28.3 342.0L25.5 340.5L23.2 336.3L22.8 337.1L20.8 333.4L20.6 331.5L19.8 330.8L21.3 325.7L20.7 325.0L20.9 324.0L22.9 322.8L22.1 320.8L24.0 319.1L27.6 317.6L27.5 316.5L28.3 315.4L31.6 315.2L32.2 314.7L30.6 311.6L31.2 307.6L29.9 305.6L30.5 304.7L26.9 303.9L24.8 304.4L23.7 303.2L24.0 302.7L23.1 302.5L23.4 301.7L22.7 300.9L25.9 298.3L26.6 296.6L22.6 296.2L22.1 295.3L22.7 295.0L19.2 290.6L16.1 290.9L16.0 289.2L15.2 288.7L15.4 287.6L14.2 285.7L15.5 285.3L16.0 282.9L18.1 282.1L18.4 278.8L15.5 277.5L15.7 274.7L12.3 274.5L10.0 275.3L9.3 272.0L9.0 270.5L10.2 269.9L12.0 271.3L12.8 271.2L14.8 268.6L22.1 263.8L21.2 263.0L22.5 262.1L21.5 261.8L19.3 263.2L18.3 262.7L18.1 260.1L22.1 253.6L24.2 252.0L24.8 249.3L24.1 248.6L24.7 244.9L24.1 241.8L19.4 236.4L20.0 233.4L17.0 232.3L15.9 231.1L16.5 229.4L16.1 229.0L14.6 228.1L12.9 228.0L13.9 226.5L14.0 225.2L12.4 223.3L13.2 222.3L19.3 220.4L22.5 221.1L19.7 218.4L21.2 217.7L25.6 219.8L27.3 219.6L28.3 220.9L30.8 221.4L30.9 222.4L32.6 222.0L32.4 220.0L36.1 220.7L39.0 219.0L43.5 217.7L47.4 217.5L48.6 217.0L51.6 213.7L51.5 212.5L50.1 211.2L45.6 209.1L45.8 207.5L47.2 207.0L48.9 204.8L52.5 204.2L54.9 201.2L56.8 200.5L59.2 197.8L61.2 196.8L60.6 193.4L62.1 188.3L58.8 182.9L57.8 183.7L55.6 184.1L47.3 182.2L46.4 181.3L45.4 177.1L48.6 176.0L46.8 174.5L46.7 172.2L48.3 171.2L54.0 170.8L60.8 171.8L61.6 170.4L62.8 159.2L63.5 157.3L67.2 152.3L68.6 148.1L68.2 141.2L67.6 139.1L68.7 136.1L68.6 132.2L70.4 130.4L70.2 128.9L71.3 127.4L73.0 127.1L76.3 128.5L75.2 127.1L73.5 126.6L63.3 126.3L61.7 125.6L61.0 123.8L61.0 119.0L62.3 114.9L62.7 114.4L65.3 114.7L66.3 113.4L65.8 112.1L64.0 111.0L63.9 110.1L70.0 105.0L73.6 103.8L80.4 103.1L82.4 104.2L102.3 101.4L105.8 102.3L105.6 104.6L106.8 106.9L110.1 109.9L109.7 111.1L111.9 112.3L111.4 114.1L107.1 115.6L107.9 117.8L108.9 119.2L109.9 118.7L111.2 119.0L113.6 121.5L116.0 121.4L118.4 117.4L118.7 115.2L117.4 113.9L114.7 114.1L115.5 109.9L116.5 108.4L119.1 108.1L119.9 108.4L121.7 110.8L129.0 112.9L126.2 116.6L126.0 122.2L126.9 124.9L126.6 117.4L127.2 116.0L129.2 114.6L129.6 112.7L127.0 107.6L126.1 104.9L126.0 102.8L130.6 91.7L132.4 90.4L134.3 90.3L137.5 92.7L142.7 94.2L149.6 93.6L150.4 92.8L154.0 92.0L157.5 92.0L158.3 91.6L161.5 92.2L166.8 100.0L170.4 103.4L171.0 105.4L174.8 109.8L177.2 110.5L179.8 112.1L185.9 112.9L183.6 111.2L179.7 110.8L174.8 108.5L173.4 107.0L172.5 102.1L168.3 99.6L167.2 97.7L166.5 94.2L160.3 90.7L153.0 90.2L150.2 89.3L149.2 90.2L148.2 89.9L145.2 87.3L141.5 80.8L144.0 80.1L147.8 81.6L148.8 81.2L149.7 76.8L147.8 74.8L147.9 73.6L146.8 73.3L142.7 75.0L140.6 71.3L142.1 67.8L141.8 66.4L145.4 65.2L147.3 62.3L143.6 64.1L143.9 63.2L138.9 64.1L137.3 63.9L134.6 65.5L132.2 64.1L131.2 62.7L131.1 60.9L132.9 59.8L135.4 59.6L135.4 59.1L133.4 58.3L132.7 59.1L132.4 57.7L133.3 56.4L134.2 56.8L137.8 55.9L143.8 55.7L149.1 52.5L149.4 49.8L143.5 43.1L141.1 43.7L140.8 43.2L142.4 42.3L140.2 37.7L135.1 34.6L135.3 32.9L133.3 29.0L133.0 27.3L133.8 23.8L137.0 24.3L141.1 23.2L144.6 23.7L148.1 24.9L157.5 26.9L158.3 27.4L159.0 29.8L159.7 30.1L163.6 30.0L166.0 28.9L166.9 29.7L169.0 29.6L171.6 28.4L174.7 25.8L174.8 28.2L181.5 29.8L184.5 31.4L185.5 33.1L188.7 32.3L188.5 30.9L189.6 30.8L191.0 31.6L192.0 32.7L192.9 35.5L194.1 36.8L193.6 37.2L192.0 36.8L190.3 37.9L190.2 38.7L193.2 38.3L193.8 39.1L194.8 38.7L195.1 39.1L194.5 46.2L193.8 47.9L191.8 49.8L186.2 51.4L186.2 51.9L188.1 52.7L198.9 50.5L199.7 50.8L202.4 52.8L201.5 53.6L201.8 57.1L199.6 58.7L200.2 60.6L199.6 61.8L201.3 60.7L203.3 55.9L205.4 55.5L207.5 54.0L209.4 54.1L213.0 56.4L220.0 59.1L224.0 62.4L225.8 62.8L227.9 62.5L231.9 59.6L234.9 58.2L238.6 57.8L238.6 58.2L236.7 58.3L239.3 59.0L242.4 57.3L243.8 57.8L241.7 60.0L240.7 59.6L242.0 64.5L241.8 69.5L240.7 71.1L235.6 74.0L233.0 76.5L230.5 77.3L229.1 77.0L226.8 79.9L227.4 81.6L228.9 83.2L232.2 83.5L232.8 85.6L234.3 85.7L236.2 84.1L240.2 82.6L245.6 82.0L246.9 83.9L248.7 84.6L248.6 86.8L250.8 87.1L252.6 85.7L253.7 87.1L255.6 87.1L257.3 89.1L258.1 89.3L259.0 86.3L258.8 85.2L259.9 84.4L259.6 83.0L261.2 81.7L260.8 80.8L262.4 81.2L263.3 80.6L264.1 78.9L265.5 77.7L265.6 76.0L267.0 73.9L268.4 73.0L273.9 73.4L284.5 71.4L286.1 70.4L286.3 75.7L287.3 76.8L286.4 73.6L288.6 71.3L286.7 71.8L287.1 71.2L290.5 67.2L295.1 65.1L297.4 63.2L301.7 57.1L304.5 52.0L305.9 51.0L305.6 51.4L306.6 52.7L308.5 53.4L318.6 53.4L320.3 54.1L321.3 53.6L322.6 53.9L323.2 54.6L320.9 55.7L313.1 54.6L312.0 55.5L310.0 55.3L309.3 56.4L309.0 55.9L308.1 56.4L308.3 57.2L309.0 57.4L308.7 57.8L306.8 57.5L305.6 58.7L304.0 57.5L301.7 57.7L300.8 59.4L301.1 60.5L299.9 60.0L299.6 62.1L298.3 62.8L299.1 65.0L298.6 65.5L300.6 66.7L301.6 66.9L302.6 66.4L300.5 65.5L301.2 64.1L303.2 62.8L303.5 61.4L307.1 59.6L306.3 58.7L307.7 58.7L307.7 58.2L308.6 58.9L312.3 57.4L312.0 56.4L312.5 56.1L314.1 55.9L313.0 57.1L312.6 58.7L313.5 56.9L314.9 58.3L315.4 57.8L316.4 58.2L317.2 57.4L318.6 59.6L320.2 59.6L321.2 59.1L323.5 55.9L327.1 54.3L328.2 54.6L327.6 55.1L327.9 56.7L330.9 58.7L330.1 60.0L331.5 62.8L331.8 64.8L334.3 65.0L334.3 65.5L333.0 65.9L334.5 65.8L339.5 67.8L341.0 70.4L342.2 71.3L341.0 72.2L343.7 71.5L344.6 71.8L343.7 73.1L345.2 73.1L347.3 76.7L349.2 77.2L348.0 75.0L353.5 74.0L358.3 71.8L358.4 72.4L357.7 73.1L362.6 76.3L361.0 80.2L359.8 80.8L362.1 83.3L363.9 84.1L364.4 86.1L366.9 86.9L367.0 87.5L366.2 88.9L363.0 91.2L362.6 92.0L363.0 92.8L365.0 93.6L366.7 95.7L370.4 98.0L371.9 98.3L372.8 99.2L379.4 100.2L380.7 99.9L381.5 98.8L382.9 99.4L382.6 101.0L380.6 102.3L382.8 102.8L382.7 105.6L384.3 109.4L384.6 115.2L387.1 119.4L389.0 130.1L390.7 131.8L388.0 135.8L388.4 139.5L386.4 144.8L382.4 147.9L377.5 150.5L378.4 154.6L377.8 156.6L376.6 157.5L377.9 158.9L380.7 159.6L382.2 161.1L388.1 164.7L390.3 168.0L392.9 170.2L395.6 171.2L399.8 174.9L398.2 178.7L399.2 180.0L397.4 183.0L395.1 184.7L395.4 187.2L397.3 191.8L397.1 193.0L398.1 193.9L402.1 195.3L402.8 196.4L402.8 197.7L401.9 198.7L402.5 200.0L401.6 203.7L402.1 204.6L405.0 206.4L403.8 207.9L402.2 211.7L401.6 216.8L397.6 221.1L397.0 222.2L397.1 223.5L399.3 225.7L399.9 228.9L403.1 231.5L403.7 232.5L404.2 235.8L402.8 238.2L402.7 240.5L403.7 241.4L411.6 244.3L413.6 246.4L413.2 247.1L413.8 252.5L416.4 256.5L416.5 258.6L415.2 261.5L413.6 269.2L409.3 278.2L407.1 280.7L406.4 283.4L404.9 284.7L402.2 284.4L398.4 282.6L399.1 278.0L396.1 278.9L395.6 278.5L396.7 276.2L396.6 274.6L395.2 273.2L393.5 272.6L392.5 270.9L391.6 271.9L388.8 272.3L387.0 271.2L383.9 270.9L382.8 271.8L381.7 274.2L384.6 275.0L384.1 276.0L385.3 277.0L388.1 278.0L387.8 279.5L386.5 280.5L381.4 280.5L379.6 282.4L372.7 285.2L369.3 285.2L367.7 286.6L366.3 286.5L365.7 287.6L365.9 288.8L363.8 290.0L351.4 291.0L349.6 292.0L349.9 293.7L348.6 294.9L348.8 295.7L346.6 297.7L344.8 297.4L343.1 295.8L341.0 297.4L340.3 299.0L339.3 299.4L337.0 298.6L335.5 302.0L333.8 303.8L327.1 304.0L326.5 307.6L324.6 309.4L323.0 309.3L318.6 307.0L315.0 307.7L313.0 310.0L310.0 309.6L304.9 310.3L303.3 311.5L303.0 313.1L299.9 314.8L297.2 318.2L295.9 320.7L296.2 323.7L295.6 324.0L294.4 323.4L293.5 320.6L292.4 319.6L292.9 318.3L290.1 317.6L289.7 315.5L288.9 315.0L285.6 314.8L287.2 317.1L287.1 317.8L285.8 319.1L290.0 322.7L290.5 324.4L290.2 326.6L290.6 327.5L292.6 328.9L293.2 331.0L300.6 334.7L302.3 334.9L303.0 335.5L302.8 337.8L305.5 339.4L303.7 344.0L302.8 343.8L302.3 346.9L299.8 348.2L299.3 349.1L300.9 351.6L304.3 353.4L304.5 356.4L306.5 357.8L308.1 362.2L309.9 362.9L310.1 365.9L310.8 367.7L314.6 370.0L316.8 373.4L320.3 374.0L321.1 373.9L320.9 373.2L321.5 373.0L324.0 373.8L326.7 375.7L327.2 377.3L333.3 383.9L334.6 386.1L340.0 387.5L343.2 390.8L344.4 394.3L347.1 396.3L348.1 396.7L349.6 394.8L353.7 396.2L355.0 399.3L358.9 400.8Z M380.4 87.2L379.7 89.0L378.9 89.3L380.0 91.2L375.0 91.7L373.3 91.1L370.9 92.8L368.4 93.4L364.0 93.0L363.2 92.0L368.1 89.8L368.4 87.9L366.7 85.2L366.9 83.5L369.9 83.9L369.3 87.1L370.6 85.7L372.3 85.7L371.7 86.7L373.3 87.1L372.9 86.2L373.4 82.9L372.8 81.8L371.7 82.1L370.3 79.5L368.7 78.8L367.4 79.5L367.8 80.8L366.3 82.5L364.7 83.0L365.6 80.8L365.0 79.9L363.2 80.7L362.0 82.0L361.1 81.7L362.9 76.5L360.1 73.1L360.5 72.4L362.1 71.5L362.9 71.8L364.7 75.4L365.9 76.5L371.8 79.3Z M51.0 109.0L47.7 109.9L49.2 111.7L47.8 110.8L46.4 111.2L45.6 110.9L44.9 109.3L50.4 108.0Z M54.4 104.6L56.0 103.8L62.1 103.2L63.8 103.6Z M65.9 102.3L68.0 101.2L70.4 100.9L75.4 101.0L73.1 102.1L67.7 102.7Z M76.3 101.0L77.9 100.4L79.4 101.0L78.7 101.4Z M109.8 101.4L111.2 100.2L113.2 101.0L111.2 101.9L109.8 101.9Z M83.0 98.7L87.0 98.7L87.9 99.5L84.3 99.5L82.8 99.8L82.7 101.0L81.0 100.7L81.1 99.1Z M89.4 98.7L90.5 97.5L96.1 97.4L96.1 97.8L93.3 98.8L92.0 98.9L90.9 98.3L90.1 99.0Z M98.8 97.8L98.0 97.3L99.0 96.6L100.6 96.6L102.5 97.4L98.9 97.0Z M254.5 84.4L255.1 82.9L256.7 81.7L258.6 81.2L259.9 81.7L258.1 85.7L257.6 85.7L257.6 83.4L256.6 85.3Z M261.3 78.3L261.5 77.6L265.2 75.8L261.8 79.5Z M147.3 48.6L144.9 51.8L143.9 52.3L142.0 52.4L140.6 51.4L141.1 50.8L140.6 50.1L142.0 48.9L145.3 48.2Z M249.1 51.6L251.7 55.9L246.2 55.1L245.3 55.5L245.7 55.9L242.8 55.8L242.3 55.3L242.2 53.4L240.4 53.2L239.2 53.7L238.9 53.0L238.2 53.2L238.0 52.3L239.3 49.6L241.0 48.1L243.2 47.8L247.0 49.3Z M333.0 43.7L332.0 44.5L331.2 48.2L330.0 49.6L329.4 52.3L329.5 49.9L331.2 43.8L331.5 43.4L333.4 43.2L333.3 45.1Z M357.7 57.4L359.6 60.1L360.7 60.5L359.1 62.3L358.8 64.9L357.4 64.5L358.3 64.3L358.3 63.2L356.9 63.9L355.6 63.6L358.3 61.4L356.0 61.5L354.1 62.3L357.4 60.5L357.4 60.0L356.2 59.9L354.5 60.9L353.3 60.0L348.1 60.9L345.7 62.7L344.7 64.4L342.7 65.1L342.5 66.8L343.1 66.4L342.8 65.9L345.2 65.7L345.5 67.9L344.8 68.2L340.5 66.7L341.6 64.5L340.3 65.5L340.7 65.9L338.6 66.3L336.0 65.1L335.5 64.5L335.8 63.6L333.3 64.1L333.3 63.1L334.6 63.2L334.6 62.8L331.8 60.9L333.3 58.3L334.4 57.9L336.6 58.7L338.5 57.8L337.3 57.3L337.3 55.5L336.1 54.8L333.6 55.1L334.7 53.3L338.2 52.3L338.8 51.4L337.0 50.7L337.0 49.1L334.9 49.7L334.0 49.0L333.7 47.5L333.0 47.4L338.2 46.6L339.5 47.6L339.9 48.9L340.4 47.9L340.0 46.9L343.1 44.6L341.9 46.9L342.8 47.4L342.2 48.6L343.7 48.1L344.0 47.4L342.8 46.9L343.4 45.9L345.2 48.6L344.9 49.6L345.8 50.7L349.2 51.0L348.9 50.5L349.8 49.1L348.9 46.9L349.8 45.5L348.3 46.4L346.3 46.4L345.5 45.3L344.4 44.9L343.1 42.8L338.8 46.2L337.9 45.9L338.1 43.9L339.7 40.8L336.7 41.3L336.9 40.0L337.9 39.2L345.3 37.7L346.4 38.7L344.0 40.2L343.7 41.2L344.2 43.3L345.5 44.6L347.4 45.1L353.2 44.2L355.1 44.5L356.5 45.8L356.8 47.5L355.6 49.1L352.7 51.1L352.4 53.2L353.8 55.9Z M119.2 37.3L121.4 41.0L122.3 41.4L121.7 41.8L120.2 42.3L117.4 39.1L118.7 37.0L120.5 35.9Z M126.6 33.2L129.0 33.3L130.8 35.0L129.6 37.7L127.2 37.3L126.0 37.7L122.0 35.9L123.9 33.7Z M120.5 20.3L120.2 22.7L121.7 23.9L123.8 24.4L133.5 24.0L132.4 24.7L126.9 24.5L124.3 25.8L121.2 25.8L119.7 25.0L118.1 25.9L117.6 28.1L117.6 33.0L117.1 34.1L116.8 31.4L117.7 22.7L121.1 14.5L122.9 12.5L125.0 13.4L122.0 13.9L123.2 14.0L123.6 14.8L123.2 15.8L121.4 16.6L120.5 17.7L120.1 19.1Z M132.6 47.4L135.5 46.3L135.2 48.7L134.2 50.1L131.9 50.7L130.9 49.3L131.2 48.2Z M100.2 71.3L99.1 70.4L99.8 70.4Z M100.5 70.6L101.5 70.7Z"
+                />
+                <path
+                  class="map-region map-switzerland"
+                  d="M213.5 515.8L213.1 518.2L211.9 519.5L212.4 522.0L211.1 523.1L210.9 525.0L209.7 526.6L210.9 528.5L212.8 528.7L213.7 529.4L214.0 531.9L213.1 534.2L206.5 533.4L203.8 532.1L203.7 529.7L201.9 529.2L197.2 530.5L196.5 532.7L194.8 534.5L194.6 537.2L195.3 538.2L194.5 539.3L195.2 540.1L199.3 541.1L199.6 541.7L197.4 545.4L198.0 547.0L200.4 549.6L199.8 550.6L198.6 551.3L195.2 551.9L194.7 549.7L192.3 547.6L191.7 544.3L189.7 543.5L186.9 543.7L183.0 545.3L180.9 544.6L180.4 545.1L180.4 546.8L178.9 547.9L172.7 547.6L171.2 546.3L170.3 544.3L168.6 543.3L168.2 536.4L166.0 538.2L164.5 537.1L164.5 536.4L163.6 536.2L161.4 536.5L160.6 537.1L159.5 539.9L160.5 541.0L161.1 545.7L158.9 551.3L156.9 552.8L156.1 554.6L152.9 556.5L152.1 557.6L151.5 560.7L149.0 562.0L149.6 564.5L148.0 566.1L149.4 568.2L151.2 568.8L151.7 569.8L150.4 572.6L149.0 574.1L146.2 573.3L144.4 573.8L145.0 570.6L143.2 567.1L138.6 565.1L141.5 560.5L140.4 559.2L137.7 558.9L136.6 558.1L134.6 558.8L131.2 557.3L127.1 552.6L123.9 551.1L123.3 548.8L124.3 541.2L123.5 539.2L122.2 539.0L118.5 540.0L117.2 541.6L117.7 542.6L117.0 543.6L115.2 544.5L113.0 547.0L108.3 549.1L107.7 550.1L110.2 553.3L110.3 555.3L109.4 557.1L107.4 558.6L105.6 559.1L104.9 562.5L103.8 564.2L99.9 565.2L98.8 566.4L98.7 567.5L97.8 567.5L96.9 568.9L90.8 568.1L88.6 566.0L84.0 565.0L82.4 566.6L76.1 569.3L72.7 569.0L66.8 571.0L63.0 570.2L60.7 567.9L59.5 564.5L56.2 561.5L55.2 561.1L54.2 561.7L53.4 561.4L53.3 559.4L54.2 557.9L53.5 557.4L50.0 556.7L49.6 555.7L50.0 553.8L52.3 549.2L48.9 544.9L50.3 543.1L50.5 541.1L49.5 540.3L42.8 538.8L37.0 539.2L33.2 541.4L29.0 542.2L27.5 543.3L25.1 546.6L26.1 549.3L27.8 549.5L28.1 550.8L20.3 556.5L18.8 555.9L16.8 555.9L13.7 556.9L14.8 554.7L13.5 553.1L13.7 552.4L17.5 550.7L19.5 550.5L20.0 547.4L21.6 544.2L20.4 542.1L18.0 540.8L18.6 540.0L18.4 537.9L22.0 533.4L20.8 531.6L27.4 526.2L30.6 524.7L34.6 521.7L34.8 520.3L34.1 519.3L35.4 516.2L34.6 513.3L35.2 511.3L42.2 509.0L45.1 507.0L46.1 505.7L45.6 504.7L46.2 503.8L48.7 502.3L48.7 501.3L50.0 500.9L55.0 496.2L58.1 494.3L58.2 491.7L61.6 489.5L62.0 488.9L60.2 487.3L54.1 488.1L54.8 486.5L56.6 485.2L56.7 484.1L58.6 483.5L59.6 482.5L58.8 480.4L60.4 479.9L68.0 480.5L67.2 482.1L67.5 483.0L70.6 484.6L73.7 483.7L78.1 483.3L79.1 481.8L78.4 480.4L80.8 480.8L81.5 480.2L81.2 479.0L82.3 478.8L82.5 477.9L81.5 477.4L84.5 475.5L88.3 474.4L89.3 474.3L88.7 475.7L87.1 476.1L90.4 477.3L94.1 476.6L96.4 474.4L99.9 474.8L100.5 476.4L106.3 476.4L108.3 476.0L112.4 473.2L114.8 472.9L117.3 473.2L118.1 474.6L120.2 475.2L124.4 475.0L125.0 473.8L127.7 472.9L129.4 474.7L130.3 474.1L130.2 471.9L130.8 471.7L131.2 472.2L131.4 470.9L129.7 470.5L124.8 471.8L121.8 470.4L121.9 468.4L123.9 467.1L125.1 464.7L129.0 463.8L128.5 462.9L129.3 462.6L131.2 463.0L131.9 465.1L133.1 463.2L134.8 465.0L136.1 465.1L136.4 465.7L135.6 467.0L136.3 468.7L138.7 468.7L138.3 468.3L138.7 467.2L139.9 467.2L142.5 468.9L141.7 469.1L142.3 470.1L144.7 471.1L148.1 470.6L149.6 469.6L157.0 470.1L157.6 470.9L161.0 471.2L173.2 477.8L174.9 480.9L177.8 482.5L177.8 485.0L171.3 494.4L170.5 496.3L170.4 498.2L171.7 502.1L170.1 504.6L173.8 505.2L178.6 505.0L187.0 507.3L186.9 508.0L187.6 508.3L187.2 511.6L187.8 512.3L193.6 514.4L195.4 515.8L198.3 516.8L202.3 515.7L203.8 512.5L206.5 512.6L207.3 510.2L208.4 509.1L210.2 508.4L213.7 511.8Z"
+                />
+                <path
+                  class="map-region map-austria"
+                  d="M502.0 416.2L502.4 418.9L502.1 419.9L500.6 421.1L498.4 424.7L497.5 430.0L500.1 431.6L499.9 432.9L500.7 434.4L502.4 435.4L503.6 441.9L506.6 443.6L508.0 445.5L507.1 447.7L507.8 448.2L507.5 449.1L511.0 450.9L508.2 452.9L508.7 453.7L507.7 455.1L508.3 455.6L507.4 458.0L504.6 459.0L504.6 459.7L506.2 460.5L506.9 462.0L506.3 462.6L506.7 466.6L507.8 467.9L500.1 469.4L498.4 469.1L497.8 467.6L495.4 469.8L492.5 469.2L490.7 466.7L485.2 465.3L483.6 465.9L482.8 468.0L480.2 469.4L479.2 469.2L478.1 470.6L478.9 471.0L481.4 471.9L482.6 471.6L485.6 472.7L488.0 472.9L489.2 474.9L488.9 476.0L490.6 477.6L490.1 479.3L488.3 480.2L488.5 482.5L486.2 484.1L481.4 486.0L480.3 484.8L479.3 485.7L479.4 487.9L478.9 488.6L481.0 492.5L480.7 493.3L478.7 494.4L478.3 497.6L479.6 498.2L479.3 499.9L479.9 500.3L482.1 499.7L482.6 500.4L480.2 503.6L480.5 504.3L481.9 504.8L481.9 505.4L478.9 506.8L480.8 507.2L481.6 508.3L478.5 508.8L477.2 508.1L472.2 507.9L471.6 509.4L470.4 510.1L470.0 511.5L467.6 512.8L464.9 515.6L459.2 517.9L458.8 518.3L458.7 522.7L459.2 524.1L460.6 525.4L460.7 526.7L459.4 525.5L453.4 523.7L447.9 524.9L443.8 524.1L443.4 526.2L439.8 526.7L438.3 529.1L436.1 529.9L432.8 528.1L424.7 528.5L418.3 527.9L415.8 528.6L414.1 530.7L412.6 529.5L411.0 530.4L408.9 530.6L406.2 535.9L402.7 536.7L401.3 538.6L397.3 540.0L395.9 542.8L395.1 543.1L393.4 540.9L391.2 541.1L388.7 539.6L377.8 539.7L373.3 537.2L370.3 537.3L364.9 535.5L361.4 535.9L356.5 535.3L349.2 533.7L347.9 532.7L343.3 532.6L336.9 533.4L333.2 531.5L329.5 530.8L319.1 530.2L315.1 528.3L313.6 528.6L312.0 527.7L309.8 527.5L306.5 527.8L304.4 526.7L300.2 525.6L298.7 524.5L297.5 521.4L294.2 520.1L294.5 516.9L294.1 515.6L290.9 515.0L289.9 513.9L287.9 513.3L288.5 512.3L287.2 508.6L287.6 507.6L290.3 506.3L291.3 505.2L291.3 503.7L290.3 503.4L287.4 503.9L282.9 505.9L277.8 506.6L274.3 508.6L272.3 508.9L270.4 509.9L268.2 508.6L264.3 508.2L261.1 508.9L258.7 507.8L256.1 509.9L251.7 508.9L245.5 510.2L241.9 513.1L240.1 518.6L237.6 521.2L234.7 520.9L232.0 521.5L230.4 520.6L225.5 520.2L225.2 519.7L226.6 518.4L222.8 516.0L216.8 517.0L214.9 516.9L213.5 515.8L213.7 511.8L210.2 508.4L208.4 509.1L207.3 510.2L206.5 512.6L203.8 512.5L202.3 515.7L198.3 516.8L195.4 515.8L193.6 514.4L187.8 512.3L187.2 511.6L187.6 508.3L186.9 508.0L187.0 507.3L178.6 505.0L174.7 505.0L175.9 503.6L176.3 502.2L174.7 499.4L173.4 498.8L173.9 497.0L172.9 495.2L173.2 494.4L172.1 493.3L177.3 485.8L177.8 482.5L174.9 480.9L173.2 477.8L176.1 478.6L179.0 478.5L180.2 478.0L181.4 476.1L183.0 474.8L184.8 475.5L185.0 477.4L189.7 478.0L190.9 477.5L192.6 480.9L193.0 481.2L194.3 480.5L196.9 484.0L195.7 485.2L197.0 487.8L201.8 486.7L202.6 487.1L201.8 491.3L200.8 491.7L200.4 492.8L204.0 492.5L206.9 491.1L209.9 487.4L212.4 485.7L213.4 483.3L213.2 481.4L212.0 480.2L212.5 477.4L211.7 475.6L212.4 475.4L213.6 475.3L213.5 477.2L214.8 477.9L217.2 478.1L219.3 476.3L226.2 478.2L227.1 479.0L231.5 478.1L233.0 479.0L231.2 480.2L231.5 480.7L233.8 481.6L236.0 483.7L235.8 485.0L236.9 486.1L241.5 486.1L246.4 483.9L247.3 484.2L247.2 485.8L248.3 485.9L251.4 483.5L254.8 483.0L255.1 482.0L254.0 481.6L256.1 479.5L259.2 479.7L262.3 479.0L263.1 478.3L264.0 475.8L265.4 474.7L274.2 475.5L275.6 474.2L279.4 473.5L289.9 473.8L291.4 471.5L291.3 470.0L290.1 468.1L293.0 466.6L292.1 468.6L292.8 469.6L295.3 469.0L297.8 469.4L301.1 468.9L302.0 470.9L304.3 472.5L306.1 472.3L308.8 470.5L311.2 469.8L316.1 470.3L315.6 471.3L318.4 473.4L317.1 474.0L316.6 475.3L316.8 476.7L319.0 477.7L323.6 481.3L325.3 481.2L326.7 481.8L328.3 480.2L327.9 477.4L328.5 476.3L328.4 475.0L329.9 472.8L329.9 470.7L327.5 467.6L325.1 468.1L322.6 467.7L321.9 467.0L326.3 460.0L323.6 455.5L320.5 453.3L319.1 450.3L315.6 446.9L315.0 445.4L315.3 444.2L318.8 441.9L320.6 439.8L323.7 439.1L328.1 436.0L332.7 434.4L338.9 433.4L344.7 429.4L346.1 426.3L346.1 423.5L347.1 421.3L346.2 418.7L346.9 418.0L349.8 417.3L354.4 418.4L358.5 421.0L359.3 418.8L361.1 418.2L362.3 415.7L362.3 412.0L363.0 410.8L361.5 409.7L362.9 406.7L364.7 407.1L370.3 410.2L372.7 412.9L371.4 414.1L371.8 415.2L374.4 416.9L380.7 417.5L385.6 418.8L389.1 417.2L391.5 413.9L392.5 415.0L394.8 415.9L397.5 415.2L398.0 416.4L399.3 416.3L400.4 417.8L401.1 417.8L402.0 417.0L402.4 412.2L405.6 409.2L406.7 406.1L412.9 406.9L413.4 405.9L412.8 404.6L414.1 399.8L414.0 394.7L414.8 392.6L421.7 393.4L422.2 395.1L421.9 396.7L426.1 395.9L427.8 393.8L428.4 394.5L431.5 394.7L435.6 396.3L438.7 398.4L445.8 401.3L447.9 401.5L451.9 400.5L452.6 401.7L454.9 402.3L454.5 402.8L455.5 402.7L455.9 403.6L456.9 403.7L457.0 404.4L463.8 408.1L467.9 407.9L475.1 408.5L475.9 409.0L477.1 408.4L479.4 405.1L483.1 404.4L488.6 406.0L490.0 408.6L492.4 408.7L495.5 410.1L498.8 409.5L499.9 410.8L500.5 414.6Z"
+                />
+
+                <text class="map-country-label" x="196" y="250">Deutschland</text>
+                <text class="map-country-label" x="124" y="440">Schweiz</text>
+                <text class="map-country-label" x="342" y="448">Österreich</text>
+
+                <g class="map-city" data-city="Hamburg" transform="translate(193.1 112.5)">
+                  <circle class="pulse" r="7"></circle>
+                  <circle r="3.6"></circle>
+                  <text x="14" y="4">Hamburg</text>
+                </g>
+                <g class="map-city" data-city="Berlin" transform="translate(344.7 178.5)">
+                  <circle class="pulse" r="7"></circle>
+                  <circle r="3.6"></circle>
+                  <text x="14" y="4">Berlin</text>
+                </g>
+                <g class="map-city" data-city="Frankfurt" transform="translate(134.8 327.0)">
+                  <circle class="pulse" r="7"></circle>
+                  <circle r="3.6"></circle>
+                  <text x="14" y="4">Frankfurt</text>
+                </g>
+                <g class="map-city" data-city="München" transform="translate(263.6 443.4)">
+                  <circle class="pulse" r="7"></circle>
+                  <circle r="3.6"></circle>
+                  <text x="14" y="4">München</text>
+                </g>
+                <g class="map-city" data-city="Zürich" transform="translate(128.5 486.8)">
+                  <circle class="pulse" r="7"></circle>
+                  <circle r="3.6"></circle>
+                  <text x="-58" y="4">Zürich</text>
+                </g>
+                <g class="map-city" data-city="Wien" transform="translate(476.6 439.2)">
+                  <circle class="pulse" r="7"></circle>
+                  <circle r="3.6"></circle>
+                  <text x="14" y="4">Wien</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="bars reveal-card" id="bars">
+              <p class="bars-title">Berufsgruppen im Bestand</p>
+              <div class="bar">
+                <div class="bar-meta"><span>Ärzte &amp; Mediziner</span><span>28,9%</span></div>
+                <div class="bar-line"><div class="bar-fill" data-width="28.9"></div></div>
+              </div>
+              <div class="bar">
+                <div class="bar-meta"><span>Ingenieure</span><span>24,3%</span></div>
+                <div class="bar-line"><div class="bar-fill" data-width="24.3"></div></div>
+              </div>
+              <div class="bar">
+                <div class="bar-meta"><span>IT / Tech</span><span>22,5%</span></div>
+                <div class="bar-line"><div class="bar-fill" data-width="22.5"></div></div>
+              </div>
+              <div class="bar">
+                <div class="bar-meta"><span>Beratung / Finance</span><span>13,7%</span></div>
+                <div class="bar-line"><div class="bar-fill" data-width="13.7"></div></div>
+              </div>
+              <div class="bar">
+                <div class="bar-meta"><span>Selbstständige</span><span>10,6%</span></div>
+                <div class="bar-line"><div class="bar-fill" data-width="10.6"></div></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="ueber-uns">
-        <div class="container about-grid">
-          <div class="reveal">
-            <h2 class="section-title">Über Increvio</h2>
-            <p class="lead">
-              Increvio wurde mit einer klaren Überzeugung gegründet:
-              Finanzberater und Kapitalanlageexperten verdienen einen Partner,
-              der ihre Welt wirklich versteht. Wir kommen aus dem
-              Kapitalanlagebereich und wissen, wie vermögende Privatanleger
-              denken, was sie überzeugt und wie man sie digital erreicht. Dieses
-              Wissen setzen wir für Sie ein.
-            </p>
+      <section class="section light channels">
+        <div class="container">
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 04 / Akquise-Kanäle</p>
+            <h2 class="section-title reveal-head">Acht Wege. Eine Pipeline.</h2>
           </div>
-          <div class="about-visual reveal" aria-hidden="true"></div>
+          <div class="channels-grid">
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <ellipse cx="24" cy="12" rx="14" ry="5" />
+                  <path d="M10 12v18c0 2.8 6.3 5 14 5s14-2.2 14-5V12" />
+                  <path d="M10 21c0 2.8 6.3 5 14 5s14-2.2 14-5" />
+                </svg>
+              </span>
+              <h3>Bestandspool</h3>
+              <p>7.384 vorqualifizierte Anleger</p>
+            </article>
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <path d="M8 29l8-8 8 8 8-8 8 8" />
+                  <path d="M12 33h24" />
+                  <path d="M16 25v14M32 25v14" />
+                </svg>
+              </span>
+              <h3>Steuerberater &amp; Family Offices</h3>
+              <p>Top-Kanzleien</p>
+            </article>
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <path d="M8 19l16-10 16 10" />
+                  <path d="M12 20h24M14 38h20M16 20v18M24 20v18M32 20v18" />
+                </svg>
+              </span>
+              <h3>Bank- &amp; Versicherungspartner</h3>
+              <p>Ärzte-Banken</p>
+            </article>
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <path d="M24 42s13-12.4 13-24A13 13 0 1 0 11 18c0 11.6 13 24 13 24z" />
+                  <circle cx="24" cy="18" r="4" />
+                </svg>
+              </span>
+              <h3>Vor-Ort-Veranstaltungen</h3>
+              <p>Premium-Locations</p>
+            </article>
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <rect x="9" y="12" width="30" height="21" />
+                  <path d="M19 39h10M24 33v6M20 20l7 4-7 4z" />
+                </svg>
+              </span>
+              <h3>Webinare &amp; Seminare</h3>
+              <p>Live-Sessions</p>
+            </article>
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <path d="M14 40V10" />
+                  <path d="M14 12h22l-5 7 5 7H14" />
+                  <path d="M10 40h8" />
+                </svg>
+              </span>
+              <h3>Kongresse &amp; Messen</h3>
+              <p>Branchengipfel</p>
+            </article>
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <circle cx="13" cy="24" r="4" />
+                  <circle cx="30" cy="14" r="4" />
+                  <circle cx="35" cy="33" r="4" />
+                  <path d="M17 23l9-6M17 25l14 6M31 18l3 11" />
+                </svg>
+              </span>
+              <h3>Strukturvertriebe</h3>
+              <p>Vermittlernetzwerke</p>
+            </article>
+            <article class="channel reveal-card">
+              <span class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <circle cx="24" cy="24" r="15" />
+                  <circle cx="24" cy="24" r="8" />
+                  <circle cx="24" cy="24" r="2" />
+                  <path d="M33 15l6-6M34 14h6v6" />
+                </svg>
+              </span>
+              <h3>Digital Performance</h3>
+              <p>Gezielte Kanäle</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="section cta-section" id="kontakt">
-        <div class="container cta-wrap reveal">
-          <h2 class="section-title">Bereit für planbare Neukundengewinnung?</h2>
-          <p class="lead">
-            Vereinbaren Sie ein kostenloses Erstgespräch. Wir analysieren Ihre
-            aktuelle Situation und zeigen Ihnen konkret, was für Sie möglich ist.
-          </p>
-          <form class="form-grid" id="contactForm">
-            <input type="text" name="name" placeholder="Name" required />
-            <input type="text" name="firma" placeholder="Firma" required />
-            <input type="email" name="email" placeholder="E-Mail" required />
-            <input type="tel" name="telefon" placeholder="Telefon" required />
-            <textarea
-              name="nachricht"
-              placeholder="Nachricht (optional)"
-            ></textarea>
-            <button class="btn btn-inverted" type="submit">Anfrage senden</button>
+      <section class="section light testimonials" id="referenzen">
+        <div class="container">
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 05 / Referenzen</p>
+            <h2 class="section-title reveal-head">Was unsere Anleger sagen.</h2>
+          </div>
+
+          <div class="testimonial-grid">
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="profile-photo" aria-label="Profilbild Dr. Michael Kern">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#ECE8DE" />
+                    <path d="M15 80c2-17 14-27 25-27s23 10 25 27z" fill="#151515" />
+                    <path d="M31 57h18v23H31z" fill="#D0AA88" />
+                    <path d="M24 33c0-13 8-22 17-22s16 9 16 22c0 17-7 28-17 28S24 50 24 33z" fill="#D6B08E" />
+                    <path d="M22 28c2-14 10-21 20-21 8 0 16 6 18 18-10-6-22-7-38 3z" fill="#8D887F" />
+                    <path class="portrait-line" d="M29 38h10M44 38h8M39 38h5" />
+                    <circle cx="34" cy="38" r="4.2" class="portrait-line" />
+                    <circle cx="48" cy="38" r="4.2" class="portrait-line" />
+                    <path class="portrait-line" d="M40 41l-2 8 5 1M35 53c3 2 8 2 11 0" />
+                  </svg>
+                </div>
+                <div class="person">
+                  <span>Dr. Michael Kern</span>
+                  <span>Anästhesist · Hamburg</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Bei Increvio wurde mir der Immobilienfonds mit allen steuerlichen Aspekten ehrlich durchgerechnet.
+                Inzwischen halte ich drei Positionen über sie."
+              </blockquote>
+              <div class="testimonial-badge">3 Positionen · Immobilienfonds</div>
+            </article>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="profile-photo" aria-label="Profilbild Thomas Schreiber">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#EEE9DF" />
+                    <path d="M13 80c4-16 15-25 27-25s23 9 27 25z" fill="#2A2D2F" />
+                    <path d="M28 57l12 9 12-9v23H28z" fill="#F8F6F2" />
+                    <path d="M24 32c0-13 8-22 18-22 9 0 16 8 16 21 0 17-7 28-17 28S24 49 24 32z" fill="#C99A7A" />
+                    <path d="M22 25c5-15 21-22 33-10 5 5 6 12 4 18-8-10-19-14-37-8z" fill="#251F1C" />
+                    <path class="portrait-line" d="M32 39h5M46 39h5M40 41l-2 8 5 1M35 53c4 2 8 2 11-1" />
+                  </svg>
+                </div>
+                <div class="person">
+                  <span>Thomas Schreiber</span>
+                  <span>Software Engineer · München</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Mein erstes Investment in einen geschlossenen Fonds. Vollständige Cashflow-Analyse vor dem
+                Gespräch. Drei Wochen vom ersten Kontakt bis zur Zeichnung."
+              </blockquote>
+              <div class="testimonial-badge">Geschlossener Fonds</div>
+            </article>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="profile-photo" aria-label="Profilbild Dr. Anna Bergmann">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#EEEAE4" />
+                    <path d="M14 80c3-17 14-27 26-27s23 10 26 27z" fill="#121212" />
+                    <path d="M31 56h18v24H31z" fill="#D1A686" />
+                    <path d="M23 33c0-14 8-23 18-23s17 9 17 23c0 17-7 28-18 28S23 50 23 33z" fill="#D8AE8E" />
+                    <path d="M21 40c-2-17 4-31 19-33 13-2 23 8 22 28-7-15-26-20-41 5z" fill="#4D382E" />
+                    <path class="portrait-line" d="M31 39h5M46 39h5M40 42l-2 7 4 1M34 53c4 2 9 2 13-1" />
+                    <path d="M25 53c-7-7-8-20-4-30 0 17 5 26 12 34z" fill="#4D382E" opacity="0.92" />
+                    <path d="M55 55c8-8 8-21 5-31-1 16-6 26-13 34z" fill="#4D382E" opacity="0.92" />
+                  </svg>
+                </div>
+                <div class="person">
+                  <span>Dr. Anna Bergmann</span>
+                  <span>Zahnärztin · Frankfurt</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Vier Investments in zwei Jahren — PV-Direktanlage, Immobilienbeteiligungen und Private Equity.
+                Mein Berater kennt mein Portfolio besser als ich."
+              </blockquote>
+              <div class="testimonial-badge">Mixed Portfolio · 4 Investments</div>
+            </article>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="profile-photo" aria-label="Profilbild Stefan Reiter">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#ECE7DD" />
+                    <path d="M13 80c3-17 15-28 27-28s24 11 27 28z" fill="#171717" />
+                    <path d="M30 57h20v23H30z" fill="#D0A27F" />
+                    <path d="M23 32c0-13 8-22 18-22s17 9 17 22c0 17-7 28-18 28S23 49 23 32z" fill="#D7A884" />
+                    <path d="M23 27c2-13 12-20 23-17 8 2 13 10 13 20-12-8-23-10-36-3z" fill="#6E6257" />
+                    <path d="M28 50c5 9 18 9 24 0 1 8-5 13-12 13s-13-5-12-13z" fill="#5A473C" opacity="0.35" />
+                    <path class="portrait-line" d="M32 39h5M46 39h5M40 41l-2 8 5 1M35 53c4 2 8 2 11 0" />
+                  </svg>
+                </div>
+                <div class="person">
+                  <span>Stefan Reiter</span>
+                  <span>Geschäftsführer · Stuttgart</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Increvio hat mir nicht das nächstbeste Produkt verkauft — sie sagten mir auch, wenn ein Investment
+                nicht zu meinem Profil passt."
+              </blockquote>
+              <div class="testimonial-badge">PV-Direktinvestment</div>
+            </article>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="profile-photo" aria-label="Profilbild Christian Hoffmann">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#EFEAE1" />
+                    <path d="M14 80c4-18 15-28 26-28s23 10 26 28z" fill="#151515" />
+                    <path d="M31 57h18v23H31z" fill="#CFA282" />
+                    <path d="M24 33c0-14 8-23 18-23s17 9 17 23c0 17-7 28-18 28S24 50 24 33z" fill="#D7AA88" />
+                    <path d="M23 27c3-13 13-21 25-17 9 3 13 11 12 22-10-9-24-10-37-5z" fill="#312720" />
+                    <path d="M29 48c4 5 19 5 24 0-2 9-7 14-13 14s-10-5-11-14z" fill="#392B24" opacity="0.28" />
+                    <path class="portrait-line" d="M31 39h6M46 39h6M40 42l-2 7 5 1M35 53c4 2 8 2 12-1" />
+                    <path class="portrait-line" d="M29 37c4-2 8-2 11 0M44 37c4-2 8-2 11 0" />
+                  </svg>
+                </div>
+                <div class="person">
+                  <span>Christian Hoffmann</span>
+                  <span>Rechtsanwalt · Berlin</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Vollständige Transparenz über Laufzeit, Ausschüttungen und Exitszenarien bevor ich unterschrieben
+                habe. Kein anderer Anbieter war so vorbereitet."
+              </blockquote>
+              <div class="testimonial-badge">2 PE-Beteiligungen</div>
+            </article>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="profile-photo" aria-label="Profilbild Markus Wenzel">
+                  <svg viewBox="0 0 80 80" role="img">
+                    <rect width="80" height="80" fill="#ECE8DF" />
+                    <path d="M12 80c4-16 16-26 28-26s24 10 28 26z" fill="#202426" />
+                    <path d="M30 57h20v23H30z" fill="#C79676" />
+                    <path d="M23 33c0-14 8-23 18-23s17 9 17 23c0 17-7 28-18 28S23 50 23 33z" fill="#D0A080" />
+                    <path d="M21 28c4-14 16-22 28-17 8 3 13 12 10 25-9-12-22-15-38-8z" fill="#2C2420" />
+                    <path class="portrait-line" d="M31 39h5M47 39h5M40 42l-2 7 5 1M34 53c4 2 9 2 13 0" />
+                    <path d="M29 50c3 7 19 7 23 0-1 7-6 12-12 12s-10-5-11-12z" fill="#4A342A" opacity="0.26" />
+                  </svg>
+                </div>
+                <div class="person">
+                  <span>Markus Wenzel</span>
+                  <span>Ingenieur · Nürnberg</span>
+                </div>
+              </div>
+              <div class="stars">★★★★★</div>
+              <blockquote>
+                "Der Prozess war so strukturiert, dass meine Frau sagte: so sollte jede Kapitalanlage laufen."
+              </blockquote>
+              <div class="testimonial-badge">Immobilienfonds · Ehepaar</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark comparison dark-section">
+        <div class="container">
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 06 / Im Vergleich</p>
+            <h2 class="section-title reveal-head">Warum nicht nur Empfehlungen.</h2>
+          </div>
+          <div class="comparison-wrap reveal-card">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Kriterium</th>
+                  <th class="inc">Increvio</th>
+                  <th>Nur Empfehlungen</th>
+                  <th>Andere Anbieter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Eigener Anleger-Pool</td>
+                  <td><span class="mark-yes">✓</span> 7.384 Anleger</td>
+                  <td><span class="mark-no">✕</span> Kein Pool</td>
+                  <td><span class="mark-no">✕</span> Kein Pool</td>
+                </tr>
+                <tr>
+                  <td>Planbarkeit</td>
+                  <td><span class="mark-yes">✓</span> Monatlich konstant</td>
+                  <td><span class="mark-no">✕</span> Nicht planbar</td>
+                  <td><span class="mark-mid">○</span> Variabel</td>
+                </tr>
+                <tr>
+                  <td>Vorqualifizierung</td>
+                  <td><span class="mark-yes">✓</span> Vollständig</td>
+                  <td><span class="mark-mid">○</span> Teilweise</td>
+                  <td><span class="mark-no">✕</span> Nicht enthalten</td>
+                </tr>
+                <tr>
+                  <td>Branchenwissen</td>
+                  <td><span class="mark-yes">✓</span> Kapitalanlage</td>
+                  <td><span class="mark-yes">✓</span> Vorhanden</td>
+                  <td><span class="mark-no">✕</span> Generisch</td>
+                </tr>
+                <tr>
+                  <td>Skalierbarkeit</td>
+                  <td><span class="mark-yes">✓</span> Unbegrenzt</td>
+                  <td><span class="mark-no">✕</span> Netzwerk-limitiert</td>
+                  <td><span class="mark-mid">○</span> Begrenzt</td>
+                </tr>
+                <tr>
+                  <td>After-Sales</td>
+                  <td><span class="mark-yes">✓</span> Eigene Infrastruktur</td>
+                  <td><span class="mark-mid">○</span> Manuell</td>
+                  <td><span class="mark-no">✕</span> Nicht vorgesehen</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark cta dark-section" id="kontakt">
+        <div class="container">
+          <h2 class="cta-title reveal-head">
+            Bereit für planbare<br />
+            <span class="gold">Neukundengewinnung?</span>
+          </h2>
+          <p class="cta-sub reveal-card">Kostenloses Erstgespräch · Keine Verpflichtung · 30 Minuten</p>
+          <form class="contact-form reveal-card" id="contactForm">
+            <input class="field" type="text" name="name" placeholder="Name" autocomplete="name" required />
+            <input class="field" type="text" name="firma" placeholder="Firma" autocomplete="organization" required />
+            <input class="field" type="email" name="email" placeholder="E-Mail" autocomplete="email" required />
+            <input class="field" type="tel" name="telefon" placeholder="Telefon" autocomplete="tel" required />
+            <button class="btn submit-btn magnetic" type="submit" id="submitButton">Erstgespräch anfragen</button>
           </form>
-          <p class="form-success" id="formSuccess">
-            Vielen Dank. Ihre Anfrage wurde erfolgreich übermittelt.
-          </p>
-          <p class="form-note">Kein Spam. Kein Druck. Ein offenes Gespräch.</p>
+          <p class="form-note reveal-card">Kein Spam. Kein Druck. Ein offenes Gespräch.</p>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-wrap">
-        <div>Increvio © 2025 Increvio</div>
-        <div class="footer-links">
-          <a href="#">Impressum</a>
-          <a href="#">Datenschutz</a>
+    <footer class="site-footer dark-section">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a class="logo-lockup magnetic" href="#top" aria-label="Increvio Startseite">
+              <svg width="28" height="34" viewBox="0 0 28 34" fill="none" aria-hidden="true">
+                <rect x="0" y="0" width="2" height="34" fill="#F8F6F2" />
+                <rect x="0" y="0" width="11" height="2" fill="#F8F6F2" />
+                <rect x="0" y="32" width="11" height="2" fill="#F8F6F2" />
+                <line x1="10" y1="2" x2="10" y2="18" stroke="#F8F6F2" stroke-width="2" />
+                <line
+                  x1="10"
+                  y1="18"
+                  x2="26"
+                  y2="34"
+                  stroke="#C8B89A"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span class="wordmark">Increvio</span>
+            </a>
+            <p class="footer-small">München · 2026</p>
+          </div>
+          <div class="footer-center">timur.leontyev@increvio.de · increvio.de</div>
+          <div class="footer-links">
+            <a class="magnetic" href="#">Impressum</a>
+            <a class="magnetic" href="#">Datenschutz</a>
+          </div>
         </div>
+        <div class="footer-bottom">© 2026 increvio</div>
       </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-      const siteHeader = document.getElementById("siteHeader");
+      const header = document.getElementById("siteHeader");
+      const scrollIndicator = document.getElementById("scrollIndicator");
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
       const contactForm = document.getElementById("contactForm");
-      const formSuccess = document.getElementById("formSuccess");
+      const submitButton = document.getElementById("submitButton");
+      const cursorDot = document.getElementById("cursorDot");
+      const cursorRing = document.getElementById("cursorRing");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const onScroll = () => {
-        if (window.scrollY > 24) {
-          siteHeader.classList.add("scrolled");
-        } else {
-          siteHeader.classList.remove("scrolled");
+      function updateHeader() {
+        const scrolled = window.scrollY > 18;
+        header.classList.toggle("scrolled", scrolled);
+        scrollIndicator.classList.toggle("hidden", scrolled);
+      }
+
+      window.addEventListener("scroll", updateHeader, { passive: true });
+      updateHeader();
+
+      function closeMenu() {
+        document.body.classList.remove("menu-open");
+        header.classList.remove("menu-active");
+        mobileMenu.classList.remove("open");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuToggle.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.contains("open");
+        document.body.classList.toggle("menu-open", isOpen);
+        header.classList.toggle("menu-active", isOpen);
+        mobileMenu.classList.toggle("open", isOpen);
+        mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+        menuToggle.classList.toggle("active", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+        if (isOpen && window.gsap) {
+          gsap.to(".mobile-links a", {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: "power3.out",
+          });
+        } else if (window.gsap) {
+          gsap.set(".mobile-links a", { opacity: 0, y: 18 });
         }
-      };
+      });
 
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
 
-      if (contactForm) {
-        contactForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          contactForm.reset();
-          formSuccess.style.display = "block";
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        contactForm.reset();
+        submitButton.textContent = "Nachricht gesendet ✓";
+        setTimeout(() => {
+          submitButton.textContent = "Erstgespräch anfragen";
+        }, 3200);
+      });
+
+      function initCursor() {
+        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        window.addEventListener("mousemove", (event) => {
+          mouseX = event.clientX;
+          mouseY = event.clientY;
+          cursorDot.style.opacity = "1";
+          cursorRing.style.opacity = "1";
+          cursorDot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+        });
+
+        function renderCursor() {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          cursorRing.style.transform = `translate(${ringX - cursorRing.offsetWidth / 2}px, ${
+            ringY - cursorRing.offsetHeight / 2
+          }px)`;
+          requestAnimationFrame(renderCursor);
+        }
+
+        renderCursor();
+
+        document.querySelectorAll("a, button, .testimonial, .step-card, .channel").forEach((element) => {
+          element.addEventListener("mouseenter", () => cursorRing.classList.add("hover"));
+          element.addEventListener("mouseleave", () => cursorRing.classList.remove("hover"));
         });
       }
 
-      const revealElements = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.16 }
-      );
+      function animateCounter(counter) {
+        const target = Number(counter.dataset.target || 0);
+        const format = counter.dataset.format;
+        const formatter = new Intl.NumberFormat("de-DE");
 
-      revealElements.forEach((element) => observer.observe(element));
+        gsap.fromTo(
+          counter,
+          { innerText: 0 },
+          {
+            innerText: target,
+            duration: 1.6,
+            ease: "power2.out",
+            snap: { innerText: 1 },
+            onUpdate() {
+              const value = Math.round(Number(counter.innerText));
+              counter.innerText = format === "de" ? formatter.format(value) : String(value);
+            },
+          }
+        );
+      }
+
+      function initAnimations() {
+        if (!window.gsap || !window.ScrollTrigger || reducedMotion) {
+          document.body.classList.remove("is-loading");
+          header.style.opacity = "1";
+          header.style.transform = "none";
+          document.querySelectorAll(".line-mask span, .hero-copy, .hero-actions, .hero-stats").forEach((el) => {
+            el.style.opacity = "1";
+            el.style.transform = "none";
+          });
+          document.getElementById("preloader").style.display = "none";
+          return;
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const preDiagonal = document.querySelector(".pre-diagonal");
+        const preMid = document.querySelector(".pre-mid");
+        const diagonalLength = preDiagonal.getTotalLength();
+        const midLength = preMid.getTotalLength();
+
+        gsap.set([".pre-v", ".pre-h", ".pre-mid"], { transformOrigin: "left center" });
+        gsap.set(".pre-v", { scaleY: 0, transformOrigin: "bottom center" });
+        gsap.set(".pre-h", { scaleX: 0 });
+        gsap.set(".pre-mid", { strokeDasharray: midLength, strokeDashoffset: midLength });
+        gsap.set(".pre-diagonal", { strokeDasharray: diagonalLength, strokeDashoffset: diagonalLength });
+
+        const loadTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        loadTl
+          .to(".pre-v", { scaleY: 1, duration: 0.6 })
+          .to(".pre-h", { scaleX: 1, duration: 0.38, stagger: 0.08 }, "-=0.25")
+          .to(".pre-mid", { strokeDashoffset: 0, duration: 0.34 }, "-=0.2")
+          .to(".pre-diagonal", { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" })
+          .to(".preloader-word span", { opacity: 1, y: 0, duration: 0.58, stagger: 0.065 }, "-=0.08")
+          .to("#preloader", { opacity: 0, duration: 0.5, delay: 0.12, onComplete: () => {
+            document.getElementById("preloader").style.display = "none";
+            document.body.classList.remove("is-loading");
+          }})
+          .to(header, { opacity: 1, y: 0, duration: 0.4 }, "-=0.15")
+          .to(".line-mask span", { y: 0, duration: 0.75, stagger: 0.1 }, "-=0.05")
+          .to(".hero-copy", { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
+          .to(".hero-actions", { opacity: 1, y: 0, duration: 0.3 }, "-=0.12")
+          .to(".hero-stats", { opacity: 1, y: 0, duration: 0.4 }, "-=0.05");
+
+        gsap.set(".hero-copy, .hero-actions", { y: 18 });
+
+        document.querySelectorAll(".reveal-head").forEach((element) => {
+          gsap.from(element, {
+            y: 40,
+            opacity: 0,
+            duration: 0.85,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 82%",
+            },
+          });
+        });
+
+        gsap.utils.toArray(".reveal-card").forEach((element, index) => {
+          gsap.from(element, {
+            y: 34,
+            opacity: 0,
+            duration: 0.72,
+            delay: (index % 4) * 0.035,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 86%",
+            },
+          });
+        });
+
+        ScrollTrigger.matchMedia({
+          "(min-width: 1101px)": function () {
+            const pains = gsap.utils.toArray(".pain");
+            const painTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: ".problem",
+                pin: ".problem-pin",
+                start: "top top",
+                end: "+=220%",
+                scrub: true,
+              },
+            });
+
+            pains.forEach((pain, index) => {
+              if (index === 0) return;
+              painTl
+                .to(pains[index - 1], { opacity: 0, x: -30, duration: 0.45 })
+                .fromTo(pain, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.55 }, "<0.1");
+            });
+
+          },
+        });
+
+        document.querySelectorAll("[data-counter-group]").forEach((group) => {
+          ScrollTrigger.create({
+            trigger: group,
+            start: "top 82%",
+            once: true,
+            onEnter: () => {
+              group.querySelectorAll("[data-counter]").forEach((counter) => animateCounter(counter));
+            },
+          });
+        });
+
+        ScrollTrigger.create({
+          trigger: "#bars",
+          start: "top 78%",
+          once: true,
+          onEnter: () => {
+            document.querySelectorAll(".bar-fill").forEach((bar) => {
+              gsap.to(bar, {
+                width: `${bar.dataset.width}%`,
+                duration: 1.25,
+                ease: "power3.out",
+              });
+            });
+          },
+        });
+
+        const mapRegions = gsap.utils.toArray(".map-region");
+        mapRegions.forEach((region) => {
+          const length = region.getTotalLength();
+          gsap.set(region, {
+            strokeDasharray: length,
+            strokeDashoffset: length,
+          });
+        });
+
+        ScrollTrigger.create({
+          trigger: "#dachMap",
+          start: "top 76%",
+          once: true,
+          onEnter: () => {
+            gsap.to(mapRegions, {
+              strokeDashoffset: 0,
+              duration: 1.35,
+              stagger: 0.12,
+              ease: "power3.out",
+            });
+            gsap.fromTo(
+              ".map-city",
+              { opacity: 0, scale: 0.45 },
+              { opacity: 1, scale: 1, duration: 0.62, stagger: 0.09, ease: "back.out(1.8)" }
+            );
+            gsap.fromTo(
+              ".map-link",
+              { opacity: 0, strokeDashoffset: 30 },
+              { opacity: 1, strokeDashoffset: 0, duration: 1.1, stagger: 0.08, ease: "power2.out" },
+              "-=0.2"
+            );
+          },
+        });
+      }
+
+      initCursor();
+      initAnimations();
     </script>
   </body>
 </html>
