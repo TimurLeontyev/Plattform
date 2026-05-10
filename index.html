@@ -3,28 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Increvio | Planbare Mandantengewinnung im DACH-Raum</title>
+    <title>Increvio | Strategischer Vertriebspartner im DACH-Raum</title>
     <meta
       name="description"
-      content="Increvio ist der strategische Sales-Partner fuer Finanzberater und Vermoegensverwalter im DACH-Raum."
+      content="Increvio ist der premium strategische Vertriebspartner fuer Finanzberater und Vermoegensverwalter im DACH-Raum."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
         --obsidian: #0a0a0a;
         --ivory: #f8f6f2;
-        --champagne: #c8b89a;
+        --gold: #c8b89a;
         --stone: #9a9a9a;
         --linen: #e8e6e2;
-        --ink-soft: rgba(10, 10, 10, 0.68);
-        --white-soft: rgba(248, 246, 242, 0.72);
-        --section-space: clamp(5rem, 9vw, 9.5rem);
-        --container: min(1180px, calc(100vw - 40px));
+        --dark-surface: #111111;
+        --mid-surface: #1a1a1a;
+        --line-dark: rgba(248, 246, 242, 0.12);
+        --line-gold: rgba(200, 184, 154, 0.46);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --container: min(1220px, calc(100vw - 48px));
       }
 
       * {
@@ -33,25 +35,60 @@
 
       html {
         scroll-behavior: smooth;
+        background: var(--obsidian);
       }
 
       body {
         margin: 0;
-        background: var(--ivory);
-        color: var(--obsidian);
-        font-family: "DM Sans", Arial, sans-serif;
+        background: var(--obsidian);
+        color: var(--ivory);
+        font-family: "DM Mono", monospace;
         font-weight: 300;
         line-height: 1.55;
+        overflow-x: hidden;
         text-rendering: geometricPrecision;
       }
 
-      body.nav-open {
+      body.menu-open,
+      body.is-loading {
         overflow: hidden;
       }
 
-      img,
-      svg {
-        display: block;
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        pointer-events: none;
+        opacity: 0.055;
+        background-image: radial-gradient(circle at 20% 30%, #ffffff 0 0.7px, transparent 0.8px),
+          radial-gradient(circle at 80% 10%, #ffffff 0 0.6px, transparent 0.7px),
+          radial-gradient(circle at 55% 70%, #ffffff 0 0.5px, transparent 0.6px);
+        background-size: 77px 77px, 113px 113px, 151px 151px;
+        animation: grain 1.6s steps(2) infinite;
+        mix-blend-mode: screen;
+      }
+
+      @keyframes grain {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+
+        25% {
+          transform: translate3d(-1.5%, 1%, 0);
+        }
+
+        50% {
+          transform: translate3d(1%, -1.5%, 0);
+        }
+
+        75% {
+          transform: translate3d(-0.5%, -1%, 0);
+        }
+
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
       }
 
       a {
@@ -65,14 +102,51 @@
         font: inherit;
       }
 
+      button {
+        border: 0;
+      }
+
+      svg {
+        display: block;
+      }
+
       .container {
         width: var(--container);
         margin: 0 auto;
       }
 
+      .display,
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 300;
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .mono-label {
+        color: var(--stone);
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        line-height: 1.6;
+        text-transform: uppercase;
+      }
+
       .section {
-        padding: var(--section-space) 0;
+        position: relative;
+        padding: clamp(90px, 12vw, 170px) 0;
+      }
+
+      .section.light {
         background: var(--ivory);
+        color: var(--obsidian);
       }
 
       .section.dark {
@@ -80,199 +154,212 @@
         color: var(--ivory);
       }
 
-      .section + .section:not(.dark),
-      .trust-section {
-        border-top: 0.5px solid var(--linen);
+      .section.surface {
+        background: var(--dark-surface);
       }
 
-      .label {
-        margin: 0 0 1.2rem;
-        color: var(--stone);
-        font-size: 0.68rem;
-        font-weight: 500;
-        letter-spacing: 0.18em;
-        line-height: 1.2;
-        text-transform: uppercase;
-      }
-
-      .dark .label {
-        color: rgba(248, 246, 242, 0.55);
-      }
-
-      .display,
-      h1,
-      h2,
-      h3 {
-        font-family: "Playfair Display", Georgia, serif;
-        font-weight: 300;
-        letter-spacing: -0.035em;
-        line-height: 1.02;
-      }
-
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
+      .section-head {
+        display: grid;
+        gap: 26px;
+        margin-bottom: clamp(46px, 7vw, 92px);
       }
 
       .section-title {
-        max-width: 870px;
-        margin-bottom: clamp(2.1rem, 4vw, 3.4rem);
-        font-size: clamp(2.4rem, 6vw, 5.6rem);
+        max-width: 780px;
+        font-size: clamp(52px, 8vw, 96px);
       }
 
       .section-title em,
-      .hero-title em,
-      .cta-title em {
-        color: var(--stone);
+      .gold {
+        color: var(--gold);
         font-style: italic;
       }
 
-      .dark .section-title em,
-      .dark .hero-title em,
-      .dark .cta-title em {
-        color: rgba(248, 246, 242, 0.55);
-      }
-
-      .muted {
-        color: var(--ink-soft);
-      }
-
-      .dark .muted {
-        color: var(--white-soft);
-      }
-
       .btn {
+        position: relative;
         display: inline-flex;
+        min-height: 48px;
         align-items: center;
         justify-content: center;
-        min-height: 46px;
-        border: 0.5px solid var(--obsidian);
-        border-radius: 2px;
-        background: var(--obsidian);
+        border: 1px solid var(--ivory);
+        border-radius: 0;
+        padding: 15px 22px 14px;
+        background: transparent;
         color: var(--ivory);
-        padding: 0.9rem 1.35rem;
-        font-size: 0.74rem;
-        font-weight: 500;
-        letter-spacing: 0.14em;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.16em;
         line-height: 1;
         text-transform: uppercase;
-        transition: background 180ms ease, color 180ms ease, border-color 180ms ease,
-          transform 180ms ease;
+        transition: background 400ms var(--ease), border-color 400ms var(--ease), color 400ms var(--ease),
+          transform 400ms var(--ease);
         cursor: pointer;
       }
 
       .btn:hover {
+        background: var(--ivory);
+        color: var(--obsidian);
         transform: translateY(-1px);
       }
 
-      .btn-light {
+      .btn-primary {
         border-color: var(--ivory);
         background: var(--ivory);
         color: var(--obsidian);
       }
 
-      .btn-ghost {
-        border-color: rgba(248, 246, 242, 0.34);
-        background: transparent;
-        color: var(--ivory);
-      }
-
-      .btn-ghost:hover {
-        border-color: var(--champagne);
+      .btn-primary:hover {
+        border-color: var(--gold);
+        background: var(--gold);
       }
 
       .logo-lockup {
         display: inline-flex;
         align-items: center;
-        gap: 1rem;
+        gap: 13px;
       }
 
       .wordmark {
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: 1.02rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
         font-weight: 300;
-        letter-spacing: 0.54em;
+        letter-spacing: 0.2em;
         line-height: 1;
         text-transform: uppercase;
+      }
+
+      .preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        background: var(--obsidian);
+        color: var(--ivory);
+      }
+
+      .preloader-inner {
+        display: grid;
+        justify-items: center;
+        gap: 26px;
+      }
+
+      .preloader-logo svg {
+        width: 48px;
+        height: 58px;
+        overflow: visible;
+      }
+
+      .preloader-word {
+        display: flex;
+        gap: 0.42em;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .preloader-word span {
+        display: inline-block;
+        opacity: 0;
       }
 
       .site-header {
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 100;
+        z-index: 9000;
         width: 100%;
-        border-bottom: 0.5px solid transparent;
         color: var(--ivory);
-        transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+        opacity: 0;
+        transform: translateY(-18px);
+        transition: background 400ms var(--ease), border-color 400ms var(--ease), backdrop-filter 400ms var(--ease);
       }
 
       .site-header.scrolled,
       .site-header.menu-active {
-        border-color: var(--linen);
-        background: rgba(248, 246, 242, 0.96);
-        color: var(--obsidian);
-        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(248, 246, 242, 0.08);
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
       }
 
       .nav-shell {
-        display: flex;
+        display: grid;
         min-height: 82px;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        justify-content: space-between;
-        gap: 2rem;
+        gap: 28px;
+      }
+
+      .nav-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .nav-link {
+        position: relative;
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        transition: color 300ms var(--ease);
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -9px;
+        width: 100%;
+        height: 1px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 360ms var(--ease);
+      }
+
+      .nav-link:hover {
+        color: var(--ivory);
+      }
+
+      .nav-link:hover::after {
+        transform: scaleX(1);
       }
 
       .nav-right {
         display: flex;
-        align-items: center;
-        gap: 2rem;
+        justify-content: flex-end;
       }
 
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 1.65rem;
-      }
-
-      .nav-links a {
-        color: currentColor;
-        font-size: 0.72rem;
-        font-weight: 500;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-      }
-
-      .site-header:not(.scrolled):not(.menu-active) .nav-cta {
-        border-color: var(--ivory);
-        background: var(--ivory);
-        color: var(--obsidian);
+      .nav-cta {
+        min-height: 42px;
+        padding: 13px 18px 12px;
       }
 
       .hamburger {
         display: none;
         width: 42px;
         height: 42px;
-        border: 0.5px solid currentColor;
-        border-radius: 0;
+        margin-left: auto;
         background: transparent;
-        color: currentColor;
+        color: var(--ivory);
         cursor: pointer;
       }
 
       .hamburger span {
         display: block;
-        width: 18px;
+        width: 24px;
         height: 1px;
-        margin: 5px auto;
+        margin: 6px auto;
         background: currentColor;
-        transition: transform 200ms ease, opacity 200ms ease;
+        transition: transform 300ms var(--ease), opacity 300ms var(--ease);
       }
 
       .hamburger.active span:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
+        transform: translateY(7px) rotate(45deg);
       }
 
       .hamburger.active span:nth-child(2) {
@@ -280,413 +367,657 @@
       }
 
       .hamburger.active span:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 8500;
+        display: grid;
+        place-items: center;
+        background: var(--obsidian);
+        color: var(--ivory);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 420ms var(--ease);
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-links {
+        display: grid;
+        gap: 18px;
+        text-align: center;
+      }
+
+      .mobile-links a {
+        opacity: 0;
+        transform: translateY(18px);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(50px, 14vw, 104px);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
       }
 
       .hero {
-        min-height: 100vh;
-        padding: clamp(8.5rem, 13vw, 12rem) 0 clamp(4rem, 7vw, 7rem);
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
         background: var(--obsidian);
         color: var(--ivory);
       }
 
-      .hero-grid {
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.42;
+        background-image: linear-gradient(rgba(248, 246, 242, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(248, 246, 242, 0.03) 1px, transparent 1px);
+        background-size: 86px 86px;
+        mask-image: radial-gradient(circle at 48% 42%, #000 0 36%, transparent 76%);
+      }
+
+      .hero-watermark {
+        position: absolute;
+        right: -1vw;
+        top: 48%;
+        color: var(--ivory);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(420px, 54vw, 820px);
+        font-style: italic;
+        font-weight: 300;
+        line-height: 0.7;
+        opacity: 0.028;
+        transform: translateY(-50%);
+        user-select: none;
+      }
+
+      .hero-shell {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        min-height: 100svh;
         display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: clamp(3rem, 8vw, 7rem);
+        grid-template-rows: 1fr auto;
+        padding: clamp(130px, 16vh, 190px) 0 42px;
+      }
+
+      .hero-content {
+        align-self: center;
+        max-width: 1200px;
+        padding: 0 clamp(0px, 4vw, 56px);
+      }
+
+      .hero-label {
+        margin-bottom: 24px;
+        opacity: 0;
       }
 
       .hero-title {
-        max-width: 1040px;
-        margin-bottom: 1.5rem;
-        font-size: clamp(3rem, 8.7vw, 7.8rem);
+        max-width: 860px;
+        color: var(--ivory);
+        font-size: clamp(58px, 8.4vw, 118px);
+      }
+
+      .line-mask {
+        display: block;
+        overflow: hidden;
+      }
+
+      .line-mask span {
+        display: block;
+        transform: translateY(108%);
       }
 
       .hero-copy {
-        max-width: 670px;
-        margin-bottom: 2.2rem;
-        color: rgba(248, 246, 242, 0.68);
-        font-size: clamp(1.05rem, 1.8vw, 1.32rem);
+        max-width: 420px;
+        margin-top: 32px;
+        color: var(--stone);
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        opacity: 0;
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.9rem;
+        gap: 12px;
+        margin-top: 34px;
+        opacity: 0;
       }
 
-      .hero-bottom {
-        display: grid;
-        gap: 1.8rem;
-      }
-
-      .stats-row {
+      .hero-stats {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 0;
-        border-top: 0.5px solid rgba(248, 246, 242, 0.17);
-        border-bottom: 0.5px solid rgba(248, 246, 242, 0.17);
+        border-top: 1px solid var(--line-gold);
+        padding-top: 34px;
+        opacity: 0;
+        transform: translateY(20px);
       }
 
-      .stat {
-        padding: 1.6rem 1.5rem 1.55rem 0;
-        border-right: 0.5px solid rgba(248, 246, 242, 0.17);
+      .hero-stat {
+        padding: 0 28px 0 0;
       }
 
-      .stat:last-child {
-        border-right: 0;
+      .hero-stat + .hero-stat {
+        border-left: 1px solid rgba(200, 184, 154, 0.18);
+        padding-left: 28px;
       }
 
-      .stat strong {
+      .hero-stat strong {
         display: block;
-        margin-bottom: 0.35rem;
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: clamp(2.2rem, 4.2vw, 4rem);
+        margin-bottom: 8px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(42px, 5vw, 64px);
         font-weight: 300;
         letter-spacing: -0.04em;
-        line-height: 1;
+        line-height: 0.9;
         white-space: nowrap;
       }
 
-      .stat > span {
-        color: rgba(248, 246, 242, 0.58);
-        font-size: 0.76rem;
-        font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .gold-line {
-        width: 132px;
-        height: 1px;
-        background: var(--champagne);
-      }
-
-      .hero-badge {
-        display: inline-flex;
-        flex-wrap: wrap;
-        gap: 0.85rem 1.1rem;
-        width: min(100%, 760px);
-        border: 0.5px solid rgba(200, 184, 154, 0.42);
-        background: rgba(248, 246, 242, 0.03);
-        padding: 1.05rem 1.2rem;
-        color: rgba(248, 246, 242, 0.78);
-        font-size: 0.78rem;
-        letter-spacing: 0.08em;
-      }
-
-      .trust-section {
-        padding: 2rem 0;
-        background: var(--ivory);
-      }
-
-      .trust-wrap {
-        display: grid;
-        grid-template-columns: 1.1fr 2.4fr;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      .trust-label {
-        margin: 0;
+      .hero-stat span {
+        display: block;
         color: var(--stone);
-        font-size: 0.68rem;
-        font-weight: 500;
+        font-size: 10px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
-      .logo-row {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 0;
-        border-left: 0.5px solid var(--linen);
+      .scroll-indicator {
+        position: absolute;
+        left: 50%;
+        bottom: 24px;
+        z-index: 3;
+        width: 1px;
+        height: 64px;
+        overflow: hidden;
+        background: rgba(248, 246, 242, 0.16);
+        transform: translateX(-50%);
+        transition: opacity 300ms var(--ease);
       }
 
-      .partner-logo {
-        min-height: 64px;
+      .scroll-indicator::after {
+        content: "";
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: var(--gold);
+        animation: scrollLine 1.8s var(--ease) infinite;
+      }
+
+      .scroll-indicator.hidden {
+        opacity: 0;
+      }
+
+      @keyframes scrollLine {
+        0% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(200%);
+        }
+      }
+
+      .marquee {
+        position: relative;
+        height: 48px;
+        overflow: hidden;
+        border-top: 1px solid rgba(200, 184, 154, 0.22);
+        border-bottom: 1px solid rgba(200, 184, 154, 0.22);
+        background: var(--dark-surface);
+        color: var(--gold);
+      }
+
+      .marquee-track {
+        position: absolute;
         display: flex;
+        width: max-content;
+        animation: marquee 24s linear infinite;
+      }
+
+      .marquee span {
+        display: inline-flex;
         align-items: center;
+        height: 48px;
+        padding-right: 34px;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        white-space: nowrap;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .problem {
+        min-height: 300vh;
+        padding: 0;
+      }
+
+      .problem-pin {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: clamp(44px, 8vw, 112px);
+        align-items: center;
+        padding: clamp(90px, 12vw, 150px) 0;
+      }
+
+      .problem-title {
+        margin-top: 24px;
+        max-width: 480px;
+        font-size: clamp(50px, 7vw, 82px);
+      }
+
+      .problem-stack {
+        position: relative;
+        min-height: 450px;
+      }
+
+      .pain {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        border-right: 0.5px solid var(--linen);
-        color: var(--stone);
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: clamp(0.9rem, 1.8vw, 1.16rem);
+        opacity: 0;
+        transform: translateX(30px);
+      }
+
+      .pain:first-child {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .pain-ghost {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        color: var(--obsidian);
+        font-size: clamp(94px, 12vw, 160px);
+        letter-spacing: -0.12em;
+        opacity: 0.08;
+      }
+
+      .pain h3 {
+        max-width: 560px;
+        margin-bottom: 24px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(44px, 6vw, 72px);
         font-weight: 300;
-        letter-spacing: 0.05em;
-        text-align: center;
       }
 
-      .cards-3,
-      .channels-grid,
-      .testimonials-grid {
-        display: grid;
-        gap: 0;
+      .pain p {
+        max-width: 560px;
+        color: rgba(10, 10, 10, 0.68);
+        font-size: 13px;
+        letter-spacing: 0.02em;
       }
 
-      .cards-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        border-top: 0.5px solid var(--linen);
-        border-left: 0.5px solid var(--linen);
+      .system {
+        overflow: hidden;
       }
 
-      .pain-card,
-      .channel-card,
-      .testimonial-card {
-        border-right: 0.5px solid var(--linen);
-        border-bottom: 0.5px solid var(--linen);
-        padding: clamp(1.45rem, 3vw, 2.25rem);
+      .system-track-wrap {
+        overflow: visible;
       }
 
-      .pain-card h3,
-      .channel-card h3 {
-        margin-bottom: 0.85rem;
-        font-family: "DM Sans", Arial, sans-serif;
-        font-size: 0.92rem;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+      .system-track {
+        display: flex;
+        gap: 22px;
+        width: max-content;
       }
 
-      .pain-card p,
-      .channel-card p {
-        margin-bottom: 0;
-        color: var(--ink-soft);
-      }
-
-      .process-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0;
-        margin-bottom: 2.6rem;
-        border-top: 0.5px solid rgba(248, 246, 242, 0.18);
-        border-left: 0.5px solid rgba(248, 246, 242, 0.18);
-      }
-
-      .process-step {
-        min-height: 340px;
+      .step-card {
+        position: relative;
+        width: min(420px, 82vw);
+        min-height: 380px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border-right: 0.5px solid rgba(248, 246, 242, 0.18);
-        border-bottom: 0.5px solid rgba(248, 246, 242, 0.18);
-        padding: clamp(1.4rem, 2.5vw, 2rem);
+        border: 1px solid rgba(232, 230, 226, 0.14);
+        background: var(--mid-surface);
+        padding: clamp(28px, 4vw, 40px);
+        transition: border-color 360ms var(--ease), transform 360ms var(--ease);
       }
 
-      .step-number {
-        color: var(--champagne);
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: clamp(2.1rem, 4vw, 3.6rem);
-        font-weight: 300;
-        line-height: 1;
+      .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 420ms var(--ease);
       }
 
-      .process-step h3 {
-        margin: auto 0 0.85rem;
-        font-family: "DM Sans", Arial, sans-serif;
-        font-size: 0.85rem;
-        font-weight: 500;
-        letter-spacing: 0.14em;
+      .step-card:hover {
+        border-color: rgba(200, 184, 154, 0.58);
+        transform: translateY(-3px);
+      }
+
+      .step-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .step-kicker {
+        color: var(--gold);
+        font-size: 12px;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
       }
 
-      .process-step p {
-        margin-bottom: 0;
-        color: rgba(248, 246, 242, 0.68);
-        font-size: 0.98rem;
+      .step-card h3 {
+        margin-bottom: 22px;
+        font-size: clamp(34px, 4vw, 48px);
+      }
+
+      .step-card p {
+        color: var(--stone);
+        font-size: 13px;
+      }
+
+      .system-cta {
+        margin-top: 38px;
+      }
+
+      .numbers {
+        padding-top: 40px;
+      }
+
+      .numbers-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--line-gold);
+        border-left: 1px solid var(--line-gold);
+      }
+
+      .number-cell {
+        min-height: 310px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid var(--line-gold);
+        border-bottom: 1px solid var(--line-gold);
+        padding: clamp(28px, 5vw, 54px);
+      }
+
+      .number-cell strong {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(72px, 12vw, 138px);
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: -0.08em;
+        line-height: 0.85;
+        white-space: nowrap;
+      }
+
+      .number-cell span {
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .numbers-note {
+        margin-top: 24px;
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
 
       .asset-grid {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
-        gap: clamp(2.5rem, 6vw, 5rem);
-        align-items: start;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: clamp(48px, 8vw, 118px);
+        align-items: center;
+      }
+
+      .asset-title {
+        margin: 24px 0 28px;
+        font-size: clamp(54px, 8vw, 92px);
       }
 
       .asset-copy {
-        max-width: 680px;
-        margin-bottom: 2.4rem;
-        color: var(--ink-soft);
-        font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+        max-width: 420px;
+        color: var(--stone);
+        font-size: 13px;
+        letter-spacing: 0.04em;
       }
 
-      .asset-stats {
+      .mini-stats {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        border-top: 0.5px solid var(--linen);
-        border-left: 0.5px solid var(--linen);
+        margin-top: 40px;
+        border-top: 1px solid var(--linen);
+        border-left: 1px solid var(--linen);
       }
 
-      .asset-stat {
-        min-height: 150px;
-        border-right: 0.5px solid var(--linen);
-        border-bottom: 0.5px solid var(--linen);
-        padding: 1.3rem;
+      .mini-stat {
+        min-height: 130px;
+        border-right: 1px solid var(--linen);
+        border-bottom: 1px solid var(--linen);
+        padding: 22px;
       }
 
-      .asset-stat strong {
+      .mini-stat strong {
         display: block;
-        margin-bottom: 0.55rem;
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: clamp(2rem, 4vw, 3.7rem);
+        margin-bottom: 10px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 42px;
         font-weight: 300;
-        letter-spacing: -0.04em;
-        line-height: 1;
-        white-space: nowrap;
+        letter-spacing: -0.05em;
+        line-height: 0.9;
       }
 
-      .asset-stat > span {
+      .mini-stat span {
         color: var(--stone);
-        font-size: 0.72rem;
-        font-weight: 500;
+        font-size: 10px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
       }
 
-      .bar-panel {
-        border: 0.5px solid var(--linen);
-        padding: clamp(1.4rem, 3vw, 2rem);
+      .bars {
+        border: 1px solid var(--linen);
+        padding: clamp(28px, 5vw, 50px);
       }
 
-      .bar-panel h3 {
-        margin-bottom: 1.5rem;
-        font-family: "DM Sans", Arial, sans-serif;
-        font-size: 0.72rem;
-        font-weight: 500;
+      .bars-title {
+        margin-bottom: 44px;
+        color: rgba(10, 10, 10, 0.72);
+        font-size: 11px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
 
-      .bar-item {
-        margin-bottom: 1.25rem;
+      .bar {
+        display: grid;
+        gap: 11px;
+        margin-bottom: 28px;
+      }
+
+      .bar:last-child {
+        margin-bottom: 0;
       }
 
       .bar-meta {
         display: flex;
         justify-content: space-between;
-        gap: 1rem;
-        margin-bottom: 0.55rem;
-        color: var(--ink-soft);
-        font-size: 0.88rem;
+        gap: 18px;
+        color: rgba(10, 10, 10, 0.72);
+        font-size: 12px;
       }
 
-      .bar-track {
+      .bar-line {
         height: 2px;
         background: var(--linen);
       }
 
       .bar-fill {
+        width: 0;
         height: 100%;
-        background: var(--champagne);
-      }
-
-      .track-stats {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0;
-        border-top: 0.5px solid rgba(248, 246, 242, 0.18);
-        border-left: 0.5px solid rgba(248, 246, 242, 0.18);
-      }
-
-      .track-stat {
-        min-height: 220px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border-right: 0.5px solid rgba(248, 246, 242, 0.18);
-        border-bottom: 0.5px solid rgba(248, 246, 242, 0.18);
-        padding: clamp(1.35rem, 2.5vw, 2rem);
-      }
-
-      .track-stat strong {
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: clamp(2.25rem, 4.5vw, 4.4rem);
-        font-weight: 300;
-        letter-spacing: -0.04em;
-        line-height: 1;
-        white-space: nowrap;
-      }
-
-      .track-stat > span {
-        color: rgba(248, 246, 242, 0.62);
-      }
-
-      .track-note {
-        margin: 1.4rem 0 0;
-        color: rgba(248, 246, 242, 0.58);
-        font-size: 0.92rem;
+        background: var(--gold);
       }
 
       .channels-grid {
+        display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        border-top: 0.5px solid var(--linen);
-        border-left: 0.5px solid var(--linen);
+        gap: 18px 28px;
       }
 
-      .channel-number {
+      .channel {
+        position: relative;
+        min-height: 178px;
+        padding: 6px 0 0 18px;
+        transition: transform 340ms var(--ease);
+      }
+
+      .channel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: var(--gold);
+        transform: scaleY(0);
+        transform-origin: top center;
+        transition: transform 340ms var(--ease);
+      }
+
+      .channel:hover {
+        transform: translateX(4px);
+      }
+
+      .channel:hover::before {
+        transform: scaleY(1);
+      }
+
+      .channel-num {
         display: block;
-        margin-bottom: 2.4rem;
-        color: var(--champagne);
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: 2.5rem;
-        font-weight: 300;
-        line-height: 1;
-      }
-
-      .testimonials-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        border-top: 0.5px solid var(--linen);
-        border-left: 0.5px solid var(--linen);
-      }
-
-      .testimonial-card {
-        display: flex;
-        min-height: 360px;
-        flex-direction: column;
-      }
-
-      .testimonial-person {
-        margin-bottom: 0.3rem;
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: 1.45rem;
-        font-weight: 300;
-        letter-spacing: -0.02em;
-      }
-
-      .testimonial-role {
-        margin-bottom: 1rem;
-        color: var(--stone);
-        font-size: 0.82rem;
-      }
-
-      .stars {
-        margin-bottom: 1.1rem;
-        color: var(--champagne);
-        font-size: 0.86rem;
+        margin-bottom: 22px;
+        color: var(--gold);
+        font-size: 12px;
         letter-spacing: 0.18em;
       }
 
-      .testimonial-card blockquote {
-        margin: 0 0 1.3rem;
-        color: var(--ink-soft);
+      .channel h3 {
+        margin-bottom: 10px;
+        font-size: clamp(28px, 3vw, 38px);
       }
 
-      .badge {
-        display: inline-flex;
-        width: fit-content;
+      .channel p {
+        color: var(--stone);
+        font-size: 12px;
+      }
+
+      .testimonials {
+        overflow: hidden;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .testimonial {
+        display: flex;
+        min-height: 430px;
+        flex-direction: column;
+        border: 1px solid var(--linen);
+        background: #ffffff;
+        padding: 28px;
+        transition: box-shadow 360ms var(--ease), transform 360ms var(--ease);
+      }
+
+      .testimonial:hover {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+        transform: translateY(-4px);
+      }
+
+      .testimonial-top {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .initials {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--obsidian);
+        color: var(--ivory);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-style: italic;
+      }
+
+      .person {
+        display: grid;
+        gap: 4px;
+        color: rgba(10, 10, 10, 0.72);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .stars {
+        margin-bottom: 24px;
+        color: var(--gold);
+        font-size: 13px;
+        letter-spacing: 0.2em;
+      }
+
+      .testimonial blockquote {
+        margin: 0;
+        color: rgba(10, 10, 10, 0.74);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-style: italic;
+        font-weight: 300;
+        line-height: 1.25;
+      }
+
+      .testimonial-badge {
         margin-top: auto;
-        border-top: 0.5px solid var(--champagne);
-        padding-top: 0.75rem;
-        color: var(--obsidian);
-        font-size: 0.7rem;
-        font-weight: 500;
-        letter-spacing: 0.12em;
+        padding-top: 26px;
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
       }
 
       .comparison-wrap {
         overflow-x: auto;
-        border: 0.5px solid rgba(248, 246, 242, 0.18);
+        border-top: 1px solid var(--line-dark);
       }
 
       .comparison-table {
@@ -697,23 +1028,23 @@
 
       .comparison-table th,
       .comparison-table td {
-        border-bottom: 0.5px solid rgba(248, 246, 242, 0.18);
-        border-right: 0.5px solid rgba(248, 246, 242, 0.18);
-        padding: 1.1rem 1.2rem;
-        color: rgba(248, 246, 242, 0.68);
+        border-bottom: 1px solid var(--line-dark);
+        padding: 22px 18px;
+        color: var(--stone);
+        font-size: 12px;
         font-weight: 300;
+        letter-spacing: 0.05em;
         text-align: left;
-        vertical-align: top;
+        transition: background 260ms var(--ease);
       }
 
-      .comparison-table tr:last-child td {
-        border-bottom: 0;
+      .comparison-table tr:hover td {
+        background: var(--mid-surface);
       }
 
       .comparison-table th {
-        color: var(--ivory);
-        font-size: 0.68rem;
-        font-weight: 500;
+        color: var(--stone);
+        font-size: 11px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
       }
@@ -721,148 +1052,243 @@
       .comparison-table th:first-child,
       .comparison-table td:first-child {
         color: var(--ivory);
-        width: 24%;
       }
 
-      .comparison-table th.increvio,
-      .comparison-table td.increvio {
-        background: rgba(200, 184, 154, 0.09);
+      .comparison-table .inc {
+        border-top: 2px solid var(--gold);
         color: var(--ivory);
       }
 
-      .cta-section {
+      .mark-yes {
+        color: var(--ivory);
+      }
+
+      .mark-no {
+        color: #333333;
+      }
+
+      .mark-mid {
+        color: var(--stone);
+      }
+
+      .cta {
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
         text-align: center;
       }
 
       .cta-title {
-        max-width: 820px;
-        margin: 0 auto 1.4rem;
-        font-size: clamp(2.7rem, 7vw, 6.4rem);
+        margin-bottom: 24px;
+        font-size: clamp(58px, 9vw, 112px);
+        font-style: italic;
       }
 
-      .cta-copy {
-        max-width: 680px;
-        margin: 0 auto 2.4rem;
-        color: rgba(248, 246, 242, 0.68);
-        font-size: clamp(1rem, 1.6vw, 1.15rem);
+      .cta-sub {
+        margin-bottom: 48px;
+        color: var(--stone);
+        font-size: 13px;
+        letter-spacing: 0.08em;
       }
 
       .contact-form {
         display: grid;
-        max-width: 480px;
+        width: min(480px, 100%);
         margin: 0 auto;
-        gap: 0.75rem;
+        gap: 20px;
       }
 
       .field {
         width: 100%;
-        border: 0.5px solid rgba(248, 246, 242, 0.26);
+        border: 0;
+        border-bottom: 1px solid rgba(232, 230, 226, 0.34);
         border-radius: 0;
         background: transparent;
         color: var(--ivory);
-        padding: 1rem 1rem;
-        font-size: 0.95rem;
+        padding: 0 0 14px;
         outline: none;
-        transition: border-color 160ms ease;
+        transition: border-color 300ms var(--ease);
       }
 
       .field::placeholder {
-        color: rgba(248, 246, 242, 0.48);
+        color: var(--stone);
       }
 
       .field:focus {
-        border-color: var(--champagne);
+        border-color: var(--gold);
       }
 
-      textarea.field {
-        min-height: 118px;
-        resize: vertical;
+      .submit-btn {
+        width: 100%;
+        margin-top: 14px;
+        border-color: var(--ivory);
+        background: var(--ivory);
+        color: var(--obsidian);
+        letter-spacing: 0.2em;
       }
 
-      .form-note,
-      .form-success {
-        margin: 1rem 0 0;
-        color: rgba(248, 246, 242, 0.58);
-        font-size: 0.86rem;
+      .submit-btn:hover {
+        border-color: var(--gold);
+        background: var(--gold);
       }
 
-      .form-success {
-        display: none;
-        color: var(--ivory);
+      .form-note {
+        margin-top: 18px;
+        color: var(--stone);
+        font-size: 11px;
       }
 
       .site-footer {
+        border-top: 1px solid var(--gold);
         background: var(--obsidian);
         color: var(--ivory);
-        padding: 3rem 0 1.4rem;
+        padding: 36px 0 22px;
       }
 
-      .footer-main {
+      .footer-grid {
         display: grid;
-        grid-template-columns: 1fr 1.6fr 1fr;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 28px;
         align-items: center;
-        gap: 2rem;
-        padding-bottom: 2.2rem;
       }
 
-      .footer-info {
-        color: rgba(248, 246, 242, 0.62);
-        font-size: 0.9rem;
+      .footer-small {
+        margin-top: 12px;
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .footer-center,
+      .footer-links {
+        color: var(--stone);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+
+      .footer-center {
         text-align: center;
       }
 
       .footer-links {
         display: flex;
         justify-content: flex-end;
-        gap: 1.1rem;
-        color: rgba(248, 246, 242, 0.62);
-        font-size: 0.86rem;
+        gap: 20px;
       }
 
       .footer-bottom {
-        border-top: 1px solid var(--champagne);
-        padding-top: 1.2rem;
-        color: rgba(248, 246, 242, 0.48);
-        font-size: 0.82rem;
+        margin-top: 42px;
+        color: var(--stone);
+        font-size: 10px;
+        letter-spacing: 0.12em;
       }
 
-      .reveal {
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10001;
+        pointer-events: none;
+        border-radius: 999px;
         opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 700ms ease, transform 700ms ease;
+        transform: translate(-50%, -50%);
       }
 
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--ivory);
       }
 
-      @media (min-width: 768px) {
-        .hero-bottom {
-          grid-template-columns: minmax(0, 1fr);
+      .cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(248, 246, 242, 0.64);
+        transition: width 220ms var(--ease), height 220ms var(--ease), border-color 220ms var(--ease);
+      }
+
+      .cursor-ring.hover {
+        width: 54px;
+        height: 54px;
+        border-color: var(--gold);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        body {
+          cursor: none;
+        }
+
+        a,
+        button {
+          cursor: none;
         }
       }
 
-      @media (max-width: 1199px) {
-        .process-grid,
-        .channels-grid,
-        .track-stats {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+      @media (max-width: 1100px) {
+        .nav-shell {
+          grid-template-columns: 1fr auto;
         }
 
+        .nav-center,
+        .nav-right {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .problem-pin,
         .asset-grid {
           grid-template-columns: 1fr;
         }
 
-        .testimonials-grid {
+        .problem {
+          min-height: auto;
+        }
+
+        .problem-pin {
+          min-height: auto;
+        }
+
+        .problem-stack {
+          min-height: auto;
+          display: grid;
+          gap: 34px;
+        }
+
+        .pain {
+          position: relative;
+          opacity: 1;
+          transform: none;
+          border-top: 1px solid var(--linen);
+          padding-top: 34px;
+        }
+
+        .system-track {
+          width: auto;
+          flex-wrap: wrap;
+        }
+
+        .step-card {
+          flex: 1 1 360px;
+        }
+
+        .channels-grid,
+        .testimonial-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      @media (max-width: 767px) {
+      @media (max-width: 760px) {
         :root {
           --container: min(100vw - 28px, 680px);
-          --section-space: 4.4rem;
+        }
+
+        .section {
+          padding: 78px 0;
         }
 
         .nav-shell {
@@ -870,129 +1296,65 @@
         }
 
         .wordmark {
-          font-size: 0.9rem;
-          letter-spacing: 0.38em;
+          font-size: 17px;
         }
 
-        .logo-lockup {
-          gap: 0.75rem;
-        }
-
-        .logo-lockup svg {
-          width: 29px;
-          height: 35px;
-        }
-
-        .hamburger {
-          display: block;
-        }
-
-        .nav-right {
-          position: fixed;
-          top: 70px;
-          left: 0;
-          width: 100%;
-          height: calc(100vh - 70px);
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          justify-content: flex-start;
-          gap: 2rem;
-          border-top: 0.5px solid var(--linen);
-          background: var(--ivory);
-          color: var(--obsidian);
-          padding: 2rem 14px;
-          transform: translateX(100%);
-          transition: transform 220ms ease;
-        }
-
-        .nav-right.open {
-          transform: translateX(0);
-        }
-
-        .nav-links {
-          display: grid;
-          gap: 0;
-          border-top: 0.5px solid var(--linen);
-        }
-
-        .nav-links a {
-          border-bottom: 0.5px solid var(--linen);
-          padding: 1.2rem 0;
-          font-size: 0.82rem;
-        }
-
-        .nav-cta {
-          width: 100%;
-        }
-
-        .hero {
-          min-height: auto;
-          padding-top: 8.2rem;
+        .hero-shell {
+          padding-top: 106px;
         }
 
         .hero-title {
-          font-size: clamp(3.3rem, 16vw, 5.2rem);
+          font-size: clamp(58px, 17vw, 86px);
         }
 
         .hero-actions {
           display: grid;
         }
 
-        .stats-row,
-        .cards-3,
-        .process-grid,
-        .asset-stats,
-        .track-stats,
-        .channels-grid,
-        .testimonials-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .stat {
-          border-right: 0;
-          border-bottom: 0.5px solid rgba(248, 246, 242, 0.17);
-          padding-right: 0;
-        }
-
-        .stat:last-child {
-          border-bottom: 0;
-        }
-
-        .hero-badge {
+        .btn {
           width: 100%;
         }
 
-        .trust-wrap {
+        .hero-stats,
+        .numbers-grid,
+        .mini-stats,
+        .channels-grid,
+        .footer-grid {
           grid-template-columns: 1fr;
-          gap: 1rem;
         }
 
-        .logo-row {
-          grid-template-columns: 1fr;
-          border-top: 0.5px solid var(--linen);
+        .hero-stat {
+          padding: 22px 0;
         }
 
-        .partner-logo {
-          border-bottom: 0.5px solid var(--linen);
+        .hero-stat:first-child {
+          padding-top: 0;
         }
 
-        .process-step,
-        .track-stat,
-        .testimonial-card {
-          min-height: auto;
+        .hero-stat + .hero-stat {
+          border-left: 0;
+          border-top: 1px solid rgba(200, 184, 154, 0.18);
+          padding-left: 0;
         }
 
-        .channel-number {
-          margin-bottom: 1.5rem;
+        .scroll-indicator {
+          display: none;
         }
 
-        .footer-main {
-          grid-template-columns: 1fr;
-          align-items: start;
+        .testimonial-grid {
+          display: flex;
+          gap: 14px;
+          overflow-x: auto;
+          padding-bottom: 14px;
+          scroll-snap-type: x mandatory;
         }
 
-        .footer-info {
+        .testimonial {
+          min-width: 84%;
+          scroll-snap-align: start;
+        }
+
+        .footer-center {
           text-align: left;
         }
 
@@ -1000,421 +1362,511 @@
           justify-content: flex-start;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+
+        .line-mask span,
+        .hero-label,
+        .hero-copy,
+        .hero-actions,
+        .hero-stats,
+        .site-header,
+        .pain {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
     </style>
   </head>
-  <body>
+  <body class="is-loading">
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader-inner">
+        <div class="preloader-logo">
+          <svg width="28" height="34" viewBox="0 0 28 34" fill="none">
+            <rect class="pre-v" x="0" y="0" width="2" height="34" fill="#F8F6F2" />
+            <rect class="pre-h pre-h-top" x="0" y="0" width="11" height="2" fill="#F8F6F2" />
+            <rect class="pre-h pre-h-bottom" x="0" y="32" width="11" height="2" fill="#F8F6F2" />
+            <line class="pre-mid" x1="10" y1="2" x2="10" y2="18" stroke="#F8F6F2" stroke-width="2" />
+            <line
+              class="pre-diagonal"
+              x1="10"
+              y1="18"
+              x2="26"
+              y2="34"
+              stroke="#C8B89A"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <div class="preloader-word" aria-label="Increvio">
+          <span>I</span><span>N</span><span>C</span><span>R</span><span>E</span><span>V</span><span>I</span><span>O</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <header class="site-header" id="siteHeader">
       <div class="container nav-shell">
-        <a class="logo-lockup" href="#top" aria-label="Increvio Startseite">
-          <span class="logo-mark" data-logo="light"></span>
+        <a class="logo-lockup magnetic" href="#top" aria-label="Increvio Startseite">
+          <svg width="28" height="34" viewBox="0 0 28 34" fill="none" aria-hidden="true">
+            <rect x="0" y="0" width="2" height="34" fill="#F8F6F2" />
+            <rect x="0" y="0" width="11" height="2" fill="#F8F6F2" />
+            <rect x="0" y="32" width="11" height="2" fill="#F8F6F2" />
+            <line x1="10" y1="2" x2="10" y2="18" stroke="#F8F6F2" stroke-width="2" />
+            <line
+              x1="10"
+              y1="18"
+              x2="26"
+              y2="34"
+              stroke="#C8B89A"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
           <span class="wordmark">Increvio</span>
         </a>
-        <button class="hamburger" id="menuToggle" type="button" aria-label="Menue oeffnen" aria-expanded="false">
+
+        <nav class="nav-center" aria-label="Hauptnavigation">
+          <a class="nav-link" href="#system">Unser System</a>
+          <a class="nav-link" href="#referenzen">Referenzen</a>
+          <a class="nav-link" href="#kontakt">Kontakt</a>
+        </nav>
+
+        <div class="nav-right">
+          <a class="btn nav-cta magnetic" href="#kontakt">Erstgespräch →</a>
+        </div>
+
+        <button class="hamburger magnetic" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <div class="nav-right" id="navMenu">
-          <nav class="nav-links" aria-label="Hauptnavigation">
-            <a href="#system">Unser System</a>
-            <a href="#referenzen">Referenzen</a>
-            <a href="#kontakt">Kontakt</a>
-          </nav>
-          <a class="btn nav-cta" href="#kontakt">Erstgespräch vereinbaren</a>
-        </div>
       </div>
     </header>
 
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <nav class="mobile-links" aria-label="Mobile Navigation">
+        <a href="#system">System</a>
+        <a href="#referenzen">Referenzen</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+
     <main id="top">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="reveal">
+      <section class="hero dark-section">
+        <div class="hero-watermark" aria-hidden="true">I</div>
+        <div class="container hero-shell">
+          <div class="hero-content">
+            <p class="mono-label hero-label">— Strategischer Vertriebspartner · DACH-Raum · 2026</p>
             <h1 class="hero-title">
-              Mehr Kapitalanleger-Mandanten —<br />
-              <em>planbar, vorqualifiziert, ab Tag eins.</em>
+              <span class="line-mask"><span>Mehr Kapitalanleger-</span></span>
+              <span class="line-mask"><span>Mandanten.</span></span>
+              <span class="line-mask"><span><em class="gold">Planbar.</em></span></span>
             </h1>
             <p class="hero-copy">
-              Für Finanzberater und Vermögensverwalter, die nicht auf Empfehlungen warten wollen.
+              Für Finanzberater und Vermögensverwalter,<br />
+              die nicht auf Empfehlungen warten wollen.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-light" href="#kontakt">Erstgespräch vereinbaren</a>
-              <a class="btn btn-ghost" href="#system">Unser System ansehen ↓</a>
+              <a class="btn btn-primary magnetic" href="#kontakt">Erstgespräch vereinbaren</a>
+              <a class="btn magnetic" href="#system">Unser System ↓</a>
             </div>
           </div>
 
-          <div class="hero-bottom reveal">
-            <div>
-              <div class="stats-row" data-counter-section>
-                <div class="stat">
-                  <strong><span data-counter data-target="57">0</span> Mio. €</strong>
-                  <span>Vermitteltes Transaktionsvolumen</span>
-                </div>
-                <div class="stat">
-                  <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
-                  <span>Bestandsanleger im Portfolio</span>
-                </div>
-                <div class="stat">
-                  <strong><span data-counter data-target="93">0</span>%</strong>
-                  <span>Partner vermitteln in der ersten Woche</span>
-                </div>
-              </div>
+          <div class="hero-stats" data-counter-group>
+            <div class="hero-stat">
+              <strong><span data-counter data-target="57">0</span> Mio. €</strong>
+              <span>Vermitteltes Volumen</span>
             </div>
-            <div>
-              <div class="gold-line" aria-hidden="true"></div>
-              <div class="hero-badge">
-                <span>✓ Exklusiv pro Region</span>
-                <span>·</span>
-                <span>✓ Vorqualifiziert</span>
-                <span>·</span>
-                <span>✓ Bonität geprüft</span>
-                <span>·</span>
-                <span>✓ Vertrieb ab Tag 1</span>
-              </div>
+            <div class="hero-stat">
+              <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
+              <span>Bestandsanleger</span>
+            </div>
+            <div class="hero-stat">
+              <strong><span data-counter data-target="93">0</span>%</strong>
+              <span>Partner vermitteln in Woche 1</span>
             </div>
           </div>
         </div>
+        <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true"></div>
       </section>
 
-      <section class="trust-section" aria-label="Partnerbanken">
-        <div class="container trust-wrap reveal">
-          <p class="trust-label">Unabhängig bestätigt von Partnerbanken</p>
-          <div class="logo-row" aria-label="Banken und Partner">
-            <div class="partner-logo">Deutsche Bank</div>
-            <div class="partner-logo">Commerzbank</div>
-            <div class="partner-logo">DZ Bank</div>
-            <div class="partner-logo">Volksbank</div>
-            <div class="partner-logo">Privatbank</div>
-          </div>
+      <section class="marquee" aria-label="Increvio Kennzahlen">
+        <div class="marquee-track">
+          <span
+            >EXKLUSIV PRO REGION · VORQUALIFIZIERT · BONITÄT GEPRÜFT · VERTRIEB AB TAG 1 · DACH-RAUM · 7.384
+            BESTANDSANLEGER · 57 MIO. € VOLUMEN ·</span
+          >
+          <span
+            >EXKLUSIV PRO REGION · VORQUALIFIZIERT · BONITÄT GEPRÜFT · VERTRIEB AB TAG 1 · DACH-RAUM · 7.384
+            BESTANDSANLEGER · 57 MIO. € VOLUMEN ·</span
+          >
         </div>
       </section>
 
-      <section class="section problem-section">
-        <div class="container">
-          <div class="reveal">
-            <p class="label">— Das Problem</p>
-            <h2 class="section-title">
-              Die meisten guten Finanzberater<br />
-              wachsen nur durch <em>Empfehlungen.</em>
+      <section class="section light problem" id="problem">
+        <div class="container problem-pin">
+          <div class="problem-left">
+            <p class="mono-label reveal-head">— 01 / Das Problem</p>
+            <h2 class="problem-title reveal-head">
+              Die meisten<br />
+              Finanzberater<br />
+              wachsen nur durch<br />
+              Empfehlungen.
             </h2>
           </div>
-          <div class="cards-3 reveal">
-            <article class="pain-card">
+          <div class="problem-stack">
+            <article class="pain">
+              <span class="pain-ghost">01</span>
+              <p class="mono-label">01 — Nicht planbar</p>
               <h3>Nicht planbar</h3>
               <p>
-                Ihr bestes Quartal war eine gute Empfehlung. Nächsten Monat? Unbekannt. Das ist kein
-                System — das ist Zufall.
+                Ihr bestes Quartal war eine gute Empfehlung. Nächsten Monat? Unbekannt. Das ist kein System —
+                das ist Zufall.
               </p>
             </article>
-            <article class="pain-card">
-              <h3>Zeitaufwändig</h3>
+            <article class="pain">
+              <span class="pain-ghost">02</span>
+              <p class="mono-label">02 — Kein System</p>
+              <h3>Kein System</h3>
               <p>
-                Kaltakquise kostet Zeit die Sie für Ihre Bestandskunden brauchen. Und der ROI ist meist
-                enttäuschend.
+                Kaltakquise kostet Zeit die Sie für Bestandskunden brauchen. Und der ROI ist meist enttäuschend.
               </p>
             </article>
-            <article class="pain-card">
+            <article class="pain">
+              <span class="pain-ghost">03</span>
+              <p class="mono-label">03 — Falsche Zielgruppe</p>
               <h3>Falsche Zielgruppe</h3>
               <p>
-                Portale und Anbieter liefern Massenleads — nicht die vermögenden Privatanleger die Sie
-                wirklich brauchen.
+                Massenleads bringen Massenprobleme. Was Sie brauchen sind vermögende Privatanleger — nicht
+                neugierige Klicker.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section dark" id="system">
+      <section class="section dark system dark-section" id="system">
         <div class="container">
-          <div class="reveal">
-            <p class="label">— Unser System</p>
-            <h2 class="section-title">
-              Vom Bestand zum Abschluss.<br />
-              <em>In vier Schritten.</em>
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 02 / Unser System</p>
+            <h2 class="section-title reveal-head">
+              Vom Bestand zum<br />
+              Abschluss. In vier<br />
+              Schritten.
             </h2>
           </div>
-          <div class="process-grid reveal">
-            <article class="process-step">
-              <span class="step-number">01</span>
-              <div>
-                <h3>Match &amp; Akquise</h3>
-                <p>
-                  7.384 vorqualifizierte Anleger werden sofort gegen Ihr Profil und Ihre Region gematcht.
-                  Alle 8 Akquise-Kanäle laufen parallel.
-                </p>
-              </div>
-            </article>
-            <article class="process-step">
-              <span class="step-number">02</span>
-              <div>
-                <h3>Vorqualifizierung</h3>
-                <p>
-                  Bedarfsanalyse, Anlage-Profiling, Selbstauskunft. Nur wer wirklich zu Ihnen passt kommt
-                  weiter.
-                </p>
-              </div>
-            </article>
-            <article class="process-step">
-              <span class="step-number">03</span>
-              <div>
-                <h3>Bonitätsprüfung</h3>
-                <p>
-                  Eigenkapital, Liquidität und Investitionsbereitschaft werden dokumentiert. Kein Gespräch
-                  mit jemandem der nicht kaufen kann.
-                </p>
-              </div>
-            </article>
-            <article class="process-step">
-              <span class="step-number">04</span>
-              <div>
-                <h3>Übergabe &amp; Abschluss</h3>
-                <p>
-                  Sie erhalten den Anleger mit vollständigem Profil. Ihr einziger Job: das
-                  Beratungsgespräch führen und den Abschluss machen.
-                </p>
-              </div>
-            </article>
+
+          <div class="system-track-wrap">
+            <div class="system-track" id="systemTrack">
+              <article class="step-card reveal-card">
+                <span class="step-kicker">01 — Match &amp; Akquise</span>
+                <div>
+                  <h3>Match &amp; Akquise</h3>
+                  <p>
+                    7.384 Anleger werden sofort gegen Ihr Profil gematcht. Alle 8 Akquise-Kanäle laufen parallel.
+                  </p>
+                </div>
+              </article>
+              <article class="step-card reveal-card">
+                <span class="step-kicker">02 — Vorqualifizierung</span>
+                <div>
+                  <h3>Vorqualifizierung</h3>
+                  <p>
+                    Bedarfsanalyse, Anlage-Profiling, Selbstauskunft. Nur wer wirklich zu Ihnen passt kommt weiter.
+                  </p>
+                </div>
+              </article>
+              <article class="step-card reveal-card">
+                <span class="step-kicker">03 — Bonitätsprüfung</span>
+                <div>
+                  <h3>Bonitätsprüfung</h3>
+                  <p>
+                    Eigenkapital, Liquidität, Investitionsbereitschaft — dokumentiert. Kein Gespräch mit jemandem der
+                    nicht kaufen kann.
+                  </p>
+                </div>
+              </article>
+              <article class="step-card reveal-card">
+                <span class="step-kicker">04 — Übergabe &amp; Abschluss</span>
+                <div>
+                  <h3>Übergabe &amp; Abschluss</h3>
+                  <p>
+                    Sie erhalten den Anleger mit vollständigem Profil. Ihr einziger Job: Beratungsgespräch und
+                    Abschluss.
+                  </p>
+                </div>
+              </article>
+            </div>
           </div>
-          <div class="reveal">
-            <a class="btn btn-light" href="#kontakt">Erstgespräch vereinbaren →</a>
+
+          <div class="system-cta reveal-card">
+            <a class="btn btn-primary magnetic" href="#kontakt">Erstgespräch vereinbaren →</a>
           </div>
         </div>
       </section>
 
-      <section class="section asset-section">
+      <section class="section dark numbers dark-section">
+        <div class="container">
+          <div class="numbers-grid" data-counter-group>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="100">0</span>+</strong>
+              <span>Partner</span>
+            </div>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="57">0</span> Mio. €</strong>
+              <span>Transaktionsvolumen</span>
+            </div>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
+              <span>Bestandsanleger</span>
+            </div>
+            <div class="number-cell reveal-card">
+              <strong><span data-counter data-target="93">0</span>%</strong>
+              <span>In erster Woche</span>
+            </div>
+          </div>
+          <p class="numbers-note reveal-card">Von Partnerbanken dokumentiert · Über 80 Städte im DACH-Raum</p>
+        </div>
+      </section>
+
+      <section class="section light asset">
         <div class="container asset-grid">
-          <div class="reveal">
-            <p class="label">— Unser Asset</p>
-            <h2 class="section-title">
-              7.384 Anleger im Bestand.<br />
-              <em>Jeder hat schon einmal gekauft.</em>
+          <div>
+            <p class="mono-label reveal-head">— 03 / Unser Asset</p>
+            <h2 class="asset-title reveal-head">
+              7.384 Anleger<br />
+              im Bestand.<br />
+              Jeder hat schon<br />
+              einmal gekauft.
             </h2>
-            <p class="asset-copy">
-              Unser strategischer Vorteil sind keine Anfragen aus dem Nichts — es ist die Datenbank.
-              Vorqualifiziert, mit dokumentierter Bonität, geografisch zugeordnet und nach Berufsgruppen
-              segmentiert. Bei Vertragsstart matchen wir Ihre Produkte sofort gegen den Bestand. Vertrieb
-              läuft ab Tag eins.
-            </p>
-            <div class="asset-stats" data-counter-section>
-              <div class="asset-stat">
+            <p class="asset-copy reveal-card">Kein Asset, das wir mieten. Eines, das wir besitzen.</p>
+            <div class="mini-stats" data-counter-group>
+              <div class="mini-stat reveal-card">
                 <strong><span data-counter data-target="80">0</span>%</strong>
                 <span>Mehrfach-Käufer</span>
               </div>
-              <div class="asset-stat">
+              <div class="mini-stat reveal-card">
                 <strong><span data-counter data-target="5">0</span>+ Jahre</strong>
-                <span>Aufbau-Historie</span>
+                <span>Aufbau</span>
               </div>
-              <div class="asset-stat">
+              <div class="mini-stat reveal-card">
                 <strong>+<span data-counter data-target="100">0</span></strong>
-                <span>Neue Anleger pro Monat</span>
+                <span>Neue/Monat</span>
               </div>
-              <div class="asset-stat">
+              <div class="mini-stat reveal-card">
                 <strong><span data-counter data-target="100">0</span>%</strong>
                 <span>Bonitätsgeprüft</span>
               </div>
             </div>
           </div>
-          <aside class="bar-panel reveal" aria-label="Berufsgruppen im Anlegerbestand">
-            <h3>Berufsgruppen</h3>
-            <div class="bar-item">
+
+          <div class="bars reveal-card" id="bars">
+            <p class="bars-title">Berufsgruppen im Bestand</p>
+            <div class="bar">
               <div class="bar-meta"><span>Ärzte &amp; Mediziner</span><span>28,9%</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width: 28.9%"></div></div>
+              <div class="bar-line"><div class="bar-fill" data-width="28.9"></div></div>
             </div>
-            <div class="bar-item">
+            <div class="bar">
               <div class="bar-meta"><span>Ingenieure</span><span>24,3%</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width: 24.3%"></div></div>
+              <div class="bar-line"><div class="bar-fill" data-width="24.3"></div></div>
             </div>
-            <div class="bar-item">
+            <div class="bar">
               <div class="bar-meta"><span>IT / Tech</span><span>22,5%</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width: 22.5%"></div></div>
+              <div class="bar-line"><div class="bar-fill" data-width="22.5"></div></div>
             </div>
-            <div class="bar-item">
+            <div class="bar">
               <div class="bar-meta"><span>Beratung / Finance</span><span>13,7%</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width: 13.7%"></div></div>
+              <div class="bar-line"><div class="bar-fill" data-width="13.7"></div></div>
             </div>
-            <div class="bar-item">
+            <div class="bar">
               <div class="bar-meta"><span>Selbstständige</span><span>10,6%</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width: 10.6%"></div></div>
+              <div class="bar-line"><div class="bar-fill" data-width="10.6"></div></div>
             </div>
-          </aside>
+          </div>
         </div>
       </section>
 
-      <section class="section dark">
+      <section class="section surface channels dark-section">
         <div class="container">
-          <div class="reveal">
-            <p class="label">— Trackrecord</p>
-            <h2 class="section-title">
-              Zahlen, die unabhängig<br />
-              <em>bestätigt sind.</em>
-            </h2>
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 04 / Akquise-Kanäle</p>
+            <h2 class="section-title reveal-head">Acht Wege. Eine Pipeline.</h2>
           </div>
-          <div class="track-stats reveal" data-counter-section>
-            <div class="track-stat">
-              <strong><span data-counter data-target="100">0</span>+</strong>
-              <span>Partner seit Gründung</span>
-            </div>
-            <div class="track-stat">
-              <strong><span data-counter data-target="57">0</span> Mio. €</strong>
-              <span>Vermitteltes Transaktionsvolumen</span>
-            </div>
-            <div class="track-stat">
-              <strong><span data-counter data-target="7384" data-format="de">0</span></strong>
-              <span>Bestandsanleger aufgebaut</span>
-            </div>
-            <div class="track-stat">
-              <strong><span data-counter data-target="93">0</span>%</strong>
-              <span>Partner vermitteln in der ersten Woche</span>
-            </div>
-          </div>
-          <p class="track-note reveal">
-            Von Partnerbanken dokumentiert. Realisiert in über 80 Städten im DACH-Raum.
-          </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="reveal">
-            <p class="label">— Vom Bestand zum Abschluss</p>
-            <h2 class="section-title">
-              Acht Wege zu Ihrem<br />
-              <em>nächsten Mandanten.</em>
-            </h2>
-          </div>
-          <div class="channels-grid reveal">
-            <article class="channel-card">
-              <span class="channel-number">01</span>
+          <div class="channels-grid">
+            <article class="channel reveal-card">
+              <span class="channel-num">01</span>
               <h3>Bestandspool</h3>
-              <p>7.384 vorqualifizierte Anleger als Sofort-Match</p>
+              <p>7.384 vorqualifizierte Anleger</p>
             </article>
-            <article class="channel-card">
-              <span class="channel-number">02</span>
+            <article class="channel reveal-card">
+              <span class="channel-num">02</span>
               <h3>Steuerberater &amp; Family Offices</h3>
-              <p>Mandanten-Empfehlungen aus Top-Kanzleien</p>
+              <p>Top-Kanzleien</p>
             </article>
-            <article class="channel-card">
-              <span class="channel-number">03</span>
+            <article class="channel reveal-card">
+              <span class="channel-num">03</span>
               <h3>Bank- &amp; Versicherungspartner</h3>
-              <p>Ärzte-Banken, Beamtenkredite, Privatversicherer</p>
+              <p>Ärzte-Banken</p>
             </article>
-            <article class="channel-card">
-              <span class="channel-number">04</span>
+            <article class="channel reveal-card">
+              <span class="channel-num">04</span>
               <h3>Vor-Ort-Veranstaltungen</h3>
-              <p>Investoren-Salons in Premium-Locations</p>
+              <p>Premium-Locations</p>
             </article>
-            <article class="channel-card">
-              <span class="channel-number">05</span>
+            <article class="channel reveal-card">
+              <span class="channel-num">05</span>
               <h3>Webinare &amp; Seminare</h3>
-              <p>Live-Sessions zu Steuermodellen und Anlagestrategien</p>
+              <p>Live-Sessions</p>
             </article>
-            <article class="channel-card">
-              <span class="channel-number">06</span>
+            <article class="channel reveal-card">
+              <span class="channel-num">06</span>
               <h3>Kongresse &amp; Messen</h3>
-              <p>Investorenforen und Branchengipfel deutschlandweit</p>
+              <p>Branchengipfel</p>
             </article>
-            <article class="channel-card">
-              <span class="channel-number">07</span>
+            <article class="channel reveal-card">
+              <span class="channel-num">07</span>
               <h3>Strukturvertriebe</h3>
-              <p>Kapitalmarkt-Vermittlernetzwerke und Tippgeber-Programme</p>
+              <p>Vermittlernetzwerke</p>
             </article>
-            <article class="channel-card">
-              <span class="channel-number">08</span>
+            <article class="channel reveal-card">
+              <span class="channel-num">08</span>
               <h3>Digital Performance</h3>
-              <p>Gezielte digitale Kanäle für vermögende Privatpersonen</p>
+              <p>Gezielte Kanäle</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="referenzen">
+      <section class="section light testimonials" id="referenzen">
         <div class="container">
-          <div class="reveal">
-            <p class="label">— Referenzen</p>
-            <h2 class="section-title">
-              Was unsere Anleger<br />
-              <em>über die Zusammenarbeit sagen.</em>
-            </h2>
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 05 / Referenzen</p>
+            <h2 class="section-title reveal-head">Was unsere Anleger sagen.</h2>
           </div>
-          <div class="testimonials-grid reveal">
-            <article class="testimonial-card">
-              <div class="testimonial-person">Dr. Michael Kern</div>
-              <div class="testimonial-role">Anästhesist, Hamburg</div>
+
+          <div class="testimonial-grid">
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="initials">MK</div>
+                <div class="person">
+                  <span>Dr. Michael Kern</span>
+                  <span>Anästhesist · Hamburg</span>
+                </div>
+              </div>
               <div class="stars">★★★★★</div>
               <blockquote>
-                "Bei Increvio wurde mir der Immobilienfonds mit allen steuerlichen Aspekten ehrlich
-                durchgerechnet. Inzwischen halte ich drei Positionen über sie."
+                "Bei Increvio wurde mir der Immobilienfonds mit allen steuerlichen Aspekten ehrlich durchgerechnet.
+                Inzwischen halte ich drei Positionen über sie."
               </blockquote>
-              <span class="badge">3 Positionen · Immobilienfonds</span>
+              <div class="testimonial-badge">3 Positionen · Immobilienfonds</div>
             </article>
-            <article class="testimonial-card">
-              <div class="testimonial-person">Thomas Schreiber</div>
-              <div class="testimonial-role">Software Engineer, München</div>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="initials">TS</div>
+                <div class="person">
+                  <span>Thomas Schreiber</span>
+                  <span>Software Engineer · München</span>
+                </div>
+              </div>
               <div class="stars">★★★★★</div>
               <blockquote>
-                "Mein erstes Investment in einen geschlossenen Fonds. Vollständige Cashflow-Analyse vor
-                dem Gespräch. Drei Wochen vom ersten Kontakt bis zur Zeichnung."
+                "Mein erstes Investment in einen geschlossenen Fonds. Vollständige Cashflow-Analyse vor dem
+                Gespräch. Drei Wochen vom ersten Kontakt bis zur Zeichnung."
               </blockquote>
-              <span class="badge">Erstinvestment · Geschlossener Fonds</span>
+              <div class="testimonial-badge">Geschlossener Fonds</div>
             </article>
-            <article class="testimonial-card">
-              <div class="testimonial-person">Dr. Anna Bergmann</div>
-              <div class="testimonial-role">Zahnärztin, Frankfurt</div>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="initials">AB</div>
+                <div class="person">
+                  <span>Dr. Anna Bergmann</span>
+                  <span>Zahnärztin · Frankfurt</span>
+                </div>
+              </div>
               <div class="stars">★★★★★</div>
               <blockquote>
-                "Vier Investments in zwei Jahren — PV-Direktanlage, Immobilienbeteiligungen und Private
-                Equity. Mein Berater kennt mein Portfolio besser als ich."
+                "Vier Investments in zwei Jahren — PV-Direktanlage, Immobilienbeteiligungen und Private Equity.
+                Mein Berater kennt mein Portfolio besser als ich."
               </blockquote>
-              <span class="badge">4 Investments · Mixed Portfolio</span>
+              <div class="testimonial-badge">Mixed Portfolio · 4 Investments</div>
             </article>
-            <article class="testimonial-card">
-              <div class="testimonial-person">Stefan Reiter</div>
-              <div class="testimonial-role">Geschäftsführer, Stuttgart</div>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="initials">SR</div>
+                <div class="person">
+                  <span>Stefan Reiter</span>
+                  <span>Geschäftsführer · Stuttgart</span>
+                </div>
+              </div>
               <div class="stars">★★★★★</div>
               <blockquote>
-                "Increvio hat mir nicht das nächstbeste Produkt verkauft — sie sagten mir auch, wenn ein
-                Investment nicht zu meinem Profil passt."
+                "Increvio hat mir nicht das nächstbeste Produkt verkauft — sie sagten mir auch, wenn ein Investment
+                nicht zu meinem Profil passt."
               </blockquote>
-              <span class="badge">PV-Direktinvestment · Empfehlungsgeber</span>
+              <div class="testimonial-badge">PV-Direktinvestment</div>
             </article>
-            <article class="testimonial-card">
-              <div class="testimonial-person">Christian Hoffmann</div>
-              <div class="testimonial-role">Rechtsanwalt, Berlin</div>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="initials">CH</div>
+                <div class="person">
+                  <span>Christian Hoffmann</span>
+                  <span>Rechtsanwalt · Berlin</span>
+                </div>
+              </div>
               <div class="stars">★★★★★</div>
               <blockquote>
-                "Vollständige Transparenz über Laufzeit, Ausschüttungen und Exitszenarien bevor ich
-                unterschrieben habe. Kein anderer Anbieter war so vorbereitet."
+                "Vollständige Transparenz über Laufzeit, Ausschüttungen und Exitszenarien bevor ich unterschrieben
+                habe. Kein anderer Anbieter war so vorbereitet."
               </blockquote>
-              <span class="badge">2 PE-Beteiligungen</span>
+              <div class="testimonial-badge">2 PE-Beteiligungen</div>
             </article>
-            <article class="testimonial-card">
-              <div class="testimonial-person">Markus Wenzel</div>
-              <div class="testimonial-role">Ingenieur, Nürnberg</div>
+
+            <article class="testimonial reveal-card">
+              <div class="testimonial-top">
+                <div class="initials">MW</div>
+                <div class="person">
+                  <span>Markus Wenzel</span>
+                  <span>Ingenieur · Nürnberg</span>
+                </div>
+              </div>
               <div class="stars">★★★★★</div>
               <blockquote>
-                "Der Prozess war so strukturiert, dass meine Frau sagte: so sollte jede Kapitalanlage
-                laufen."
+                "Der Prozess war so strukturiert, dass meine Frau sagte: so sollte jede Kapitalanlage laufen."
               </blockquote>
-              <span class="badge">Immobilienfonds · Ehepaar-Investment</span>
+              <div class="testimonial-badge">Immobilienfonds · Ehepaar</div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section dark">
+      <section class="section dark comparison dark-section">
         <div class="container">
-          <div class="reveal">
-            <p class="label">— Im Vergleich</p>
-            <h2 class="section-title">
-              Warum nicht nur<br />
-              <em>Empfehlungen.</em>
-            </h2>
+          <div class="section-head">
+            <p class="mono-label reveal-head">— 06 / Im Vergleich</p>
+            <h2 class="section-title reveal-head">Warum nicht nur Empfehlungen.</h2>
           </div>
-          <div class="comparison-wrap reveal">
+          <div class="comparison-wrap reveal-card">
             <table class="comparison-table">
               <thead>
                 <tr>
                   <th>Kriterium</th>
-                  <th class="increvio">Increvio</th>
+                  <th class="inc">Increvio</th>
                   <th>Nur Empfehlungen</th>
                   <th>Andere Anbieter</th>
                 </tr>
@@ -1422,39 +1874,39 @@
               <tbody>
                 <tr>
                   <td>Eigener Anleger-Pool</td>
-                  <td class="increvio">✓ 7.384 Anleger</td>
-                  <td>✕ Kein Pool</td>
-                  <td>✕ Kein Pool</td>
+                  <td><span class="mark-yes">✓</span> 7.384 Anleger</td>
+                  <td><span class="mark-no">✕</span> Kein Pool</td>
+                  <td><span class="mark-no">✕</span> Kein Pool</td>
                 </tr>
                 <tr>
                   <td>Planbarkeit</td>
-                  <td class="increvio">✓ Monatlich konstant</td>
-                  <td>✕ Nicht planbar</td>
-                  <td>○ Variabel</td>
+                  <td><span class="mark-yes">✓</span> Monatlich konstant</td>
+                  <td><span class="mark-no">✕</span> Nicht planbar</td>
+                  <td><span class="mark-mid">○</span> Variabel</td>
                 </tr>
                 <tr>
                   <td>Vorqualifizierung</td>
-                  <td class="increvio">✓ Vollständig</td>
-                  <td>○ Teilweise</td>
-                  <td>✕ Nicht enthalten</td>
+                  <td><span class="mark-yes">✓</span> Vollständig</td>
+                  <td><span class="mark-mid">○</span> Teilweise</td>
+                  <td><span class="mark-no">✕</span> Nicht enthalten</td>
                 </tr>
                 <tr>
                   <td>Branchenwissen</td>
-                  <td class="increvio">✓ Kapitalanlage</td>
-                  <td>✓ Vorhanden</td>
-                  <td>✕ Generisch</td>
+                  <td><span class="mark-yes">✓</span> Kapitalanlage</td>
+                  <td><span class="mark-yes">✓</span> Vorhanden</td>
+                  <td><span class="mark-no">✕</span> Generisch</td>
                 </tr>
                 <tr>
                   <td>Skalierbarkeit</td>
-                  <td class="increvio">✓ Unbegrenzt</td>
-                  <td>✕ Netzwerk-limitiert</td>
-                  <td>○ Begrenzt</td>
+                  <td><span class="mark-yes">✓</span> Unbegrenzt</td>
+                  <td><span class="mark-no">✕</span> Netzwerk-limitiert</td>
+                  <td><span class="mark-mid">○</span> Begrenzt</td>
                 </tr>
                 <tr>
                   <td>After-Sales</td>
-                  <td class="increvio">✓ Eigene Infrastruktur</td>
-                  <td>○ Manuell</td>
-                  <td>✕ Nicht vorgesehen</td>
+                  <td><span class="mark-yes">✓</span> Eigene Infrastruktur</td>
+                  <td><span class="mark-mid">○</span> Manuell</td>
+                  <td><span class="mark-no">✕</span> Nicht vorgesehen</td>
                 </tr>
               </tbody>
             </table>
@@ -1462,176 +1914,318 @@
         </div>
       </section>
 
-      <section class="section dark cta-section" id="kontakt">
-        <div class="container reveal">
-          <h2 class="cta-title">
+      <section class="section dark cta dark-section" id="kontakt">
+        <div class="container">
+          <h2 class="cta-title reveal-head">
             Bereit für planbare<br />
-            <em>Neukundengewinnung?</em>
+            <span class="gold">Neukundengewinnung?</span>
           </h2>
-          <p class="cta-copy">
-            Vereinbaren Sie ein kostenloses Erstgespräch. Wir analysieren Ihre aktuelle Situation und
-            zeigen Ihnen konkret, wie viele Mandanten Sie in den ersten 30 Tagen erwarten können.
-          </p>
-          <form class="contact-form" id="contactForm">
+          <p class="cta-sub reveal-card">Kostenloses Erstgespräch · Keine Verpflichtung · 30 Minuten</p>
+          <form class="contact-form reveal-card" id="contactForm">
             <input class="field" type="text" name="name" placeholder="Name" autocomplete="name" required />
             <input class="field" type="text" name="firma" placeholder="Firma" autocomplete="organization" required />
             <input class="field" type="email" name="email" placeholder="E-Mail" autocomplete="email" required />
             <input class="field" type="tel" name="telefon" placeholder="Telefon" autocomplete="tel" required />
-            <textarea class="field" name="nachricht" placeholder="Nachricht (optional)"></textarea>
-            <button class="btn btn-light" type="submit">Erstgespräch anfragen →</button>
+            <button class="btn submit-btn magnetic" type="submit" id="submitButton">Erstgespräch anfragen</button>
           </form>
-          <p class="form-success" id="formSuccess">Vielen Dank. Ihre Anfrage wurde vorbereitet.</p>
-          <p class="form-note">Kein Spam. Kein Druck. Ein offenes Gespräch.</p>
+          <p class="form-note reveal-card">Kein Spam. Kein Druck. Ein offenes Gespräch.</p>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer dark-section">
       <div class="container">
-        <div class="footer-main">
-          <a class="logo-lockup" href="#top" aria-label="Increvio Startseite">
-            <span class="logo-mark" data-logo="dark"></span>
-            <span class="wordmark">Increvio</span>
-          </a>
-          <div class="footer-info">München, Deutschland · timur.leontyev@increvio.de · increvio.de</div>
+        <div class="footer-grid">
+          <div>
+            <a class="logo-lockup magnetic" href="#top" aria-label="Increvio Startseite">
+              <svg width="28" height="34" viewBox="0 0 28 34" fill="none" aria-hidden="true">
+                <rect x="0" y="0" width="2" height="34" fill="#F8F6F2" />
+                <rect x="0" y="0" width="11" height="2" fill="#F8F6F2" />
+                <rect x="0" y="32" width="11" height="2" fill="#F8F6F2" />
+                <line x1="10" y1="2" x2="10" y2="18" stroke="#F8F6F2" stroke-width="2" />
+                <line
+                  x1="10"
+                  y1="18"
+                  x2="26"
+                  y2="34"
+                  stroke="#C8B89A"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span class="wordmark">Increvio</span>
+            </a>
+            <p class="footer-small">München · 2026</p>
+          </div>
+          <div class="footer-center">timur.leontyev@increvio.de · increvio.de</div>
           <div class="footer-links">
-            <a href="#">Impressum</a>
-            <a href="#">Datenschutz</a>
+            <a class="magnetic" href="#">Impressum</a>
+            <a class="magnetic" href="#">Datenschutz</a>
           </div>
         </div>
-        <div class="footer-bottom">© 2026 Increvio</div>
+        <div class="footer-bottom">© 2026 Increvio — Timur Farshid Leontyev</div>
       </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-      const logoLight = `
-        <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="0" y="0" width="2.5" height="44" fill="#0A0A0A"/>
-          <rect x="0" y="0" width="14" height="2.5" fill="#0A0A0A"/>
-          <rect x="0" y="41.5" width="14" height="2.5" fill="#0A0A0A"/>
-          <line x1="13" y1="2.5" x2="13" y2="24" stroke="#0A0A0A" stroke-width="2.5"/>
-          <line x1="13" y1="24" x2="34" y2="44" stroke="#C8B89A" stroke-width="2"/>
-        </svg>
-      `;
-
-      const logoDark = `
-        <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="0" y="0" width="2.5" height="44" fill="#F8F6F2"/>
-          <rect x="0" y="0" width="14" height="2.5" fill="#F8F6F2"/>
-          <rect x="0" y="41.5" width="14" height="2.5" fill="#F8F6F2"/>
-          <line x1="13" y1="2.5" x2="13" y2="24" stroke="#F8F6F2" stroke-width="2.5"/>
-          <line x1="13" y1="24" x2="34" y2="44" stroke="#C8B89A" stroke-width="2"/>
-        </svg>
-      `;
-
-      const siteHeader = document.getElementById("siteHeader");
+      const header = document.getElementById("siteHeader");
+      const scrollIndicator = document.getElementById("scrollIndicator");
       const menuToggle = document.getElementById("menuToggle");
-      const navMenu = document.getElementById("navMenu");
+      const mobileMenu = document.getElementById("mobileMenu");
       const contactForm = document.getElementById("contactForm");
-      const formSuccess = document.getElementById("formSuccess");
-      const logoMarks = document.querySelectorAll(".logo-mark");
+      const submitButton = document.getElementById("submitButton");
+      const cursorDot = document.getElementById("cursorDot");
+      const cursorRing = document.getElementById("cursorRing");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      function updateLogos() {
-        const useLightMark = siteHeader.classList.contains("scrolled") || siteHeader.classList.contains("menu-active");
-        logoMarks.forEach((mark) => {
-          if (mark.dataset.logo === "dark") {
-            mark.innerHTML = logoDark;
-          } else {
-            mark.innerHTML = useLightMark ? logoLight : logoDark;
-          }
-        });
+      function updateHeader() {
+        const scrolled = window.scrollY > 18;
+        header.classList.toggle("scrolled", scrolled);
+        scrollIndicator.classList.toggle("hidden", scrolled);
       }
 
-      function onScroll() {
-        siteHeader.classList.toggle("scrolled", window.scrollY > 18);
-        updateLogos();
-      }
+      window.addEventListener("scroll", updateHeader, { passive: true });
+      updateHeader();
 
       function closeMenu() {
-        document.body.classList.remove("nav-open");
-        siteHeader.classList.remove("menu-active");
-        navMenu.classList.remove("open");
+        document.body.classList.remove("menu-open");
+        header.classList.remove("menu-active");
+        mobileMenu.classList.remove("open");
+        mobileMenu.setAttribute("aria-hidden", "true");
         menuToggle.classList.remove("active");
         menuToggle.setAttribute("aria-expanded", "false");
-        updateLogos();
       }
 
       menuToggle.addEventListener("click", () => {
-        const isOpen = navMenu.classList.toggle("open");
-        document.body.classList.toggle("nav-open", isOpen);
-        siteHeader.classList.toggle("menu-active", isOpen);
+        const isOpen = !mobileMenu.classList.contains("open");
+        document.body.classList.toggle("menu-open", isOpen);
+        header.classList.toggle("menu-active", isOpen);
+        mobileMenu.classList.toggle("open", isOpen);
+        mobileMenu.setAttribute("aria-hidden", String(!isOpen));
         menuToggle.classList.toggle("active", isOpen);
         menuToggle.setAttribute("aria-expanded", String(isOpen));
-        updateLogos();
-      });
 
-      navMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", closeMenu);
-      });
-
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
-
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              revealObserver.unobserve(entry.target);
-            }
+        if (isOpen && window.gsap) {
+          gsap.to(".mobile-links a", {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: "power3.out",
           });
-        },
-        { threshold: 0.14 }
-      );
-
-      document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
-
-      const counterFormatter = new Intl.NumberFormat("de-DE");
-
-      function animateCounter(counter) {
-        const target = Number(counter.dataset.target || 0);
-        const useGermanFormat = counter.dataset.format === "de";
-        const duration = 1350;
-        const startTime = performance.now();
-
-        function tick(now) {
-          const progress = Math.min((now - startTime) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const value = Math.round(target * eased);
-          counter.textContent = useGermanFormat ? counterFormatter.format(value) : String(value);
-
-          if (progress < 1) {
-            requestAnimationFrame(tick);
-          }
+        } else if (window.gsap) {
+          gsap.set(".mobile-links a", { opacity: 0, y: 18 });
         }
+      });
 
-        requestAnimationFrame(tick);
-      }
-
-      const counterObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.querySelectorAll("[data-counter]").forEach((counter) => {
-              if (counter.dataset.counted === "true") return;
-              counter.dataset.counted = "true";
-              animateCounter(counter);
-            });
-            counterObserver.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.32 }
-      );
-
-      document.querySelectorAll("[data-counter-section]").forEach((section) => {
-        counterObserver.observe(section);
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
       });
 
       contactForm.addEventListener("submit", (event) => {
         event.preventDefault();
         contactForm.reset();
-        formSuccess.style.display = "block";
+        submitButton.textContent = "Nachricht gesendet ✓";
+        setTimeout(() => {
+          submitButton.textContent = "Erstgespräch anfragen";
+        }, 3200);
       });
+
+      function initCursor() {
+        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        window.addEventListener("mousemove", (event) => {
+          mouseX = event.clientX;
+          mouseY = event.clientY;
+          cursorDot.style.opacity = "1";
+          cursorRing.style.opacity = "1";
+          cursorDot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+        });
+
+        function renderCursor() {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          cursorRing.style.transform = `translate(${ringX - cursorRing.offsetWidth / 2}px, ${
+            ringY - cursorRing.offsetHeight / 2
+          }px)`;
+          requestAnimationFrame(renderCursor);
+        }
+
+        renderCursor();
+
+        document.querySelectorAll("a, button, .testimonial, .step-card, .channel").forEach((element) => {
+          element.addEventListener("mouseenter", () => cursorRing.classList.add("hover"));
+          element.addEventListener("mouseleave", () => cursorRing.classList.remove("hover"));
+        });
+      }
+
+      function animateCounter(counter) {
+        const target = Number(counter.dataset.target || 0);
+        const format = counter.dataset.format;
+        const formatter = new Intl.NumberFormat("de-DE");
+
+        gsap.fromTo(
+          counter,
+          { innerText: 0 },
+          {
+            innerText: target,
+            duration: 1.6,
+            ease: "power2.out",
+            snap: { innerText: 1 },
+            onUpdate() {
+              const value = Math.round(Number(counter.innerText));
+              counter.innerText = format === "de" ? formatter.format(value) : String(value);
+            },
+          }
+        );
+      }
+
+      function initAnimations() {
+        if (!window.gsap || !window.ScrollTrigger || reducedMotion) {
+          document.body.classList.remove("is-loading");
+          header.style.opacity = "1";
+          header.style.transform = "none";
+          document.querySelectorAll(".line-mask span, .hero-label, .hero-copy, .hero-actions, .hero-stats").forEach((el) => {
+            el.style.opacity = "1";
+            el.style.transform = "none";
+          });
+          document.getElementById("preloader").style.display = "none";
+          return;
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const preDiagonal = document.querySelector(".pre-diagonal");
+        const preMid = document.querySelector(".pre-mid");
+        const diagonalLength = preDiagonal.getTotalLength();
+        const midLength = preMid.getTotalLength();
+
+        gsap.set([".pre-v", ".pre-h", ".pre-mid"], { transformOrigin: "left center" });
+        gsap.set(".pre-v", { scaleY: 0, transformOrigin: "bottom center" });
+        gsap.set(".pre-h", { scaleX: 0 });
+        gsap.set(".pre-mid", { strokeDasharray: midLength, strokeDashoffset: midLength });
+        gsap.set(".pre-diagonal", { strokeDasharray: diagonalLength, strokeDashoffset: diagonalLength });
+
+        const loadTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        loadTl
+          .to(".pre-v", { scaleY: 1, duration: 0.6 })
+          .to(".pre-h", { scaleX: 1, duration: 0.38, stagger: 0.08 }, "-=0.25")
+          .to(".pre-mid", { strokeDashoffset: 0, duration: 0.34 }, "-=0.2")
+          .to(".pre-diagonal", { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" })
+          .to(".preloader-word span", { opacity: 1, y: 0, duration: 0.58, stagger: 0.065 }, "-=0.08")
+          .to("#preloader", { opacity: 0, duration: 0.5, delay: 0.12, onComplete: () => {
+            document.getElementById("preloader").style.display = "none";
+            document.body.classList.remove("is-loading");
+          }})
+          .to(header, { opacity: 1, y: 0, duration: 0.4 }, "-=0.15")
+          .to(".hero-label", { opacity: 1, y: 0, duration: 0.3 }, "-=0.05")
+          .to(".line-mask span", { y: 0, duration: 0.75, stagger: 0.1 }, "-=0.05")
+          .to(".hero-copy", { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
+          .to(".hero-actions", { opacity: 1, y: 0, duration: 0.3 }, "-=0.12")
+          .to(".hero-stats", { opacity: 1, y: 0, duration: 0.4 }, "-=0.05");
+
+        gsap.set(".hero-label, .hero-copy, .hero-actions", { y: 18 });
+
+        document.querySelectorAll(".reveal-head").forEach((element) => {
+          gsap.from(element, {
+            y: 40,
+            opacity: 0,
+            duration: 0.85,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 82%",
+            },
+          });
+        });
+
+        gsap.utils.toArray(".reveal-card").forEach((element, index) => {
+          gsap.from(element, {
+            y: 34,
+            opacity: 0,
+            duration: 0.72,
+            delay: (index % 4) * 0.035,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 86%",
+            },
+          });
+        });
+
+        ScrollTrigger.matchMedia({
+          "(min-width: 1101px)": function () {
+            const pains = gsap.utils.toArray(".pain");
+            const painTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: ".problem",
+                pin: ".problem-pin",
+                start: "top top",
+                end: "+=220%",
+                scrub: true,
+              },
+            });
+
+            pains.forEach((pain, index) => {
+              if (index === 0) return;
+              painTl
+                .to(pains[index - 1], { opacity: 0, x: -30, duration: 0.45 })
+                .fromTo(pain, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.55 }, "<0.1");
+            });
+
+            const track = document.getElementById("systemTrack");
+            const amount = () => Math.max(0, track.scrollWidth - window.innerWidth + 90);
+            gsap.to(track, {
+              x: () => -amount(),
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".system",
+                pin: true,
+                scrub: 1,
+                start: "top top",
+                end: () => `+=${amount() + window.innerHeight * 0.65}`,
+                invalidateOnRefresh: true,
+              },
+            });
+          },
+        });
+
+        document.querySelectorAll("[data-counter-group]").forEach((group) => {
+          ScrollTrigger.create({
+            trigger: group,
+            start: "top 82%",
+            once: true,
+            onEnter: () => {
+              group.querySelectorAll("[data-counter]").forEach((counter) => animateCounter(counter));
+            },
+          });
+        });
+
+        ScrollTrigger.create({
+          trigger: "#bars",
+          start: "top 78%",
+          once: true,
+          onEnter: () => {
+            document.querySelectorAll(".bar-fill").forEach((bar) => {
+              gsap.to(bar, {
+                width: `${bar.dataset.width}%`,
+                duration: 1.25,
+                ease: "power3.out",
+              });
+            });
+          },
+        });
+      }
+
+      initCursor();
+      initAnimations();
     </script>
   </body>
 </html>
